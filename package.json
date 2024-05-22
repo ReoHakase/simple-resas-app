@@ -1,0 +1,41 @@
+{
+  "name": "simple-resas-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "patch-package",
+    "prepare": "concurrently -n \"HUSKY,TURBO\" -c \"magenta,cyan\" \"husky\" \"turbo build --filter='./packages/*'\"",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write ."
+  },
+  "devDependencies": {
+    "concurrently": "8.2.2",
+    "eslint": "8.57.0",
+    "eslint-config-custom": "workspace:*",
+    "eslint-config-prettier": "9.1.0",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
+    "patch-package": "8.0.0",
+    "playwright": "1.42.1",
+    "prettier": "3.2.5",
+    "tsup": "8.0.2",
+    "turbo": "1.13.0",
+    "typescript": "5.4.3"
+  },
+  "engines": {
+    "node": "18",
+    "pnpm": "8"
+  },
+  "packageManager": "pnpm@8.15.5",
+  "nextBundleAnalysis": {
+    "budget": 358400,
+    "budgetPercentIncreaseRed": 20,
+    "minimumChangeThreshold": 0,
+    "showDetails": true
+  },
+  "pnpm": {
+    "overrides": {
+      "mdx-bundler": "9.2.1"
+    }
+  }
+}

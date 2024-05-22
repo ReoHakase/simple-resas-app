@@ -1,0 +1,17 @@
+{
+  "name": "tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "nextjs.json",
+    "node.json",
+    "bun.json"
+  ],
+  "scripts": {
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write ."
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  }
+}

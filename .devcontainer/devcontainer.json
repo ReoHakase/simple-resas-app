@@ -1,0 +1,80 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+  "name": "simple-resas-app",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "formulahendry.auto-complete-tag",
+        "adam-bender.commit-message-editor",
+        "mikestead.dotenv",
+        "dbaeumer.vscode-eslint",
+        "github.copilot",
+        "eamodio.gitlens",
+        "vincaslt.highlight-matching-tag",
+        "wix.vscode-import-cost",
+        "visualstudioexptteam.vscodeintellicode",
+        "orta.vscode-jest",
+        "christian-kohler.path-intellisense",
+        "esbenp.prettier-vscode",
+        "prisma.prisma",
+        "stylelint.vscode-stylelint",
+        "oderwat.indent-rainbow",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "DavidAnson.vscode-markdownlint",
+        "emmanuelbeziat.vscode-great-icons",
+        "chakra-ui.panda-css-vscode",
+        "IronGeek.vscode-env",
+        "github.vscode-github-actions",
+        "GitHub.copilot-chat",
+        "GitHub.vscode-pull-request-github",
+        "unifiedjs.vscode-mdx",
+        "csstools.postcss",
+        "scaffdog.scaffdog-vscode"
+      ]
+    }
+  },
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "installDirectlyFromGitHubRelease": true,
+      "version": "latest"
+    },
+    "ghcr.io/NicoVIII/devcontainer-features/pnpm:2": {
+      "version": "8.11.0"
+    },
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "nodeGypDependencies": true,
+      "version": "18",
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/act:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/exa:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers-contrib/features/fish-apt-get:1": {},
+    "ghcr.io/devcontainers-contrib/features/neofetch:1": {},
+    "ghcr.io/devcontainers-contrib/features/starship:1": {
+      "version": "latest"
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [3000, 6000]
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "yarn install",
+
+  // Configure tool-specific properties.
+  // "customizations": {},
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+}

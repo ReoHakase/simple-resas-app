@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", ":timezone(Asia/Tokyo)"],
+  "labels": ["📦️ build"],
+  "schedule": ["after 10pm and before 5am every weekend"],
+  "dependencyDashboard": true,
+  "automerge": true,
+  "rangeStrategy": "pin",
+  "semanticCommitType": "build: 📦 ",
+  "semanticCommitScope": "{{parentDir}}",
+  "semanticCommits": "enabled",
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "devDependencies"
+    },
+    {
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Minor dependencies"
+    },
+    {
+      "description": "Ignore node and pnpm in engines in package.json",
+      "matchPackageNames": ["node", "pnpm"],
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["engines"],
+      "enabled": false
+    }
+  ]
+}
