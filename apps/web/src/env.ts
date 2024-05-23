@@ -1,7 +1,16 @@
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
 
+/**
+ * 環境がサーバー側かクライアント側かを判定する式
+ * クライアントコンポーネント以外のテストも実行するため、Vitest環境では常にtrueを返す
+ * @default typeof window === "undefined"
+ * @see https://github.com/t3-oss/t3-env/blob/main/packages/core/src/index.ts
+ */
+const isServer = typeof window === 'undefined' || process.env.NODE_ENV === 'test';
+
 export const env = createEnv({
+  isServer,
   server: {
     BASE_URL: z.string().optional().default('resas.reoiam.dev'),
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
