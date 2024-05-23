@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import type { LinkProps } from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 import type { ReactNode, ComponentPropsWithoutRef } from 'react';
 import { cx, cva } from 'styled-system/css';
@@ -58,11 +58,21 @@ export const TopNavigationLink = ({
   children,
   ...props
 }: TopNavigationLinkProps): ReactNode => {
-  // Retrieve the current path starting with /.
-  // Refer: https://nextjs.org/docs/app/api-reference/functions/use-pathname
-  const currentPath = usePathname(); // e.g. `/docs/works/shelfree`
-  // Check if the current path is the same as the href.
+  // 現在のパスを取得します。パスは「/」で始まります。クエリパラメータは無視されます。
+  // @see https://nextjs.org/docs/app/api-reference/functions/use-pathname
+  const currentPath = usePathname(); // 例: `/docs/works/shelfree`
+  // 現在のパスとhrefが同じかどうかをチェックします。
   const isBeingOpened = useMemo(() => currentPath === href.toString(), [currentPath, href]);
+
+  // 現在のクエリパラメータを取得します。
+  // @see https://nextjs.org/docs/app/api-reference/functions/use-search-params
+  const searchParams = useSearchParams();
+
+  const hrefWithSearchParamsPreserved = useMemo<string>(() => {
+    const searchParamsString = new URLSearchParams(searchParams).toString();
+    const encodedSearchParamsString = searchParamsString.replace(/%2C/g, ',');
+    return encodedSearchParamsString ? `${href}?${encodedSearchParamsString}` : href.toString();
+  }, [href, searchParams]);
 
   const link = topNavigationLinkRecipe({
     selected: selected || isBeingOpened,
@@ -70,7 +80,7 @@ export const TopNavigationLink = ({
 
   return (
     <Link
-      href={href}
+      href={hrefWithSearchParamsPreserved}
       className={cx(link, className)}
       aria-current={selected || isBeingOpened ? 'page' : undefined}
       {...props}
