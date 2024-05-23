@@ -16,6 +16,7 @@ export const env = createEnv({
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
     VERCEL_URL: z.string().optional(),
     PORT: z.coerce.number().optional().default(3000),
+    RESAS_API_KEY: z.string().min(1),
   },
   client: {
     // example:
@@ -30,5 +31,6 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     VERCEL_URL: process.env.VERCEL_URL,
     PORT: process.env.PORT,
+    RESAS_API_KEY: process.env.RESAS_API_KEY,
   },
 });
