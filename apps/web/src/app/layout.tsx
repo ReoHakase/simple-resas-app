@@ -72,3 +72,9 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1.0,
 };
+
+/**
+ * ルートが再生成されるまでの時間を秒単位で指定します。
+ * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
+ */
+export const revalidate = false; // 再生成なし

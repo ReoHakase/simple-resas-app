@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
-import { Newspaper } from 'lucide-react';
+import { Baby } from 'lucide-react';
 import { TopNavigationLink } from './TopNavigationLink';
 import { css } from 'styled-system/css';
 
@@ -17,13 +17,24 @@ const meta: Meta<typeof TopNavigationLink> = {
     ),
   ],
   args: {
-    href: '/docs/example',
+    href: '/young',
     children: (
       <>
-        <Newspaper />
-        Example
+        <Baby />
+        年少人口
       </>
     ),
+  },
+  parameters: {
+    nextjs: {
+      appDirectory: true,
+      navigation: {
+        pathname: '/all',
+        query: {
+          prefCodes: '11,24',
+        },
+      },
+    },
   },
   argTypes: {},
 };
@@ -34,18 +45,19 @@ export const Default: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getByRole('link');
-    expect(link).toHaveAttribute('href', args.href);
+    expect(link).toHaveAttribute('href', `${args.href.toString()}?prefCodes=11,24`);
   },
 };
 
 export const Selected: Story = {
   args: {
     selected: true,
+    href: '/elderly',
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getByRole('link');
-    expect(link).toHaveAttribute('href', args.href);
+    expect(link).toHaveAttribute('href', `${args.href.toString()}?prefCodes=11,24`);
     expect(link).toHaveAttribute('aria-current', 'page');
   },
 };

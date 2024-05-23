@@ -1,17 +1,34 @@
 import { GithubIcon, Sigma, Baby, PersonStanding, Accessibility } from 'lucide-react';
 import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import { Suspense } from 'react';
 import { ThemeSelect } from '../ThemeSelect/ThemeSelect';
-import { TopNavigationLink } from '../TopNavigation/TopNavigationLink';
+import { TopNavigationLink, TopNavigationLinkFallback } from '../TopNavigation/TopNavigationLink';
 import { Image } from '@/components/Image/Image';
 import { Link } from '@/components/Link/Link';
 import HeaderIconImage from '@public/icon.webp';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
+/**
+ * リンクのテキストを表示するコンポーネントです。
+ *
+ * @param omittableSuffix - 省略可能な接尾辞の文字列
+ * @param children - 必ず表示する文字列
+ * @returns span 要素
+ */
+const LinkText = ({ omittableSuffix, children }: { omittableSuffix?: string; children: string }): ReactNode => {
+  return (
+    <span>
+      {children}
+      {omittableSuffix ? <span className={css({ smDown: { srOnly: true } })}>{omittableSuffix}</span> : null}
+    </span>
+  );
+};
+
 export type HeaderProps = ComponentPropsWithoutRef<'header'>;
 
 /**
- * Renders a header.
+ * ヘッダーを表すコンポーネントです。
  */
 export const Header = ({ ...props }: HeaderProps): ReactNode => {
   return (
@@ -29,7 +46,7 @@ export const Header = ({ ...props }: HeaderProps): ReactNode => {
         p: '4',
         gap: '6',
         lgDown: {
-          mb: '16', // Add margin bottom for top navigation bar.
+          mb: '16', // 下に突き出るナビゲーションバーの分だけ余白を取る
         },
       })}
       {...props}
@@ -102,54 +119,37 @@ export const Header = ({ ...props }: HeaderProps): ReactNode => {
           },
         })}
       >
-        <TopNavigationLink href="/all">
-          <Sigma /> 総人口
-        </TopNavigationLink>
-        <TopNavigationLink href="/young">
-          <Baby />{' '}
-          <span>
-            年少
-            <span
-              className={css({
-                smDown: {
-                  srOnly: true,
-                },
-              })}
-            >
-              人口
-            </span>
-          </span>
-        </TopNavigationLink>
-        <TopNavigationLink href="/productive">
-          <PersonStanding />{' '}
-          <span>
-            生産年齢
-            <span
-              className={css({
-                smDown: {
-                  srOnly: true,
-                },
-              })}
-            >
-              人口
-            </span>
-          </span>
-        </TopNavigationLink>
-        <TopNavigationLink href="/elderly">
-          <Accessibility />{' '}
-          <span>
-            老年
-            <span
-              className={css({
-                smDown: {
-                  srOnly: true,
-                },
-              })}
-            >
-              人口
-            </span>
-          </span>
-        </TopNavigationLink>
+        <Suspense
+          fallback={
+            <>
+              <TopNavigationLinkFallback href="/all">
+                <Sigma /> <LinkText>総人口</LinkText>
+              </TopNavigationLinkFallback>
+              <TopNavigationLinkFallback href="/young">
+                <Baby /> <LinkText omittableSuffix="人口">年少</LinkText>
+              </TopNavigationLinkFallback>
+              <TopNavigationLinkFallback href="/productive">
+                <PersonStanding /> <LinkText omittableSuffix="人口">生産年齢</LinkText>
+              </TopNavigationLinkFallback>
+              <TopNavigationLinkFallback href="/elderly">
+                <Accessibility /> <LinkText omittableSuffix="人口">老年</LinkText>
+              </TopNavigationLinkFallback>
+            </>
+          }
+        >
+          <TopNavigationLink href="/all">
+            <Sigma /> <LinkText>総人口</LinkText>
+          </TopNavigationLink>
+          <TopNavigationLink href="/young">
+            <Baby /> <LinkText omittableSuffix="人口">年少</LinkText>
+          </TopNavigationLink>
+          <TopNavigationLink href="/productive">
+            <PersonStanding /> <LinkText omittableSuffix="人口">生産年齢</LinkText>
+          </TopNavigationLink>
+          <TopNavigationLink href="/elderly">
+            <Accessibility /> <LinkText omittableSuffix="人口">老年</LinkText>
+          </TopNavigationLink>
+        </Suspense>
       </nav>
       <div
         className={flex({
