@@ -24,7 +24,7 @@
   "include": [
     "next-env.d.ts",
     "next.config.js",
-    ".eslintrc.js",
+    ".eslintrc.cjs",
     "postcss.config.cjs",
     "**/*.ts",
     "**/*.tsx",
