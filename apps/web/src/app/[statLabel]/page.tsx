@@ -77,7 +77,12 @@ export const generateMetadata = async ({ params, searchParams }: GraphPageProps)
       : [],
   );
   const title = getGraphPageTitleLocaleJa(prefCodes, statLabel);
-  return { title };
+  return {
+    title,
+    openGraph: {
+      title,
+    },
+  };
 };
 
 /**

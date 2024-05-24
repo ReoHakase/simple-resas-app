@@ -61,6 +61,7 @@ export const metadata: Metadata = {
     locale: 'ja-JP',
     title: defaultTitle,
     description: defaultDescription,
+    siteName: defaultTitle,
     url: baseUrl,
   },
   twitter: {
