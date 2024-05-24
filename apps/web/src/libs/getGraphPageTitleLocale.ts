@@ -1,6 +1,7 @@
+import type { FetchPrefecturesResult } from '@/infra/resas/fetchPrefectures';
 import type { PrefCode } from '@/models/prefCode';
 import { prefCodesSchema } from '@/models/prefCode';
-import { prefLocaleJa } from '@/models/prefCode';
+// import { prefLocaleJa } from '@/models/prefCode';
 import type { StatLabel } from '@/models/statLabel';
 import { statLabelLocaleJa } from '@/models/statLabel';
 
@@ -11,7 +12,11 @@ import { statLabelLocaleJa } from '@/models/statLabel';
  * @param statLabel 統計データのラベル
  * @returns グラフページのタイトルのロケール
  */
-export const getGraphPageTitleLocaleJa = (prefCodes: PrefCode[], statLabel: StatLabel): string => {
+export const getGraphPageTitleLocaleJa = (
+  prefLocaleJa: FetchPrefecturesResult['prefLocaleJa'],
+  prefCodes: PrefCode[],
+  statLabel: StatLabel,
+): string => {
   if (prefCodes.length === 0) {
     return `都道府県別の${statLabelLocaleJa[statLabel]}`;
   }
@@ -22,5 +27,5 @@ export const getGraphPageTitleLocaleJa = (prefCodes: PrefCode[], statLabel: Stat
     style: 'long',
     type: 'conjunction',
   });
-  return `${formatter.format(prefCodes.map((x) => prefLocaleJa[x]))}の${statLabelLocaleJa[statLabel]}`;
+  return `${formatter.format(prefCodes.map((x) => prefLocaleJa[x] || ''))}の${statLabelLocaleJa[statLabel]}`;
 };
