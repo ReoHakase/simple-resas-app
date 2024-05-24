@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
+import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
 import { extractDataPointsByStatLabel } from '@/libs/extractDataPointsByStatLabel';
+import { getGraphPageTitleLocaleJa } from '@/libs/getGraphPageTitleLocale';
 import { getPopulationCompositionAll } from '@/libs/getPopulationCompositionAll';
+import type { PrefCode } from '@/models/prefCode';
 import { prefCodesSchema } from '@/models/prefCode';
 import { statLabelSchema } from '@/models/statLabel';
-import { getGraphPageTitleLocaleJa } from '@/utils/locale/getGraphPageTitleLocale';
 import { css } from 'styled-system/css';
 
 type GraphPageProps = {
@@ -21,10 +23,11 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
           .map((str) => str.split(','))
           .flat()
       : [],
-  );
+  ) as PrefCode[];
   const record = await getPopulationCompositionAll(prefCodes);
   const dataPoints = extractDataPointsByStatLabel(record, statLabel);
-  const title = getGraphPageTitleLocaleJa(prefCodes, statLabel);
+  const { prefLocaleJa } = await fetchPrefectures();
+  const title = getGraphPageTitleLocaleJa(prefLocaleJa, prefCodes, statLabel);
   return (
     <main
       className={css({
@@ -75,8 +78,9 @@ export const generateMetadata = async ({ params, searchParams }: GraphPageProps)
           .map((str) => str.split(','))
           .flat()
       : [],
-  );
-  const title = getGraphPageTitleLocaleJa(prefCodes, statLabel);
+  ) as PrefCode[];
+  const { prefLocaleJa } = await fetchPrefectures();
+  const title = getGraphPageTitleLocaleJa(prefLocaleJa, prefCodes, statLabel);
   return {
     title,
     openGraph: {
