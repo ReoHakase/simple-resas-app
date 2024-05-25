@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import type { FC, ReactNode } from 'react';
 import { Aurora } from '@/features/landingPage/components/Aurora/Aurora';
 import { Header } from '@/features/navigation/components/Header/Header';
+import { PrefectureForm } from '@/features/navigation/components/PrefectureForm/PrefectureForm';
 import { AppProvider } from '@/providers';
 import { fontVariables } from '@/styles/fonts';
 import { baseUrl } from '@/utils/routes/baseUrl';
@@ -34,7 +35,46 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => (
       <AppProvider>
         <Aurora />
         <Header />
-        {children}
+        <div
+          className={css({
+            w: 'full',
+            display: 'flex',
+            flexDir: 'column',
+            lg: {
+              flexDir: 'row-reverse',
+            },
+            justifyContent: 'start',
+            alignItems: 'start',
+          })}
+        >
+          <div
+            className={css({
+              w: 'full',
+              display: 'flex',
+              flexDir: 'column',
+              p: '6',
+              flexGrow: '3',
+              lgDown: {
+                h: '440px', // CLS防止
+              },
+            })}
+          >
+            {children}
+          </div>
+          <PrefectureForm
+            className={css({
+              w: 'full',
+              md: {
+                p: '6',
+              },
+              flexGrow: '1',
+              flexShrink: '0',
+              lg: {
+                maxW: '440px',
+              },
+            })}
+          />
+        </div>
       </AppProvider>
     </body>
   </html>
