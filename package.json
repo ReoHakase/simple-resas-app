@@ -36,7 +36,7 @@
   },
   "pnpm": {
     "overrides": {
-      "mdx-bundler": "9.2.1"
+      "mdx-bundler": "10.0.2"
     }
   }
 }
