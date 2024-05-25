@@ -49,6 +49,9 @@ jobs:
         env:
           RESAS_API_KEY: ${{ secrets.RESAS_API_KEY }}
 
+      - name: Export all environment variables to .env
+        run: printenv > apps/web/.env && ls -a apps/web
+
       - name: Test Storybook with Turbo
         run: pnpm turbo sb:test
         env:
