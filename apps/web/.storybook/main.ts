@@ -3,10 +3,14 @@ import path from 'path';
 import type { Configuration } from 'webpack';
 
 const config: StorybookConfig = {
+  env: (config) => ({ ...config, IS_STORYBOOK: 'true' }),
   addons: ['@storybook/addon-a11y', '@storybook/addon-essentials', '@storybook/addon-interactions'],
   framework: {
     name: '@storybook/nextjs',
     options: {},
+  },
+  features: {
+    experimentalRSC: true,
   },
   staticDirs: ['../public'],
   stories: ['../src/**/*.story.tsx', '../src/**/*.stories.tsx'],
