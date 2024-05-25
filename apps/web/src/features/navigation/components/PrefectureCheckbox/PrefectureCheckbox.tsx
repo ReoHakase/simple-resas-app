@@ -124,6 +124,7 @@ export const PrefectureCheckbox = ({
       htmlFor={checkboxId}
       className={cx(
         css({
+          pos: 'relative',
           display: 'flex',
           flexDir: 'row',
           justifyContent: 'start',
