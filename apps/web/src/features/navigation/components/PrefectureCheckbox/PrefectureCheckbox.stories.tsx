@@ -95,7 +95,9 @@ export const Default: Story = {
     expect(args.onChange).toHaveBeenCalledTimes(1);
     // searchParamsのprefCodesに与えた都道府県コードが追加されたことを確認
     expect(parameters.nextjs.navigation.push).toHaveBeenCalledTimes(1);
-    expect(parameters.nextjs.navigation.push).toHaveBeenCalledWith('/all?prefCodes=1,8,12,13,14');
+    expect(parameters.nextjs.navigation.push).toHaveBeenCalledWith('/all?prefCodes=1,8,12,13,14', {
+      scroll: false,
+    });
   },
 };
 
@@ -127,7 +129,9 @@ export const Checked: Story = {
     expect(args.onChange).toHaveBeenCalledTimes(1);
     // searchParamsのprefCodesに与えた都道府県コードが削除されたことを確認
     expect(parameters.nextjs.navigation.push).toHaveBeenCalledTimes(1);
-    expect(parameters.nextjs.navigation.push).toHaveBeenCalledWith('/all?prefCodes=8,12,13,14');
+    expect(parameters.nextjs.navigation.push).toHaveBeenCalledWith('/all?prefCodes=8,12,13,14', {
+      scroll: false,
+    });
   },
 };
 

@@ -38,7 +38,6 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
         justifyContent: 'start',
         alignItems: 'center',
         overflowX: 'hidden',
-        p: '6',
         gap: '4',
       })}
     >

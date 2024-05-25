@@ -100,7 +100,11 @@ export const PrefectureStateBar = ({ className, ...props }: PrefectureStateBarPr
           />
         </div>
       </div>
-      <PrefectureClearButton />
+      <PrefectureClearButton
+        className={css({
+          flexShrink: '0',
+        })}
+      />
     </div>
   );
 };

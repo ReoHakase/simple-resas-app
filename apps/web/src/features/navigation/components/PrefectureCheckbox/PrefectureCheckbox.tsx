@@ -55,7 +55,9 @@ const useUpdatePrefCodesSearchParams = () => {
       ) as PrefCode[];
       const newPrefCodes = Array.from(new Set([...currentPrefCodes, prefCode])).sort((a, b) => Number(a) - Number(b));
       params.set('prefCodes', newPrefCodes.join(','));
-      router.push(`${pathname}?${params.toString().replace(/%2C/g, ',')}`);
+      router.push(`${pathname}?${params.toString().replace(/%2C/g, ',')}`, {
+        scroll: false,
+      });
     },
     [router, pathname, searchParams],
   );
@@ -71,7 +73,12 @@ const useUpdatePrefCodesSearchParams = () => {
       ) as PrefCode[];
       const newPrefCodes = currentPrefCodes.filter((code) => code !== prefCode).sort((a, b) => Number(a) - Number(b));
       params.set('prefCodes', newPrefCodes.join(','));
-      router.push(`${pathname}?${params.toString().replace(/%2C/g, ',')}`);
+      if (newPrefCodes.length === 0) {
+        params.delete('prefCodes');
+      }
+      router.push(`${pathname}?${params.toString().replace(/%2C/g, ',')}`, {
+        scroll: false,
+      });
     },
     [router, pathname, searchParams],
   );
@@ -124,6 +131,7 @@ export const PrefectureCheckbox = ({
       htmlFor={checkboxId}
       className={cx(
         css({
+          pos: 'relative',
           display: 'flex',
           flexDir: 'row',
           justifyContent: 'start',

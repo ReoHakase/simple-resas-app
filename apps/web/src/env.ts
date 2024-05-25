@@ -7,7 +7,8 @@ import { z } from 'zod';
  * @default typeof window === "undefined"
  * @see https://github.com/t3-oss/t3-env/blob/main/packages/core/src/index.ts
  */
-const isServer = typeof window === 'undefined' || process.env.NODE_ENV === 'test';
+const isServer =
+  typeof window === 'undefined' || process.env.NODE_ENV === 'test' || process.env.IS_STORYBOOK === 'true';
 
 export const env = createEnv({
   isServer,

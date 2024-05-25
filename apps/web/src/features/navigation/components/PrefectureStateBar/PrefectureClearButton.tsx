@@ -21,6 +21,7 @@ export const PrefectureClearButton = <T,>({ className, ...props }: PrefectureCle
   return (
     <Link
       href={pathname}
+      scroll={false}
       className={cx(
         css({
           display: 'flex',
