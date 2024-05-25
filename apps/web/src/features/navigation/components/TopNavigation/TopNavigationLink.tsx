@@ -113,6 +113,7 @@ export const TopNavigationLinkFallback = ({
   return (
     <Link
       href={href}
+      scroll={false}
       className={cx(link, className)}
       aria-current={selected || isBeingOpened ? 'page' : undefined}
       {...props}
@@ -147,6 +148,7 @@ export const TopNavigationLink = ({
   return (
     <Link
       href={hrefWithSearchParamsPreserved}
+      scroll={false}
       className={cx(link, className)}
       aria-current={selected || isBeingOpened ? 'page' : undefined}
       {...props}
