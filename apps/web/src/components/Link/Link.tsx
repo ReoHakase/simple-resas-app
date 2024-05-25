@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 // It is required to forward generics T to NextLinkProps in order to make DynamicRoute work.
 // e.g. `/tag/[tagId]`
-type LinkProps<T> = (
+export type LinkProps<T> = (
   | (NextLinkProps<T> & {
       external?: false;
     })
@@ -13,6 +13,7 @@ type LinkProps<T> = (
     })
 ) & {
   children: ReactNode;
+  className?: string;
 };
 
 /**
