@@ -54,6 +54,9 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => (
               flexDir: 'column',
               p: '6',
               flexGrow: '3',
+              lgDown: {
+                h: '550px', // CLS対策
+              },
             })}
           >
             {children}
