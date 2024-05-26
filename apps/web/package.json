@@ -57,6 +57,7 @@
     "@vitejs/plugin-react": "4.3.0",
     "autoprefixer": "10.4.19",
     "axe-playwright": "2.0.1",
+    "critters": "0.0.22",
     "eslint-config-custom-next": "workspace:*",
     "jsdom": "24.0.0",
     "panda-preset-radix-colors": "workspace:*",
