@@ -47,6 +47,7 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
           fontFamily: 'heading',
           fontWeight: 'bold',
           fontSize: '2xl',
+          lineClamp: 3,
           md: {
             fontSize: '4xl',
           },
