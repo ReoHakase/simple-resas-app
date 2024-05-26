@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
+import { Suspense } from 'react';
+import { PopulationChart } from '@/features/population/components/PopulationChart/PopulationChart';
+import { PopulationChartSkeleton } from '@/features/population/components/PopulationChart/PopulationChart.skeleton';
 import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
-import { extractDataPointsByStatLabel } from '@/libs/extractDataPointsByStatLabel';
 import { getGraphPageTitleLocaleJa } from '@/libs/getGraphPageTitleLocale';
-import { getPopulationCompositionAll } from '@/libs/getPopulationCompositionAll';
 import type { PrefCode } from '@/models/prefCode';
 import { prefCodesSchema } from '@/models/prefCode';
 import { statLabelSchema } from '@/models/statLabel';
@@ -24,10 +25,10 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
           .flat()
       : [],
   ) as PrefCode[];
-  const record = await getPopulationCompositionAll(prefCodes);
-  const dataPoints = extractDataPointsByStatLabel(record, statLabel);
+
   const { prefLocaleJa } = await fetchPrefectures();
   const title = getGraphPageTitleLocaleJa(prefLocaleJa, prefCodes, statLabel);
+
   return (
     <main
       className={css({
@@ -53,15 +54,9 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
       >
         {title}
       </h1>
-      <p
-        className={css({
-          fontFamily: 'monospace',
-          fontSize: 'sm',
-          color: 'keyplate.11',
-        })}
-      >
-        {JSON.stringify(dataPoints, null, 2)}
-      </p>
+      <Suspense key={title} fallback={<PopulationChartSkeleton />}>
+        <PopulationChart statLabel={statLabel} prefCodes={prefCodes} />
+      </Suspense>
     </main>
   );
 };
