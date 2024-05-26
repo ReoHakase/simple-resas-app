@@ -2,19 +2,6 @@ import { defineConfig } from '@pandacss/dev';
 import { radixColorsPreset } from 'panda-preset-radix-colors';
 import { radixUIPreset } from 'panda-preset-radix-ui';
 import { selectSlotRecipe } from '@/components/Select/Select.recipe';
-import {
-  markupHeadingRecipe,
-  markupHrRecipe,
-  markupSpanRecipe,
-  markupDivRecipe,
-  markupImageRecipe,
-  markupListRecipe,
-  markupARecipe,
-  markupBlockquoteRecipe,
-  markupCodeSlotRecipe,
-  markupTableSlotRecipe,
-  markupShowcaseRecipe,
-} from '@/features/markup/styles/markup';
 import { breakpoints } from '@/styles/tokens/breakpoints';
 
 export default defineConfig({
@@ -145,17 +132,6 @@ export default defineConfig({
       },
       breakpoints: breakpoints,
       recipes: {
-        markupHeading: markupHeadingRecipe,
-        markupHr: markupHrRecipe,
-        markupSpan: markupSpanRecipe,
-        markupA: markupARecipe,
-        markupDiv: markupDivRecipe,
-        markupImage: markupImageRecipe,
-        markupList: markupListRecipe,
-        markupBlockquote: markupBlockquoteRecipe,
-        markupCode: markupCodeSlotRecipe,
-        markupTable: markupTableSlotRecipe,
-        markupShowcase: markupShowcaseRecipe,
         select: selectSlotRecipe,
       },
     },
