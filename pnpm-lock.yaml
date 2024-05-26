@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  mdx-bundler: 10.0.2
-
 importers:
 
   .:
@@ -71,9 +68,6 @@ importers:
       '@vercel/analytics':
         specifier: 1.1.2
         version: 1.1.2
-      date-fns:
-        specifier: 3.3.1
-        version: 3.3.1
       eslint-config-next:
         specifier: 14.1.0
         version: 14.1.0(eslint@8.57.0)(typescript@5.4.3)
@@ -95,9 +89,6 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
-      react-icons:
-        specifier: 5.0.1
-        version: 5.0.1(react@18.2.0)
       recharts:
         specifier: 2.12.7
         version: 2.12.7(react-dom@18.2.0)(react@18.2.0)
@@ -159,15 +150,6 @@ importers:
       '@testing-library/react':
         specifier: 15.0.7
         version: 15.0.7(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)
-      '@types/mdast':
-        specifier: 4.0.3
-        version: 4.0.3
-      '@types/mdx':
-        specifier: 2.0.12
-        version: 2.0.12
-      '@types/unist':
-        specifier: 3.0.2
-        version: 3.0.2
       '@vitejs/plugin-react':
         specifier: 4.3.0
         version: 4.3.0(vite@5.2.11)
@@ -183,9 +165,6 @@ importers:
       eslint-config-custom-next:
         specifier: workspace:*
         version: link:../../packages/eslint-config-custom-next
-      jest-mock:
-        specifier: 29.7.0
-        version: 29.7.0
       jsdom:
         specifier: 24.0.0
         version: 24.0.0
@@ -5485,12 +5464,6 @@ packages:
     resolution: {integrity: sha512-X+2qazGS3jxLAIz5JDXDzglAF3KpijdhFxlf/V1+hEsOUc+HnWi81L/uv/EvGuV90WY+7mPGFCUDGfQC3Gj95Q==}
     dev: true
 
-  /@types/mdast@4.0.3:
-    resolution: {integrity: sha512-LsjtqsyF+d2/yFOYaN22dHZI1Cpwkrj+g06G8+qtUKlhovPW89YhqSnfKtMbkgmEtYpH2gydRNULd6y8mciAFg==}
-    dependencies:
-      '@types/unist': 3.0.2
-    dev: true
-
   /@types/mdx@2.0.12:
     resolution: {integrity: sha512-H9VZ9YqE+H28FQVchC83RCs5xQ2J7mAAv6qdDEaWmXEVl3OpdH+xfrSUzQ1lp7U7oSTRZ0RvW08ASPJsYBi7Cw==}
     dev: true
@@ -8069,10 +8042,6 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.5
     dev: true
-
-  /date-fns@3.3.1:
-    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
-    dev: false
 
   /date-format@4.0.3:
     resolution: {integrity: sha512-7P3FyqDcfeznLZp2b+OMitV9Sz2lUnsT87WaTat9nVwqsBkTzPG3lPLNwW3en6F4pHUiWzr6vb8CLhjdK9bcxQ==}
@@ -14362,14 +14331,6 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
       react-is: 18.1.0
     dev: true
-
-  /react-icons@5.0.1(react@18.2.0):
-    resolution: {integrity: sha512-WqLZJ4bLzlhmsvme6iFdgO8gfZP17rfjYEJ2m9RsZjZ+cc4k1hTzknEz63YS1MeT50kVzoa1Nz36f4BEx+Wigw==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
