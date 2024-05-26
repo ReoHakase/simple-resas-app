@@ -1,25 +1,40 @@
-import type { ReactElement } from 'react';
-import type { PopulationChartProps } from './PopulationChart';
-import { Skeleton } from '@/features/navigation/components/Skeleton/Skeleton';
+import { Loader } from 'lucide-react';
+import type { ReactElement, ComponentPropsWithoutRef } from 'react';
 import { css, cx } from 'styled-system/css';
 
-export type PopulationChartSkeletonProps = Omit<PopulationChartProps, 'prefCodes' | 'statLabel'>;
+export type PopulationChartSkeletonProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;
 
 export const PopulationChartSkeleton = ({ className, ...props }: PopulationChartSkeletonProps): ReactElement => {
   return (
-    <p
-      className={cx(
-        css({
-          w: 'full',
-          fontFamily: 'monospace',
-          fontSize: 'sm',
-          color: 'keyplate.11',
-        }),
-        className,
-      )}
+    <div
+      className={css({
+        w: 'full',
+        h: '600px',
+        mdDown: {
+          h: '400px',
+        },
+        animation: 'pulse',
+        bg: 'keyplate.a.2',
+        rounded: '2xl',
+        ring: 'none',
+        userSelect: 'none',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      })}
       {...props}
     >
-      <Skeleton inline lines={14} className={css({ w: 'full' })} />
-    </p>
+      <Loader
+        className={cx(
+          css({
+            w: '8',
+            h: '8',
+            color: 'keyplate.a.9',
+            animation: 'spin',
+          }),
+          className,
+        )}
+      />
+    </div>
   );
 };

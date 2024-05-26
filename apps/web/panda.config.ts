@@ -189,7 +189,16 @@ export default defineConfig({
         danger: 'crimson',
       },
       colorScales: ['white', 'black'],
-      withoutAlpha: false,
+      excludeAlpha: false,
+    }),
+    radixColorsPreset({
+      darkMode: {
+        // NOTE: Make sure these selectors match the configurations passed to `next-themes` ThemeProvider
+        condition: "[data-theme='dark'] &",
+      },
+      autoP3: true,
+      excludeAlpha: true,
+      excludedShades: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12], // 11 以外
     }),
 
     radixUIPreset({

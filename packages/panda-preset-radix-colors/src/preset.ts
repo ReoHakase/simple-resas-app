@@ -49,11 +49,13 @@ type Recursive = {
 
 type ColorScaleEntries = [string, Recursive | string][];
 
-type DeleteAlphaColorOption = {
+type FilterColorOption = {
+  excludeAlpha: boolean;
+  excludedShades: Array<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>;
   colorScales: ColorScaleEntries;
 };
 
-const deleteAlphaColor = ({ colorScales }: DeleteAlphaColorOption) =>
+const filterColor = ({ excludedShades, excludeAlpha, colorScales }: FilterColorOption) =>
   Object.fromEntries(
     colorScales.reduce<ColorScaleEntries>((acc, [key, value]) => {
       if (key === 'black' || key === 'white') {
@@ -61,11 +63,18 @@ const deleteAlphaColor = ({ colorScales }: DeleteAlphaColorOption) =>
         return acc;
       }
       if (key === 'a') {
+        if (!excludeAlpha) {
+          acc.push([key, value]);
+        }
         return acc;
       }
 
       if (typeof value === 'object' && Number.isNaN(Number(key))) {
-        acc.push([key, deleteAlphaColor({ colorScales: Object.entries(value) })]);
+        acc.push([key, filterColor({ colorScales: Object.entries(value), excludeAlpha, excludedShades })]);
+        return acc;
+      }
+
+      if ((excludedShades as number[]).includes(Number(key))) {
         return acc;
       }
 
@@ -297,7 +306,8 @@ const createAliasColors = ({ referenceColorScales, scaleAliases }: CreateAliasCo
 type CustomRadixColorsPresetOptions = {
   scaleAliases?: Record<string, RadixColorScale>;
   renameScale?: Partial<Record<RadixColorScale, string>>;
-  withoutAlpha?: boolean;
+  excludeAlpha?: boolean;
+  excludedShades?: Array<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12>;
 } & Parameters<typeof baseRadixColorsPreset>[0];
 
 /**
@@ -323,7 +333,8 @@ type CustomRadixColorsPresetOptions = {
 const radixColorsPreset = ({
   scaleAliases = {},
   renameScale = {},
-  withoutAlpha = false,
+  excludeAlpha = false,
+  excludedShades = [],
   ...baseOptions
 }: CustomRadixColorsPresetOptions) => {
   const explicitlyIncludedScales: RadixColorScale[] = baseOptions.colorScales || [];
@@ -354,13 +365,16 @@ const radixColorsPreset = ({
     colorScales: dependentScales,
   });
 
-  const baseColor = withoutAlpha
-    ? deleteAlphaColor({
-        colorScales: Object.entries({
-          ...basePreset.theme?.extend?.semanticTokens?.colors,
-        }) as ColorScaleEntries,
-      })
-    : { ...basePreset.theme?.extend?.semanticTokens?.colors };
+  const baseColor =
+    excludeAlpha || excludedShades.length > 0
+      ? filterColor({
+          excludeAlpha,
+          excludedShades,
+          colorScales: Object.entries({
+            ...basePreset.theme?.extend?.semanticTokens?.colors,
+          }) as ColorScaleEntries,
+        })
+      : { ...basePreset.theme?.extend?.semanticTokens?.colors };
 
   const renamedScaleColor = renameScaleColor({
     colorScales: Object.entries(baseColor) as ColorScaleEntries,
@@ -382,7 +396,7 @@ const radixColorsPreset = ({
   return preset;
 };
 
-export type { Recursive, ColorScaleEntries, DeleteAlphaColorOption };
-export { deleteAlphaColor, renameScaleColor, createAliasColors };
+export type { Recursive, ColorScaleEntries, FilterColorOption as DeleteAlphaColorOption };
+export { filterColor, renameScaleColor, createAliasColors };
 export type { RadixColorScales, RadixColorScale };
 export { radixColorsPreset };
