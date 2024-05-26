@@ -55,7 +55,9 @@ export const PrefectureForm = async ({ className, ...props }: PrefectureFormProp
               gridTemplateColumns: '1fr 1fr 1fr',
             })}
           >
-            <Skeleton lines={5} className={css({ w: 'full' })} />
+            {Array.from({ length: 47 }, (_, i) => (
+              <Skeleton key={i} inline={false} className={css({ w: 'auto', h: '8', m: '1' })} />
+            ))}
           </fieldset>
         }
       >
