@@ -1,14 +1,14 @@
 import type { ReactElement } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
+import { Chart } from '@/components/Chart/Chart';
+import type { ChartProps } from '@/components/Chart/Chart';
+import { getUniqueLineColor } from '@/components/Chart/lineColors';
+import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
 import { extractDataPointsByStatLabel } from '@/libs/extractDataPointsByStatLabel';
 import { getPopulationCompositionAll } from '@/libs/getPopulationCompositionAll';
 import type { PrefCode } from '@/models/prefCode';
 import type { StatLabel } from '@/models/statLabel';
 import { css, cx } from 'styled-system/css';
-import { Chart } from '@/components/Chart/Chart';
-import { getUniqueLineColor } from '@/components/Chart/lineColors';
-import type { ChartProps } from '@/components/Chart/Chart';
-import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
 
 export type PopulationChartProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'> & {
   statLabel: StatLabel;

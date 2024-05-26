@@ -2,10 +2,10 @@
 
 import type { ReactNode } from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { css } from 'styled-system/css';
-import { token } from 'styled-system/tokens';
 import type { LineColor } from './lineColors';
 import { lineColorsRecord } from './lineColors';
+import { css } from 'styled-system/css';
+import { token } from 'styled-system/tokens';
 
 const formatNumber = new Intl.NumberFormat('ja-JP', { notation: 'compact' }).format;
 

@@ -1,9 +1,8 @@
-import type { ReactElement } from 'react';
-import type { PopulationChartProps } from './PopulationChart';
-import { css, cx } from 'styled-system/css';
 import { Loader } from 'lucide-react';
+import type { ReactElement, ComponentPropsWithoutRef } from 'react';
+import { css, cx } from 'styled-system/css';
 
-export type PopulationChartSkeletonProps = Omit<PopulationChartProps, 'prefCodes' | 'statLabel'>;
+export type PopulationChartSkeletonProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;
 
 export const PopulationChartSkeleton = ({ className, ...props }: PopulationChartSkeletonProps): ReactElement => {
   return (
@@ -23,6 +22,7 @@ export const PopulationChartSkeleton = ({ className, ...props }: PopulationChart
         justifyContent: 'center',
         alignItems: 'center',
       })}
+      {...props}
     >
       <Loader
         className={cx(
