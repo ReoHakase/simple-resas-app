@@ -33,7 +33,7 @@
     "pandacss-preset-radix-colors": "0.2.0"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
+    "eslint-config-custom-next": "workspace:*",
     "tsconfig": "workspace:*"
   }
 }

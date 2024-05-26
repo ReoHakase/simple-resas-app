@@ -33,7 +33,7 @@
     "@pandacss/dev": "0.31.0"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
+    "eslint-config-custom-next": "workspace:*",
     "tsconfig": "workspace:*"
   }
 }
