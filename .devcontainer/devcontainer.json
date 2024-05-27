@@ -33,7 +33,7 @@
         "GitHub.vscode-pull-request-github",
         "unifiedjs.vscode-mdx",
         "csstools.postcss",
-        "scaffdog.scaffdog-vscode"
+        "vitest.explorer"
       ]
     }
   },
@@ -45,12 +45,12 @@
       "version": "latest"
     },
     "ghcr.io/NicoVIII/devcontainer-features/pnpm:2": {
-      "version": "8.11.0"
+      "version": "8.15.5"
     },
     "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
     "ghcr.io/devcontainers/features/node:1": {
       "nodeGypDependencies": true,
-      "version": "18",
+      "version": "20.11.1",
       "nvmVersion": "latest"
     },
     "ghcr.io/devcontainers-contrib/features/act:1": {
@@ -67,10 +67,10 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [3000, 6000]
+  "forwardPorts": [3000, 6000, 6006, 6007],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "yarn install",
+  "postCreateCommand": "pnpm install"
 
   // Configure tool-specific properties.
   // "customizations": {},
