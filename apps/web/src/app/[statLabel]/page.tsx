@@ -56,8 +56,8 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
       >
         {title}
       </h1>
-      <Suspense key={title} fallback={<PopulationChartSkeleton />}>
-        <PopulationChart statLabel={statLabel} prefCodes={prefCodes} />
+      <Suspense key={title} fallback={<PopulationChartSkeleton className={css({ flexGrow: '1' })} />}>
+        <PopulationChart className={css({ flexGrow: '1' })} statLabel={statLabel} prefCodes={prefCodes} />
       </Suspense>
     </main>
   );
