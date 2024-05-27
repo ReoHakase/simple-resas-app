@@ -6,3 +6,7 @@ styled-system
 
 # Storybook build
 storybook-static
+
+# Playwright report
+playwright-report
+test-results

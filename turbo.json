@@ -1,6 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
+    "start": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "cache": false
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"],
@@ -19,6 +24,10 @@
     },
     "sb:test": {
       "dependsOn": ["sb:build"]
+    },
+    "playwright:test": {
+      "dependsOn": ["build"],
+      "outputs": ["playwright-report/**"]
     },
     "lint": {
       "outputs": []

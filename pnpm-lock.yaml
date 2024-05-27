@@ -30,8 +30,8 @@ importers:
         specifier: 8.0.0
         version: 8.0.0
       playwright:
-        specifier: 1.42.1
-        version: 1.42.1
+        specifier: 1.44.1
+        version: 1.44.1
       prettier:
         specifier: 3.2.5
         version: 3.2.5
@@ -108,6 +108,9 @@ importers:
       '@pandacss/dev':
         specifier: 0.36.1
         version: 0.36.1(jsdom@24.0.0)(typescript@5.4.3)
+      '@playwright/test':
+        specifier: 1.44.1
+        version: 1.44.1
       '@radix-ui/colors':
         specifier: 3.0.0
         version: 3.0.0
@@ -158,7 +161,7 @@ importers:
         version: 10.4.19(postcss@8.4.38)
       axe-playwright:
         specifier: 2.0.1
-        version: 2.0.1(playwright@1.42.1)
+        version: 2.0.1(playwright@1.44.1)
       critters:
         specifier: 0.0.22
         version: 0.0.22
@@ -3279,6 +3282,14 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dev: false
+
+  /@playwright/test@1.44.1:
+    resolution: {integrity: sha512-1hZ4TNvD5z9VuhNJ/walIjvMVvYkZKf71axoF/uiAqpntQJXpG64dlXhoDXE3OczPuTuvjf/M5KWFg5VAVUS3Q==}
+    engines: {node: '>=16'}
+    hasBin: true
+    dependencies:
+      playwright: 1.44.1
+    dev: true
 
   /@pmmmwh/react-refresh-webpack-plugin@0.5.13(react-refresh@0.14.2)(webpack@5.91.0):
     resolution: {integrity: sha512-odZVYXly+JwzYri9rKqqUAk0cY6zLpv4dxoKinhoJNShV36Gpxf+CyDIILJ4tYsJ1ZxIWs233Y39iVnynvDA/g==}
@@ -6627,7 +6638,7 @@ packages:
       rimraf: 3.0.2
     dev: true
 
-  /axe-playwright@2.0.1(playwright@1.42.1):
+  /axe-playwright@2.0.1(playwright@1.44.1):
     resolution: {integrity: sha512-MHjNjGARulF9XzqSfspmNjw+tpBz4x9o1VlTuLWEUW9fqzhn+xWa1qEpuOIQPbsRWQiLfooDjQAunLeE0PM5AQ==}
     peerDependencies:
       playwright: '>1.0.0'
@@ -6637,7 +6648,7 @@ packages:
       axe-html-reporter: 2.2.3(axe-core@4.9.0)
       junit-report-builder: 3.2.1
       picocolors: 1.0.0
-      playwright: 1.42.1
+      playwright: 1.44.1
     dev: true
 
   /axios@1.6.8:
@@ -11441,7 +11452,7 @@ packages:
       jest-process-manager: 0.4.0
       jest-runner: 29.7.0
       nyc: 15.1.0
-      playwright-core: 1.43.1
+      playwright-core: 1.44.1
       rimraf: 3.0.2
       uuid: 8.3.2
     transitivePeerDependencies:
@@ -13654,8 +13665,8 @@ packages:
     hasBin: true
     dev: true
 
-  /playwright-core@1.43.1:
-    resolution: {integrity: sha512-EI36Mto2Vrx6VF7rm708qSnesVQKbxEWvPrfA1IPY6HgczBplDx7ENtx+K2n4kJ41sLLkuGfmb0ZLSSXlDhqPg==}
+  /playwright-core@1.44.1:
+    resolution: {integrity: sha512-wh0JWtYTrhv1+OSsLPgFzGzt67Y7BE/ZS3jEqgGBlp2ppp1ZDj8c+9IARNW4dwf1poq5MgHreEM2KV/GuR4cFA==}
     engines: {node: '>=16'}
     hasBin: true
     dev: true
@@ -13666,6 +13677,16 @@ packages:
     hasBin: true
     dependencies:
       playwright-core: 1.42.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /playwright@1.44.1:
+    resolution: {integrity: sha512-qr/0UJ5CFAtloI3avF95Y0L1xQo6r3LQArLIg/z/PoGJ6xa+EwzrwO5lpNr/09STxdHuUoP2mvuELJS+hLdtgg==}
+    engines: {node: '>=16'}
+    hasBin: true
+    dependencies:
+      playwright-core: 1.44.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
