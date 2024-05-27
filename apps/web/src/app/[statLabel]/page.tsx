@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
 import { Suspense } from 'react';
+import { metadata as layoutMetadata, defaultTitle } from '../layout';
 import { PopulationChart } from '@/features/population/components/PopulationChart/PopulationChart';
 import { PopulationChartSkeleton } from '@/features/population/components/PopulationChart/PopulationChart.skeleton';
 import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
@@ -55,8 +56,8 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
       >
         {title}
       </h1>
-      <Suspense key={title} fallback={<PopulationChartSkeleton />}>
-        <PopulationChart statLabel={statLabel} prefCodes={prefCodes} />
+      <Suspense key={title} fallback={<PopulationChartSkeleton className={css({ flexGrow: '1' })} />}>
+        <PopulationChart className={css({ flexGrow: '1' })} statLabel={statLabel} prefCodes={prefCodes} />
       </Suspense>
     </main>
   );
@@ -79,8 +80,10 @@ export const generateMetadata = async ({ params, searchParams }: GraphPageProps)
   return {
     title,
     openGraph: {
-      title,
+      ...layoutMetadata.openGraph,
+      title: `${title} | ${defaultTitle}`,
     },
+    twitter: layoutMetadata.twitter,
   };
 };
 

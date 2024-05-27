@@ -62,7 +62,7 @@ export const selectSlotRecipe = sva({
     },
     content: {
       pos: 'relative',
-      zIndex: 50,
+      zIndex: '100',
       minW: 'var(--radix-select-trigger-width)',
       overflow: 'hidden',
       rounded: 'md',

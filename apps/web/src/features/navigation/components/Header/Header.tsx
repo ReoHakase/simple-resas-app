@@ -162,7 +162,7 @@ export const Header = ({ ...props }: HeaderProps): ReactNode => {
       >
         <ThemeSelect />
         <Link
-          href="https://github.com/ReoHakase"
+          href="https://github.com/ReoHakase/simple-resas-app"
           external
           referrerPolicy="no-referrer"
           className={flex({

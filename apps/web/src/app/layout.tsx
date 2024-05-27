@@ -54,6 +54,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => (
               flexDir: 'column',
               p: '6',
               flexGrow: '3',
+              h: 'calc(100svh - token(sizes.20))',
               lgDown: {
                 h: '550px', // CLS対策
               },
@@ -82,8 +83,8 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => (
 
 export default RootLayout;
 
-const defaultTitle = 'RESAS 都道府県別 人口比較アプリケーション' as const;
-const defaultDescription =
+export const defaultTitle = 'RESAS 都道府県別 人口比較アプリケーション' as const;
+export const defaultDescription =
   'RESAS(地域経済分析システム)に掲載されている各種人口データを、都道府県別にグラフで比較できます。' as const;
 
 export const metadata: Metadata = {

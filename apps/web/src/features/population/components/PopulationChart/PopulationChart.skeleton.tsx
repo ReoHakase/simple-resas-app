@@ -7,21 +7,21 @@ export type PopulationChartSkeletonProps = Omit<ComponentPropsWithoutRef<'div'>,
 export const PopulationChartSkeleton = ({ className, ...props }: PopulationChartSkeletonProps): ReactElement => {
   return (
     <div
-      className={css({
-        w: 'full',
-        h: '600px',
-        mdDown: {
+      className={cx(
+        css({
+          w: 'full',
           h: '400px',
-        },
-        animation: 'pulse',
-        bg: 'keyplate.a.2',
-        rounded: '2xl',
-        ring: 'none',
-        userSelect: 'none',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      })}
+          animation: 'pulse',
+          bg: 'keyplate.a.2',
+          rounded: '2xl',
+          ring: 'none',
+          userSelect: 'none',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }),
+        className,
+      )}
       {...props}
     >
       <Loader
