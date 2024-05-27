@@ -43,10 +43,7 @@ export const PopulationChart = async ({
       className={cx(
         css({
           w: 'full',
-          h: '600px',
-          mdDown: {
-            h: '400px',
-          },
+          h: '400px',
         }),
         className,
       )}
