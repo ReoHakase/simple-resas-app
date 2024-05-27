@@ -3,6 +3,7 @@
 https://github.com/ReoHakase/simple-resas-app/assets/16751535/831e492a-7738-433e-85a5-caaa0c98fad8
 
 RESAS(地域経済分析システム)に掲載されている各種人口データを、都道府県別にグラフで比較できます。
+株式会社ゆめみの[フロントエンドコーディング試験](https://yumemi.notion.site/0e9ef27b55704d7882aab55cc86c999d)の課題の一環で作成しました。
 
 ## 概要
 
@@ -11,6 +12,7 @@ RESAS(地域経済分析システム)に掲載されている各種人口デー�
 - [x] **📱 レスポンシブ対応** どのような画面サイズに対しても、読み込み過程でのCLSなく表示できます。
 - [x] **♿ アクセシビリティ対応** [Pagespeed Insights](https://pagespeed.web.dev/analysis/https-resas-reoiam-dev-all/w6wyqvlcfx?form_factor=mobile)でスコア100を記録しました。
 - [x] **📤 Opengraph対応** URLを送るだけで、選択中の都道府県と統計の種類をわかりやすく共有できます。
+- [x] **🤖 GitHub Actions使用** ESLint & Prettierの実行、Vitestのテストの実行、Storybookのインタラクションテストの実行をPR毎に自動化しています。
 
 ### Pagespeed Insights
 
@@ -44,6 +46,9 @@ https://www.figma.com/design/hsWBflpYMAqzRCIabKZYnJ/Yumemi?node-id=402-1692&t=v4
 - **Storybook** 📕 アクセシビリティやインタラクションテストの実行と見た目の確認
 - **Vitest** ⚡ テストの実行
 - **Turborepo** ⚙️ モノレポのビルドやリントのキャッシュ管理
+
+> [!NOTE]
+> 定期試験と大学編入試験に起因する開発者の多忙により、ヘッダー内のテーマセレクタの実装にRadix UIへの依存が残ってしまっています。課題の要件に係る核心的機能ではないので、見逃してくださると幸いです。
 
 ## 環境構築の手順
 
