@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
 import { Suspense } from 'react';
-import { metadata as layoutMetadata } from '../layout';
+import { metadata as layoutMetadata, defaultTitle } from '../layout';
 import { PopulationChart } from '@/features/population/components/PopulationChart/PopulationChart';
 import { PopulationChartSkeleton } from '@/features/population/components/PopulationChart/PopulationChart.skeleton';
 import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
@@ -81,8 +81,9 @@ export const generateMetadata = async ({ params, searchParams }: GraphPageProps)
     title,
     openGraph: {
       ...layoutMetadata.openGraph,
-      title,
+      title: `${title} | ${defaultTitle}`,
     },
+    twitter: layoutMetadata.twitter,
   };
 };
 
