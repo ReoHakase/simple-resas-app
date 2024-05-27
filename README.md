@@ -58,6 +58,7 @@ Node.jsとpnpmのバージョン管理にprototoolsを使用しています。�
 ```sh
 proto use
 pnpm i
+pnpm playwright install --with-deps # StorybookのインタラクションテストのCLI実行 & E2Eテストの実行に必要
 ```
 
 ### 環境変数の設定
