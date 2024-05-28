@@ -108,6 +108,9 @@ importers:
       '@pandacss/dev':
         specifier: 0.36.1
         version: 0.36.1(jsdom@24.0.0)(typescript@5.4.3)
+      '@pandacss/preset-panda':
+        specifier: 0.39.2
+        version: 0.39.2
       '@playwright/test':
         specifier: 1.44.1
         version: 1.44.1
@@ -3221,6 +3224,12 @@ packages:
       '@pandacss/types': 0.36.1
     dev: true
 
+  /@pandacss/preset-panda@0.39.2:
+    resolution: {integrity: sha512-TJPjxfojKSnt8TCm3elugw/SPoa2HLWSkyuYp+/EphV46O7buyYjwuqIDcOdqqdv4Rxa/7zwsVVhzwgdtpn4MQ==}
+    dependencies:
+      '@pandacss/types': 0.39.2
+    dev: true
+
   /@pandacss/shared@0.30.2:
     resolution: {integrity: sha512-3i+IpzorSqfbyoAtJmqoCJu9HjdIKLIQ3HJbHx0RROnvYuaSBU2LS7br8Ghq1IcAjj9kIvy4fp7vTOvzbZRYuQ==}
     dev: false
@@ -3270,6 +3279,10 @@ packages:
 
   /@pandacss/types@0.36.1:
     resolution: {integrity: sha512-F0mGFtXT2j1hNFi5Z1AXPxEYcHoaedyJyScEbsGga4aa2KlJCEPEX9UDdgltMlrhSilM7nq7RbrDMToZ/cwvOg==}
+    dev: true
+
+  /@pandacss/types@0.39.2:
+    resolution: {integrity: sha512-A+urImQjBGVTu2sAajgDToHnk+QPtsvxgqHIdtQjwIs59u4RI35JB4OXoy1Vb2ctUOJhuYmJSo/tWW4yR4S5ww==}
     dev: true
 
   /@pkgjs/parseargs@0.11.0:
