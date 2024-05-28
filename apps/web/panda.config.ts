@@ -1,17 +1,23 @@
 import { defineConfig } from '@pandacss/dev';
+import pandaPreset from '@pandacss/preset-panda';
 import { radixColorsPreset } from 'panda-preset-radix-colors';
 import { radixUIPreset } from 'panda-preset-radix-ui';
+import { checkboxSlotRecipe } from '@/components/Checkbox/Checkbox.recipe';
 import { selectSlotRecipe } from '@/components/Select/Select.recipe';
+import { prefectureCheckboxSlotRecipe } from '@/features/navigation/components/PrefectureCheckbox/PrefectureCheckbox.recipe';
 import { breakpoints } from '@/styles/tokens/breakpoints';
 
+// デフォルトのプリセットから色を削除する
+pandaPreset.theme.tokens.colors = {} as typeof pandaPreset.theme.tokens.colors;
+
 export default defineConfig({
-  // Whether to use css reset
+  // CSSリセットを適用するかどうか
   preflight: true,
 
-  // Where to look for your css declarations
+  // CSS定義を探査するパス
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
 
-  // Files to exclude
+  // CSS定義をの探査対象から除外するパス
   exclude: [],
 
   utilities: {
@@ -119,10 +125,6 @@ export default defineConfig({
           heading: {
             value: 'var(--font-cal-sans), sans-serif', // Make sure that the variable's name matches the one in apps/web/src/styles/fonts/index.ts
           },
-          code: {
-            value:
-              'ui-monospace,"Liga SFMono Nerd Font",SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace',
-          },
         },
         shadows: {
           floating: {
@@ -133,6 +135,8 @@ export default defineConfig({
       breakpoints: breakpoints,
       recipes: {
         select: selectSlotRecipe,
+        checkbox: checkboxSlotRecipe,
+        prefectureCheckbox: prefectureCheckboxSlotRecipe,
       },
     },
   },
@@ -148,11 +152,10 @@ export default defineConfig({
 
   // Presets
   presets: [
-    // Radix Scales provider for PandaCSS by milandekruijf
-    // Refer: https://github.com/milandekruijf/pandacss-preset-radix-colors
+    // Radix Colorsの色トークンを追加するプリセット
     radixColorsPreset({
       darkMode: {
-        // NOTE: Make sure these selectors match the configurations passed to `next-themes` ThemeProvider
+        //  `next-themes`のプロバイダに与えた設定と整合性を保つようにする
         condition: "[data-theme='dark'] &",
       },
       autoP3: true,
@@ -160,16 +163,13 @@ export default defineConfig({
         keyplate: 'slate',
         primary: 'pink',
         info: 'cyan',
-        success: 'green',
-        warning: 'amber',
-        danger: 'crimson',
       },
-      colorScales: ['white', 'black'],
+      colorScales: [],
       excludeAlpha: false,
     }),
     radixColorsPreset({
       darkMode: {
-        // NOTE: Make sure these selectors match the configurations passed to `next-themes` ThemeProvider
+        //  `next-themes`のプロバイダに与えた設定と整合性を保つようにする
         condition: "[data-theme='dark'] &",
       },
       autoP3: true,
@@ -182,13 +182,11 @@ export default defineConfig({
       selectorNameCase: 'camelCase',
     }),
 
-    // Re-add the panda preset if you want to keep
-    // the default keyframes, breakpoints, tokens
-    // and textStyles provided by PandaCSS
-    '@pandacss/preset-panda',
+    // デフォルトのキーフレーム、ブレークポイント、トークン、テキストスタイルを保持したい場合は、パンダプリセットを再追加してください
+    pandaPreset,
   ],
 
-  // The output directory for your css system
+  // CSSシステムの出力先
   outdir: 'styled-system',
   jsxFramework: 'react',
 });
