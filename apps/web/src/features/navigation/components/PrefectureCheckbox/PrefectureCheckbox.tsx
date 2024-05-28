@@ -7,7 +7,8 @@ import { Checkbox } from '@/components/Checkbox/Checkbox';
 import type { CheckboxProps } from '@/components/Checkbox/Checkbox';
 import { prefCodesSchema } from '@/models/prefCode';
 import type { PrefCode } from '@/models/prefCode';
-import { css, cx } from 'styled-system/css';
+import { cx } from 'styled-system/css';
+import { prefectureCheckbox } from 'styled-system/recipes';
 
 /**
  * 指定された都道府県コードが選択されているかどうかをsearchParamsから判定して返すカスタムフックです。
@@ -125,46 +126,9 @@ export const PrefectureCheckbox = ({
 
   const checkboxId = `prefecture-${prefCode}`;
   const actualLabelId = `prefecture-${prefCode}-label`;
+  const { label } = prefectureCheckbox();
   return (
-    <label
-      id={actualLabelId}
-      htmlFor={checkboxId}
-      className={cx(
-        css({
-          pos: 'relative',
-          display: 'flex',
-          flexDir: 'row',
-          justifyContent: 'start',
-          alignItems: 'center',
-          p: '1',
-          gap: '2.5',
-          rounded: 'lg',
-          '&:has(input:checked)': {
-            bg: 'primary.2',
-            color: 'primary.11',
-          },
-          '&:has(input:disabled)': {
-            color: 'keyplate.11',
-            cursor: 'not-allowed',
-          },
-          '&:has(input:checked:disabled)': {
-            bg: 'keyplate.2',
-            color: 'keyplate.11',
-          },
-          _hover: {
-            bg: 'keyplate.3',
-            '&:has(input:checked)': {
-              bg: 'primary.3',
-            },
-            '&:has(input:checked:disabled)': {
-              bg: 'keyplate.2',
-              color: 'keyplate.11',
-            },
-          },
-        }),
-        className,
-      )}
-    >
+    <label id={actualLabelId} htmlFor={checkboxId} className={cx(label, className)}>
       <Checkbox id={checkboxId} aria-labelledby={actualLabelId} checked={checked} onChange={handleChange} {...props} />
       {prefLocale}
     </label>

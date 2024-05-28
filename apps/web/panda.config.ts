@@ -1,7 +1,9 @@
 import { defineConfig } from '@pandacss/dev';
 import { radixColorsPreset } from 'panda-preset-radix-colors';
 import { radixUIPreset } from 'panda-preset-radix-ui';
+import { checkboxSlotRecipe } from '@/components/Checkbox/Checkbox.recipe';
 import { selectSlotRecipe } from '@/components/Select/Select.recipe';
+import { prefectureCheckboxSlotRecipe } from '@/features/navigation/components/PrefectureCheckbox/PrefectureCheckbox.recipe';
 import { breakpoints } from '@/styles/tokens/breakpoints';
 
 export default defineConfig({
@@ -133,6 +135,8 @@ export default defineConfig({
       breakpoints: breakpoints,
       recipes: {
         select: selectSlotRecipe,
+        checkbox: checkboxSlotRecipe,
+        prefectureCheckbox: prefectureCheckboxSlotRecipe,
       },
     },
   },
