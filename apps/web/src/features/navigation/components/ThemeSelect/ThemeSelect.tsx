@@ -4,7 +4,6 @@ import { Check, Sun, Moon, SwatchBook } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { forwardRef, useCallback, useEffect, useState } from 'react';
 import type { ElementRef, ComponentPropsWithoutRef } from 'react';
-import { Skeleton } from '../Skeleton/Skeleton';
 import {
   Select,
   SelectGroup,
@@ -17,12 +16,13 @@ import {
   SelectItemText,
   SelectItem,
   SelectLabel,
-} from '@/components/Select/Select';
+} from '@/components/Select';
+import { Skeleton } from '@/components/Skeleton';
 import { css, cx } from 'styled-system/css';
 
 type ThemeValue = 'system' | 'light' | 'dark';
 
-type ThemeSelectProps = ComponentPropsWithoutRef<typeof Select> &
+export type ThemeSelectProps = ComponentPropsWithoutRef<typeof Select> &
   Pick<ComponentPropsWithoutRef<typeof SelectTrigger>, 'className'> &
   Pick<ComponentPropsWithoutRef<typeof SelectPortal>, 'container'>;
 

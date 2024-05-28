@@ -1,10 +1,10 @@
 import { GithubIcon, Sigma, Baby, PersonStanding, Accessibility } from 'lucide-react';
 import type { ReactNode, ComponentPropsWithoutRef } from 'react';
 import { Suspense } from 'react';
-import { ThemeSelect } from '../ThemeSelect/ThemeSelect';
-import { TopNavigationLink, TopNavigationLinkFallback } from '../TopNavigation/TopNavigationLink';
-import { Image } from '@/components/Image/Image';
-import { Link } from '@/components/Link/Link';
+import { ThemeSelect } from '../ThemeSelect';
+import { TopNavigationLink, TopNavigationLinkFallback } from '../TopNavigation';
+import { Image } from '@/components/Image';
+import { Link } from '@/components/Link';
 import HeaderIconImage from '@public/icon.webp';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';

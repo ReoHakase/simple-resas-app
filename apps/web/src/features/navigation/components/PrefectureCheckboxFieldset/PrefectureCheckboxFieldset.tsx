@@ -1,5 +1,5 @@
 import type { ReactElement, ComponentPropsWithoutRef } from 'react';
-import { PrefectureCheckbox } from '../PrefectureCheckbox/PrefectureCheckbox';
+import { PrefectureCheckbox } from '../PrefectureCheckbox';
 import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
 import { cx, css } from 'styled-system/css';
 

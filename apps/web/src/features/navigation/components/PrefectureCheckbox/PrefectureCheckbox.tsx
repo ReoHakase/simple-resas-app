@@ -3,8 +3,8 @@
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { useCallback, useMemo } from 'react';
 import type { ReactNode, ChangeEvent } from 'react';
-import { Checkbox } from '@/components/Checkbox/Checkbox';
-import type { CheckboxProps } from '@/components/Checkbox/Checkbox';
+import { Checkbox } from '@/components/Checkbox';
+import type { CheckboxProps } from '@/components/Checkbox';
 import { prefCodesSchema } from '@/models/prefCode';
 import type { PrefCode } from '@/models/prefCode';
 import { cx } from 'styled-system/css';

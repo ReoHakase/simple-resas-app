@@ -1,8 +1,7 @@
 import type { ReactElement } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
-import { Chart } from '@/components/Chart/Chart';
-import type { ChartProps } from '@/components/Chart/Chart';
-import { getUniqueLineColor } from '@/components/Chart/lineColors';
+import type { ChartProps } from '@/components/Chart';
+import { Chart, getUniqueLineColor } from '@/components/Chart';
 import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
 import { extractDataPointsByStatLabel } from '@/libs/extractDataPointsByStatLabel';
 import { getPopulationCompositionAll } from '@/libs/getPopulationCompositionAll';
