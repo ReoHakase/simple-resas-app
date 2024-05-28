@@ -1,6 +1,6 @@
 import { Building2, ArrowRight, HomeIcon, MapPin } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { Link } from '@/components/Link/Link';
+import { Link } from '@/components/Link';
 import { css } from 'styled-system/css';
 
 const Home = (): ReactNode => {

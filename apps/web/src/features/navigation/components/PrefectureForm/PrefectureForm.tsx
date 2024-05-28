@@ -1,9 +1,8 @@
 import type { ReactElement, ComponentPropsWithoutRef } from 'react';
 import { Suspense } from 'react';
-import { PrefectureCheckboxFieldset } from '../PrefectureCheckboxFieldset/PrefectureCheckboxFieldset';
-import { PrefectureStateBar } from '@/features/navigation/components/PrefectureStateBar/PrefectureStateBar';
-import { SELECTION_STATE_LABEL_ID } from '@/features/navigation/components/PrefectureStateBar/PrefectureStateBar';
-import { Skeleton } from '@/features/navigation/components/Skeleton/Skeleton';
+import { PrefectureCheckboxFieldset } from '../PrefectureCheckboxFieldset';
+import { PrefectureStateBar, SELECTION_STATE_LABEL_ID } from '../PrefectureStateBar';
+import { Skeleton } from '@/components/Skeleton';
 import { cx, css } from 'styled-system/css';
 
 export type PrefectureFormProps = ComponentPropsWithoutRef<'form'>;

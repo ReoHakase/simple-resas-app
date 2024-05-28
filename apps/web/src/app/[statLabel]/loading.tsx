@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { Skeleton } from '@/features/navigation/components/Skeleton/Skeleton';
+import { Skeleton } from '@/components/Skeleton';
 import { PopulationChartSkeleton } from '@/features/population/components/PopulationChart/PopulationChart.skeleton';
 import { css } from 'styled-system/css';
 

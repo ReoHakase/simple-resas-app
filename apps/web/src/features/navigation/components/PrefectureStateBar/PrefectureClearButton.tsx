@@ -3,8 +3,8 @@
 import { X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
-import { Link } from '@/components/Link/Link';
-import type { LinkProps } from '@/components/Link/Link';
+import { Link } from '@/components/Link';
+import type { LinkProps } from '@/components/Link';
 import { css, cx } from 'styled-system/css';
 
 export type PrefectureClearButtonProps<T> = Omit<LinkProps<T>, 'href' | 'children'>;

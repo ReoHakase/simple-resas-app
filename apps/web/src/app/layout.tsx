@@ -1,8 +1,8 @@
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata, Viewport } from 'next';
 import type { FC, ReactNode } from 'react';
-import { Aurora } from '@/features/landingPage/components/Aurora/Aurora';
-import { Header } from '@/features/navigation/components/Header/Header';
+import { Aurora } from '@/features/decoration/components/Aurora';
+import { Header } from '@/features/navigation/components/Header';
 import { PrefectureForm } from '@/features/navigation/components/PrefectureForm/PrefectureForm';
 import { AppProvider } from '@/providers';
 import { fontVariables } from '@/styles/fonts';

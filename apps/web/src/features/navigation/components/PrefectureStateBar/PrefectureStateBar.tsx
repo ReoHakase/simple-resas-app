@@ -1,9 +1,9 @@
 import { ArrowDown } from 'lucide-react';
 import { ReactNode, ComponentPropsWithoutRef } from 'react';
 import { Suspense } from 'react';
-import { Skeleton } from '../Skeleton/Skeleton';
 import { PrefectureClearButton } from './PrefectureClearButton';
 import { PrefectureCount } from './PrefectureCount';
+import { Skeleton } from '@/components/Skeleton';
 import { css, cx } from 'styled-system/css';
 
 export const SELECTION_STATE_LABEL_ID = 'selection-state-label' as const;
