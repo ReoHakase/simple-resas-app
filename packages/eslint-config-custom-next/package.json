@@ -3,10 +3,6 @@
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts": {
-    "format:check": "prettier --check .",
-    "format:fix": "prettier --write ."
-  },
   "dependencies": {
     "@next/eslint-plugin-next": "14.1.0",
     "@pandacss/eslint-plugin": "0.0.17",
