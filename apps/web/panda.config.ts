@@ -1,4 +1,5 @@
 import { defineConfig } from '@pandacss/dev';
+import type { Config } from '@pandacss/dev';
 import pandaPreset from '@pandacss/preset-panda';
 import { radixColorsPreset } from 'panda-preset-radix-colors';
 import { radixUIPreset } from 'panda-preset-radix-ui';
@@ -189,4 +190,4 @@ export default defineConfig({
   // CSSシステムの出力先
   outdir: 'styled-system',
   jsxFramework: 'react',
-});
+} as Config) as Config;
