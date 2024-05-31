@@ -11,8 +11,6 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "lint": "next lint",
-    "format:check": "prettier --check .",
-    "format:fix": "prettier --write .",
     "sb": "storybook dev -p 6006",
     "playwright:test": "playwright test",
     "sb:build": "storybook build",

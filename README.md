@@ -16,26 +16,22 @@ RESAS(地域経済分析システム)に掲載されている各種人口デー�
 
 ### Pagespeed Insights
 
-| モバイル | デスクトップ |
-| ---- | ---- |
-| <img width="479" alt="image" src="https://github.com/ReoHakase/simple-resas-app/assets/16751535/51b22607-7e07-4263-9ca3-5c378e072c3f">| <img width="467" alt="image" src="https://github.com/ReoHakase/simple-resas-app/assets/16751535/2d2acce1-bd76-412a-9893-1cfd9ca1305d"> |
-| https://pagespeed.web.dev/analysis/https-resas-reoiam-dev-all/w6wyqvlcfx?form_factor=mobile | https://pagespeed.web.dev/analysis/https-resas-reoiam-dev-all/w6wyqvlcfx?form_factor=desktop |
+| モバイル                                                                                                                               | デスクトップ                                                                                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| <img width="479" alt="image" src="https://github.com/ReoHakase/simple-resas-app/assets/16751535/51b22607-7e07-4263-9ca3-5c378e072c3f"> | <img width="467" alt="image" src="https://github.com/ReoHakase/simple-resas-app/assets/16751535/2d2acce1-bd76-412a-9893-1cfd9ca1305d"> |
+| https://pagespeed.web.dev/analysis/https-resas-reoiam-dev-all/w6wyqvlcfx?form_factor=mobile                                            | https://pagespeed.web.dev/analysis/https-resas-reoiam-dev-all/w6wyqvlcfx?form_factor=desktop                                           |
 
 ### Opengraph
 
 [茨城県、千葉県、東京都の総人口 | RESAS 都道府県別 人口比較アプリケーション](https://resas.reoiam.dev/all?prefCodes=8,12,13)
 
-| X (Twitter) | Slack | Facebook | LinkedIn |
-| --- | --- | --- | --- |
+| X (Twitter)                                                                                                                            | Slack                                                                                                                                  | Facebook                                                                                                                               | LinkedIn                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | <img width="577" alt="image" src="https://github.com/ReoHakase/simple-resas-app/assets/16751535/48e7f71b-9ed7-40c8-be33-bb71f30958ad"> | <img width="568" alt="image" src="https://github.com/ReoHakase/simple-resas-app/assets/16751535/013074d8-effa-4e90-a03a-68b05e0c7519"> | <img width="577" alt="image" src="https://github.com/ReoHakase/simple-resas-app/assets/16751535/6a42ce8e-04e4-4cc1-9644-15c6bf4b8edd"> | <img width="576" alt="image" src="https://github.com/ReoHakase/simple-resas-app/assets/16751535/905b2b9a-a021-4280-a47f-80a281213ef3"> |
 
 ### Figma
 
 https://www.figma.com/design/hsWBflpYMAqzRCIabKZYnJ/Yumemi?node-id=402-1692&t=v4Zz5MpKl4nAQQMe-1
-
-
-
-
 
 ## 技術スタック
 
@@ -56,9 +52,11 @@ https://www.figma.com/design/hsWBflpYMAqzRCIabKZYnJ/Yumemi?node-id=402-1692&t=v4
 ### 依存関係のインストール
 
 Node.jsとpnpmのバージョン管理にprototoolsを使用しています。まずは、以下のコマンドを実行するか、`.prototools`に記述されているバージョンのものを手動でインストールしてください。
+
 ```sh
 proto use
 pnpm i
+pnpm lefthook install # コミット時チェックのGitフック管理ツールのインストール (初回のみ)
 pnpm playwright install --with-deps # StorybookのインタラクションテストのCLI実行 & E2Eテストの実行に必要
 ```
 

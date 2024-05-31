@@ -1,0 +1,48 @@
+# ドキュメントはこちらを参照:
+# https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+
+pre-commit:
+  parallel: true
+  commands:
+    # フォーマット (Prettier)
+    # 全て共通の設定を使う
+    prettier:
+      glob: '*.{tsx,ts,mts,mcs,mjs,cjs,js,css,json,md,mdx,yml,yaml}'
+      run: |
+        pnpm prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true # 書き込み修正を行なった差分をステージングする
+      skip: # すでに整形済みのファイルであるため、再度の整形を行わない
+        - merge
+        - rebase
+
+    # パッケージごとのリント (ESLint)
+    # パッケージごとに異なる設定を使う
+    eslint_web:
+      root: 'apps/web/'
+      glob: '*.{tsx,ts,mts,mcs,mjs,cjs,js,mdx}'
+      run: |
+        pnpm -F web exec eslint --fix {staged_files}
+      stage_fixed: true # 書き込み修正を行なった差分をステージングする
+      skip:
+        - merge
+        - rebase
+
+    eslint_panda-preset-radix-colors:
+      root: 'packages/panda-preset-radix-colors/'
+      glob: '*.{tsx,ts,mts,mcs,mjs,cjs,js,mdx}'
+      run: |
+        pnpm -F panda-preset-radix-colors exec eslint --fix {staged_files}
+      stage_fixed: true # 書き込み修正を行なった差分をステージングする
+      skip:
+        - merge
+        - rebase
+
+    eslint_panda-preset-radix-ui:
+      root: 'packages/panda-preset-radix-ui/'
+      glob: '*.{tsx,ts,mts,mcs,mjs,cjs,js,mdx}'
+      run: |
+        pnpm -F panda-preset-radix-ui exec eslint --fix {staged_files}
+      stage_fixed: true # 書き込み修正を行なった差分をステージングする
+      skip:
+        - merge
+        - rebase
