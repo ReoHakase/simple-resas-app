@@ -5,8 +5,8 @@
   "scripts": {
     "postinstall": "patch-package",
     "prepare": "turbo build --filter='./packages/*'",
-    "format:check": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "format:check": "prettier --check --cache .",
+    "format": "prettier --write --cache ."
   },
   "devDependencies": {
     "concurrently": "8.2.2",
