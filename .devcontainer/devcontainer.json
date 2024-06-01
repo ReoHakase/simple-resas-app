@@ -1,8 +1,6 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
   "name": "simple-resas-app",
-  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  // DockerfileまたはDocker Composeファイルを使用することもできます。詳細については、https://containers.dev/guide/dockerfileを参照してください。
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
   "customizations": {
@@ -39,7 +37,7 @@
     }
   },
 
-  // Features to add to the dev container. More info: https://containers.dev/features.
+  // Devコンテナに追加する機能。詳細については、https://containers.dev/featuresを参照してください。
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
       "installDirectlyFromGitHubRelease": true,
@@ -67,15 +65,16 @@
     }
   },
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // 'forwardPorts'を使用して、コンテナ内のポートをローカルで利用できるようにします。
   "forwardPorts": [3000, 6000, 6006, 6007],
 
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "pnpm install"
+  // コンテナが作成された後に実行するコマンドを指定します。
+  // コンテナに接続した時に使用されるユーザ名は、'remoteUser'プロパティで指定されたものもしくはコンテナイメージの設定を引き継ぎます。
+  "postCreateCommand": "pnpm config set store-dir /home/vscode/.local/share/pnpm/store && pnpm install"
 
-  // Configure tool-specific properties.
+  // ツール固有のプロパティを設定します。
   // "customizations": {},
 
-  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // rootとして接続する場合はコメントを解除します。詳細については、https://aka.ms/dev-containers-non-rootを参照してください。
   // "remoteUser": "root"
 }
