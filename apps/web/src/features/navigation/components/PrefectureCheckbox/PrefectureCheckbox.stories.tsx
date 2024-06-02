@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { getRouter } from '@storybook/nextjs/navigation.mock';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from '@storybook/test';
 import { PrefectureCheckbox } from './PrefectureCheckbox';
@@ -29,7 +29,6 @@ const meta: Meta<typeof PrefectureCheckbox> = {
     nextjs: {
       appDirectory: true,
       navigation: {
-        push: fn(async (...args: unknown[]) => action('nextRouter.push')(...args)),
         pathname: '/all',
         query: {
           prefCodes: '11,24',
@@ -77,7 +76,7 @@ export const Default: Story = {
       },
     },
   },
-  play: async ({ args, parameters, canvasElement }) => {
+  play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const checkbox = canvas.getByRole('checkbox');
     const label = canvas.getByText(args.prefLocale);
@@ -94,8 +93,8 @@ export const Default: Story = {
     // onChangeが1回呼び出されたことを確認
     expect(args.onChange).toHaveBeenCalledTimes(1);
     // searchParamsのprefCodesに与えた都道府県コードが追加されたことを確認
-    expect(parameters.nextjs.navigation.push).toHaveBeenCalledTimes(1);
-    expect(parameters.nextjs.navigation.push).toHaveBeenCalledWith('/all?prefCodes=1,8,12,13,14', {
+    expect(getRouter().push).toHaveBeenCalledTimes(1);
+    expect(getRouter().push).toHaveBeenCalledWith('/all?prefCodes=1,8,12,13,14', {
       scroll: false,
     });
   },
@@ -111,7 +110,7 @@ export const Checked: Story = {
       },
     },
   },
-  play: async ({ args, parameters, canvasElement }) => {
+  play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const checkbox = canvas.getByRole('checkbox');
     const label = canvas.getByText(args.prefLocale);
@@ -128,8 +127,8 @@ export const Checked: Story = {
     // onChangeが1回呼び出されたことを確認
     expect(args.onChange).toHaveBeenCalledTimes(1);
     // searchParamsのprefCodesに与えた都道府県コードが削除されたことを確認
-    expect(parameters.nextjs.navigation.push).toHaveBeenCalledTimes(1);
-    expect(parameters.nextjs.navigation.push).toHaveBeenCalledWith('/all?prefCodes=8,12,13,14', {
+    expect(getRouter().push).toHaveBeenCalledTimes(1);
+    expect(getRouter().push).toHaveBeenCalledWith('/all?prefCodes=8,12,13,14', {
       scroll: false,
     });
   },
@@ -140,7 +139,7 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
-  play: async ({ args, parameters, canvasElement }) => {
+  play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const checkbox = canvas.getByRole('checkbox');
 
@@ -149,7 +148,7 @@ export const Disabled: Story = {
 
     // onChangeが呼び出されなかったことを確認
     expect(args.onChange).toHaveBeenCalledTimes(0);
-    expect(parameters.nextjs.navigation.push).toHaveBeenCalledTimes(0);
+    expect(getRouter().push).toHaveBeenCalledTimes(0);
   },
 };
 
