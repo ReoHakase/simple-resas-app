@@ -54,7 +54,7 @@
     "@storybook/test": "8.1.5",
     "@storybook/test-runner": "0.18.2",
     "@storybook/testing-library": "0.2.2",
-    "@testing-library/react": "15.0.7",
+    "@testing-library/react": "16.0.0",
     "@vitejs/plugin-react": "4.3.0",
     "autoprefixer": "10.4.19",
     "axe-playwright": "2.0.1",
