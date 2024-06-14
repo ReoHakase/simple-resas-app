@@ -15,6 +15,7 @@ export const prefectureCheckboxSlotRecipe = sva({
       p: '1',
       gap: '2.5',
       rounded: 'lg',
+      cursor: 'pointer',
       '&:has(input:checked)': {
         bg: 'primary.2',
         color: 'primary.11',
