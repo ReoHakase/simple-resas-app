@@ -10,12 +10,12 @@
   },
   "devDependencies": {
     "concurrently": "8.2.2",
-    "lefthook": "1.6.15",
+    "lefthook": "1.6.16",
     "patch-package": "8.0.0",
     "playwright": "1.44.1",
-    "prettier": "3.3.1",
+    "prettier": "3.3.2",
     "tsup": "8.1.0",
-    "turbo": "2.0.3",
+    "turbo": "2.0.4",
     "typescript": "5.4.5",
     "vitest": "1.6.0"
   },
