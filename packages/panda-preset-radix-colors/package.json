@@ -29,7 +29,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@pandacss/dev": "0.40.1",
+    "@pandacss/dev": "0.41.0",
     "pandacss-preset-radix-colors": "0.2.0"
   },
   "devDependencies": {
