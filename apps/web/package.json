@@ -67,8 +67,8 @@
     "postcss": "8.4.41",
     "storybook": "8.2.8",
     "tsconfig": "workspace:*",
-    "vite-tsconfig-paths": "4.3.2",
-    "vitest": "1.6.0",
+    "vite-tsconfig-paths": "5.0.1",
+    "vitest": "2.0.5",
     "webpack": "5.93.0"
   }
 }
