@@ -386,7 +386,7 @@ const radixColorsPreset = ({
     scaleAliases: renamedScaleAliases,
   });
 
-  const preset: Preset = { ...basePreset };
+  const preset: Preset = { ...basePreset, name: 'panda-preset-radix-colors' };
   if (preset.theme?.extend?.semanticTokens?.colors) {
     preset.theme.extend.semanticTokens.colors = {
       ...renamedScaleColor,
