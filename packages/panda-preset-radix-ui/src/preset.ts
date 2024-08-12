@@ -6,6 +6,7 @@ export const radixUIPreset = async (options: PandaPresetRadixCssSelectorOptions)
   const { prefix, selectorNameCase } = options;
   const getName = getCaseNames[selectorNameCase];
   return definePreset({
+    name: 'panda-preset-radix-ui',
     theme: {
       extend: {
         tokens: {
