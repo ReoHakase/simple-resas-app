@@ -34,7 +34,7 @@ importers:
         version: 5.5.4
       vitest:
         specifier: 2.0.5
-        version: 2.0.5(@types/node@20.16.1)(jsdom@24.1.3)
+        version: 2.0.5(@types/node@20.16.1)(jsdom@25.0.0)
 
   apps/web:
     dependencies:
@@ -95,7 +95,7 @@ importers:
         version: 14.2.7
       '@pandacss/dev':
         specifier: 0.45.2
-        version: 0.45.2(jsdom@24.1.3)(typescript@5.5.4)
+        version: 0.45.2(jsdom@25.0.0)(typescript@5.5.4)
       '@pandacss/preset-panda':
         specifier: 0.45.2
         version: 0.45.2
@@ -160,8 +160,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/eslint-config-custom-next
       jsdom:
-        specifier: 24.1.3
-        version: 24.1.3
+        specifier: 25.0.0
+        version: 25.0.0
       mdx:
         specifier: 0.3.1
         version: 0.3.1
@@ -185,7 +185,7 @@ importers:
         version: 5.0.1(typescript@5.5.4)(vite@5.2.11)
       vitest:
         specifier: 2.0.5
-        version: 2.0.5(@types/node@20.16.1)(jsdom@24.1.3)
+        version: 2.0.5(@types/node@20.16.1)(jsdom@25.0.0)
       webpack:
         specifier: 5.94.0
         version: 5.94.0(@swc/core@1.6.5)(esbuild@0.21.4)
@@ -3243,15 +3243,15 @@ packages:
       - typescript
     dev: false
 
-  /@pandacss/dev@0.45.2(jsdom@24.1.3)(typescript@5.5.4):
+  /@pandacss/dev@0.45.2(jsdom@25.0.0)(typescript@5.5.4):
     resolution: {integrity: sha512-g88qdfGF21KbNrtAnQNQdiGyOrg5rlYQ/Xtmcy00t+BXB5pRLboRoM+6Jhuy0HAbpzu3Rdh9QvX1objCENb0tg==}
     hasBin: true
     dependencies:
       '@clack/prompts': 0.7.0
       '@pandacss/config': 0.45.2
       '@pandacss/logger': 0.45.2
-      '@pandacss/node': 0.45.2(jsdom@24.1.3)(typescript@5.5.4)
-      '@pandacss/postcss': 0.45.2(jsdom@24.1.3)(typescript@5.5.4)
+      '@pandacss/node': 0.45.2(jsdom@25.0.0)(typescript@5.5.4)
+      '@pandacss/postcss': 0.45.2(jsdom@25.0.0)(typescript@5.5.4)
       '@pandacss/preset-panda': 0.45.2
       '@pandacss/shared': 0.45.2
       '@pandacss/token-dictionary': 0.45.2
@@ -3285,7 +3285,7 @@ packages:
     resolution: {integrity: sha512-eHTAiNBLPxOYsf4pqbwhxjqejzaYx6EGFvdxznKohO++ihPgoph4/zl6WZx+/Ncb/IcHKMXpIBghQmmE68LIyA==}
     dependencies:
       '@pandacss/shared': 0.40.1
-      ts-evaluator: 1.2.0(jsdom@24.1.3)(typescript@5.5.4)
+      ts-evaluator: 1.2.0(jsdom@25.0.0)(typescript@5.5.4)
       ts-morph: 21.0.1
     transitivePeerDependencies:
       - jsdom
@@ -3296,18 +3296,18 @@ packages:
     resolution: {integrity: sha512-/lomXtUuDjiQQbrG+dG2PQgVw3YkFBHOvmRwjKy9q8QIUu/lK1I6PjNnF0moxwAmqdsmRWqFshhPZxtKUJg9Ug==}
     dependencies:
       '@pandacss/shared': 0.45.1
-      ts-evaluator: 1.2.0(jsdom@24.1.3)(typescript@5.5.4)
+      ts-evaluator: 1.2.0(jsdom@25.0.0)(typescript@5.5.4)
       ts-morph: 21.0.1
     transitivePeerDependencies:
       - jsdom
       - typescript
     dev: false
 
-  /@pandacss/extractor@0.45.2(jsdom@24.1.3)(typescript@5.5.4):
+  /@pandacss/extractor@0.45.2(jsdom@25.0.0)(typescript@5.5.4):
     resolution: {integrity: sha512-DUYn3aUudyEhGvIXf+OWXLRSByLXcxzT1gP/bs8BuMsGOOXWlMlu59ngPRQ0NPZwoGimVLVAKfSfRW2Ty51IFA==}
     dependencies:
       '@pandacss/shared': 0.45.2
-      ts-evaluator: 1.2.0(jsdom@24.1.3)(typescript@5.5.4)
+      ts-evaluator: 1.2.0(jsdom@25.0.0)(typescript@5.5.4)
       ts-morph: 21.0.1
     transitivePeerDependencies:
       - jsdom
@@ -3469,15 +3469,15 @@ packages:
       - typescript
     dev: false
 
-  /@pandacss/node@0.45.2(jsdom@24.1.3)(typescript@5.5.4):
+  /@pandacss/node@0.45.2(jsdom@25.0.0)(typescript@5.5.4):
     resolution: {integrity: sha512-e+1LEu1s70B/YnEWJEPpkx0haR3Y+HddHB5Ck/qOHOU3Y/XQnjJaE9T5buKaORrl0Ewz0LVUlaiva7e5fwOPrw==}
     dependencies:
       '@pandacss/config': 0.45.2
       '@pandacss/core': 0.45.2
-      '@pandacss/extractor': 0.45.2(jsdom@24.1.3)(typescript@5.5.4)
+      '@pandacss/extractor': 0.45.2(jsdom@25.0.0)(typescript@5.5.4)
       '@pandacss/generator': 0.45.2
       '@pandacss/logger': 0.45.2
-      '@pandacss/parser': 0.45.2(jsdom@24.1.3)(typescript@5.5.4)
+      '@pandacss/parser': 0.45.2(jsdom@25.0.0)(typescript@5.5.4)
       '@pandacss/shared': 0.45.2
       '@pandacss/token-dictionary': 0.45.2
       '@pandacss/types': 0.45.2
@@ -3542,12 +3542,12 @@ packages:
       - typescript
     dev: false
 
-  /@pandacss/parser@0.45.2(jsdom@24.1.3)(typescript@5.5.4):
+  /@pandacss/parser@0.45.2(jsdom@25.0.0)(typescript@5.5.4):
     resolution: {integrity: sha512-gWYaDX/m8KvIbCZWuxeOsILlV7UqQNsNrfR4y6vpxiGw/m2bbUm4A5cyFOEaO4SJcVhttBsxozujFbzT/nPJ6w==}
     dependencies:
       '@pandacss/config': 0.45.2
       '@pandacss/core': 0.45.2
-      '@pandacss/extractor': 0.45.2(jsdom@24.1.3)(typescript@5.5.4)
+      '@pandacss/extractor': 0.45.2(jsdom@25.0.0)(typescript@5.5.4)
       '@pandacss/logger': 0.45.2
       '@pandacss/shared': 0.45.2
       '@pandacss/types': 0.45.2
@@ -3570,10 +3570,10 @@ packages:
       - typescript
     dev: false
 
-  /@pandacss/postcss@0.45.2(jsdom@24.1.3)(typescript@5.5.4):
+  /@pandacss/postcss@0.45.2(jsdom@25.0.0)(typescript@5.5.4):
     resolution: {integrity: sha512-LN8CxIxsmbCz+xMtbIxkDYT2LJxyGahdP9103Gvqt1tAMcJE37G4ePoUqsFVihLypE3SwyGUeIW0ok/39MrxYA==}
     dependencies:
-      '@pandacss/node': 0.45.2(jsdom@24.1.3)(typescript@5.5.4)
+      '@pandacss/node': 0.45.2(jsdom@25.0.0)(typescript@5.5.4)
       postcss: 8.4.41
     transitivePeerDependencies:
       - jsdom
@@ -5285,7 +5285,7 @@ packages:
       jest: 29.7.0(@types/node@20.16.1)
       lodash: 4.17.21
       redent: 3.0.0
-      vitest: 2.0.5(@types/node@20.16.1)(jsdom@24.1.3)
+      vitest: 2.0.5(@types/node@20.16.1)(jsdom@25.0.0)
     dev: true
 
   /@testing-library/react@16.0.1(@testing-library/dom@10.1.0)(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1)(react@18.3.1):
@@ -11615,8 +11615,8 @@ packages:
       - supports-color
     dev: true
 
-  /jsdom@24.1.3:
-    resolution: {integrity: sha512-MyL55p3Ut3cXbeBEG7Hcv0mVM8pp8PBNWxRqchZnSfAiES1v1mRnMeFfaHWIPULpwsYfvO+ZmMZz5tGCnjzDUQ==}
+  /jsdom@25.0.0:
+    resolution: {integrity: sha512-OhoFVT59T7aEq75TVw9xxEfkXgacpqAhQaYgP9y/fDqWQCMB/b1H66RfmPm/MaeaAIU9nDwMOVTlPN51+ao6CQ==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
@@ -15689,7 +15689,7 @@ packages:
     resolution: {integrity: sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==}
     engines: {node: '>=6.10'}
 
-  /ts-evaluator@1.2.0(jsdom@24.1.3)(typescript@5.5.4):
+  /ts-evaluator@1.2.0(jsdom@25.0.0)(typescript@5.5.4):
     resolution: {integrity: sha512-ncSGek1p92bj2ifB7s9UBgryHCkU9vwC5d+Lplt12gT9DH+e41X8dMoHRQjIMeAvyG7j9dEnuHmwgOtuRIQL+Q==}
     engines: {node: '>=14.19.0'}
     peerDependencies:
@@ -15701,7 +15701,7 @@ packages:
     dependencies:
       ansi-colors: 4.1.3
       crosspath: 2.0.0
-      jsdom: 24.1.3
+      jsdom: 25.0.0
       object-path: 0.11.8
       typescript: 5.5.4
 
@@ -16370,7 +16370,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@2.0.5(@types/node@20.16.1)(jsdom@24.1.3):
+  /vitest@2.0.5(@types/node@20.16.1)(jsdom@25.0.0):
     resolution: {integrity: sha512-8GUxONfauuIdeSl5f9GTgVEpg5BTOlplET4WEDaeY2QBiN8wSm68vxN/tb5z405OwppfoCavnwXafiaYBC/xOA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -16406,7 +16406,7 @@ packages:
       chai: 5.1.1
       debug: 4.3.6
       execa: 8.0.1
-      jsdom: 24.1.3
+      jsdom: 25.0.0
       magic-string: 0.30.10
       pathe: 1.1.2
       std-env: 3.7.0
