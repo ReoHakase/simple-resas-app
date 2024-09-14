@@ -64,7 +64,7 @@
     "mdx": "0.3.1",
     "panda-preset-radix-colors": "workspace:*",
     "panda-preset-radix-ui": "workspace:*",
-    "postcss": "8.4.45",
+    "postcss": "8.4.47",
     "storybook": "8.3.0",
     "tsconfig": "workspace:*",
     "vite-tsconfig-paths": "5.0.1",
