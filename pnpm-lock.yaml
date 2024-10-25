@@ -91,8 +91,8 @@ importers:
         specifier: 5.0.2
         version: 5.0.2
       '@next/env':
-        specifier: 14.2.15
-        version: 14.2.15
+        specifier: 15.0.1
+        version: 15.0.1
       '@pandacss/dev':
         specifier: 0.47.0
         version: 0.47.0(jsdom@25.0.1)(typescript@5.6.3)
@@ -2730,12 +2730,12 @@ packages:
       react: 18.3.1
     dev: true
 
-  /@next/env@14.2.15:
-    resolution: {integrity: sha512-S1qaj25Wru2dUpcIZMjxeMVSwkt8BK4dmWHHiBuRstcIyOsMapqT4A4jSB6onvqeygkSSmOkyny9VVx8JIGamQ==}
-    dev: true
-
   /@next/env@14.2.16:
     resolution: {integrity: sha512-fLrX5TfJzHCbnZ9YUSnGW63tMV3L4nSfhgOQ0iCcX21Pt+VSTDuaLsSuL8J/2XAiVA5AnzvXDpf6pMs60QxOag==}
+
+  /@next/env@15.0.1:
+    resolution: {integrity: sha512-lc4HeDUKO9gxxlM5G2knTRifqhsY6yYpwuHspBZdboZe0Gp+rZHBNNSIjmQKDJIdRXiXGyVnSD6gafrbQPvILQ==}
+    dev: true
 
   /@next/eslint-plugin-next@14.2.16:
     resolution: {integrity: sha512-noORwKUMkKc96MWjTOwrsUCjky0oFegHbeJ1yEnQBGbMHAaTEIgLZIIfsYF0x3a06PiS+2TXppfifR+O6VWslg==}
