@@ -11,15 +11,16 @@ import { statLabelSchema } from '@/models/statLabel';
 import { css } from 'styled-system/css';
 
 type GraphPageProps = {
-  params: { statLabel: string };
-  searchParams: Record<'prefCodes', string | string[] | undefined>;
+  params: Promise<{ statLabel: string }>;
+  searchParams: Promise<{ prefCodes: string | string[] | undefined }>;
 };
 
 const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<ReactElement> => {
-  const statLabel = statLabelSchema.parse(params.statLabel);
+  const [{ statLabel: unsafeStatLabel }, { prefCodes: unsafePrefCodes }] = await Promise.all([params, searchParams]);
+  const statLabel = statLabelSchema.parse(unsafeStatLabel);
   const prefCodes = prefCodesSchema.parse(
-    searchParams.prefCodes
-      ? [searchParams.prefCodes]
+    unsafePrefCodes
+      ? [unsafePrefCodes]
           .flat()
           .map((str) => str.split(','))
           .flat()
@@ -65,15 +66,17 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
 export default GraphPage;
 
 export const generateMetadata = async ({ params, searchParams }: GraphPageProps): Promise<Metadata> => {
-  const statLabel = statLabelSchema.parse(params.statLabel);
+  const [{ statLabel: unsafeStatLabel }, { prefCodes: unsafePrefCodes }] = await Promise.all([params, searchParams]);
+  const statLabel = statLabelSchema.parse(unsafeStatLabel);
   const prefCodes = prefCodesSchema.parse(
-    searchParams.prefCodes
-      ? [searchParams.prefCodes]
+    unsafePrefCodes
+      ? [unsafePrefCodes]
           .flat()
           .map((str) => str.split(','))
           .flat()
       : [],
   ) as PrefCode[];
+
   const { prefLocaleJa } = await fetchPrefectures();
   const title = getGraphPageTitleLocaleJa(prefLocaleJa, prefCodes, statLabel);
   return {
@@ -90,4 +93,4 @@ export const generateMetadata = async ({ params, searchParams }: GraphPageProps)
  * ルートが再生成されるまでの時間を秒単位で指定します。
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
  */
-export const revalidate = 3600 * 24; // 24時間
+export const revalidate = 86400; // 24時間
