@@ -72,10 +72,11 @@ export const fetchPopulationComposition = async (prefCode: PrefCode) => {
       headers: {
         'X-API-KEY': env.RESAS_API_KEY,
       },
+      cache: 'force-cache',
       next: {
         // デプロイ単位で保持されるデータキャッシュの有効期限を秒単位で設定する
         // @see https://nextjs.org/docs/app/building-your-application/caching#data-cache
-        revalidate: 3600 * 24, // 24時間
+        revalidate: 86400, // 24時間
       },
     },
   );
