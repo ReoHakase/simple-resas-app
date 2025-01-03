@@ -22,7 +22,7 @@
   },
   "pnpm": {
     "overrides": {
-      "vite": "6.0.6",
+      "vite": "6.0.7",
       "vitest": "2.1.8"
     }
   },
