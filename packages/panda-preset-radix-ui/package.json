@@ -30,7 +30,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@pandacss/dev": "0.51.1"
+    "@pandacss/dev": "0.52.0"
   },
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
