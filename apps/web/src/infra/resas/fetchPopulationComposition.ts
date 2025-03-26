@@ -67,7 +67,7 @@ export type FetchPopulationComparisonResult = z.infer<typeof fetchPopulationComp
 export const fetchPopulationComposition = async (prefCode: PrefCode) => {
   prefCodeSchema.parse(prefCode);
   const res = await fetch(
-    `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?prefCode=${prefCode}`,
+    `https://yumemi-frontend-engineer-codecheck-api.vercel.app/api/v1/population/composition/perYear?prefCode=${prefCode}`,
     {
       headers: {
         'X-API-KEY': env.RESAS_API_KEY,

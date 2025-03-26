@@ -33,7 +33,7 @@ export type FetchPrefecturesResult = {
  * @throws HTTPエラーが発生した場合にエラーメッセージをthrowします
  */
 export const fetchPrefectures = async (): Promise<FetchPrefecturesResult> => {
-  const res = await fetch(`https://opendata.resas-portal.go.jp/api/v1/prefectures`, {
+  const res = await fetch(`https://yumemi-frontend-engineer-codecheck-api.vercel.app/api/v1/prefectures`, {
     headers: {
       'X-API-KEY': env.RESAS_API_KEY,
     },
