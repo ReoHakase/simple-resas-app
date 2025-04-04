@@ -4,20 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@next/eslint-plugin-next": "15.1.7",
-    "@pandacss/eslint-plugin": "0.2.6",
+    "@next/eslint-plugin-next": "15.2.4",
+    "@pandacss/eslint-plugin": "0.2.8",
     "@typescript-eslint/eslint-plugin": "7.18.0",
     "@typescript-eslint/parser": "7.18.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "18.0.0",
-    "eslint-config-next": "14.2.24",
-    "eslint-config-turbo": "2.4.2",
-    "eslint-config-prettier": "10.0.1",
+    "eslint-config-next": "14.2.26",
+    "eslint-config-turbo": "2.5.0",
+    "eslint-config-prettier": "10.1.1",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-react": "7.37.4",
-    "eslint-plugin-react-hooks": "5.1.0",
-    "eslint-plugin-storybook": "0.11.3"
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-storybook": "0.12.0"
   },
   "publishConfig": {
     "access": "public"
