@@ -11,7 +11,7 @@
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-config-next": "14.2.28",
-    "eslint-config-turbo": "2.5.0",
+    "eslint-config-turbo": "2.5.2",
     "eslint-config-prettier": "10.1.2",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
