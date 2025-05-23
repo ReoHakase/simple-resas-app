@@ -10,7 +10,7 @@
     "@typescript-eslint/parser": "7.18.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "18.0.0",
-    "eslint-config-next": "14.2.28",
+    "eslint-config-next": "14.2.29",
     "eslint-config-turbo": "2.5.3",
     "eslint-config-prettier": "10.1.5",
     "eslint-plugin-import": "2.31.0",
