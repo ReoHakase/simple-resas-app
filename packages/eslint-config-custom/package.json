@@ -10,7 +10,7 @@
     "eslint-config-airbnb-typescript": "18.0.0",
     "eslint-config-turbo": "2.5.4",
     "eslint-config-prettier": "10.1.5",
-    "eslint-plugin-import": "2.31.0"
+    "eslint-plugin-import": "2.32.0"
   },
   "publishConfig": {
     "access": "public"
