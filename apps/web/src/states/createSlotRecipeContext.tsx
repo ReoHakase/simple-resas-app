@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, forwardRef, useContext, useMemo } from 'react';
-import type { ElementRef, ElementType, ComponentPropsWithoutRef } from 'react';
+import type { ComponentRef, ElementType, ComponentPropsWithoutRef } from 'react';
 
 import { cx } from 'styled-system/css';
 import type { SlotRecipeRuntimeFn, SlotRecipeVariantRecord, RecipeSelection } from 'styled-system/types';
@@ -104,7 +104,7 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
     Component: C,
     slot: S | null,
   ) => {
-    const StyledComponent = forwardRef<ElementRef<C>, TNewProps>((props, ref) => {
+    const StyledComponent = forwardRef<ComponentRef<C>, TNewProps>((props, ref) => {
       const [variantProps] = recipe.splitVariantProps(props);
       const slotStyles = useMemo(() => recipe(variantProps), [variantProps]);
       const styleClassName = slot === null ? undefined : slotStyles[slot];
@@ -121,7 +121,7 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
       return (
         <VariantPropsContext.Provider value={variantProps}>
           <SlotRecipeResultContext.Provider value={slotStyles}>
-            {/* Type '{ ref: ForwardedRef<ElementRef<C>>; } & TNewProps' is not assignable to type 'LibraryManagedAttributes<C, any>'.ts(2322) */}
+            {/* Type '{ ref: ForwardedRef<ComponentRef<C>>; } & TNewProps' is not assignable to type 'LibraryManagedAttributes<C, any>'.ts(2322) */}
             {/* @ts-expect-error: `LibraryManagedAttributes` の型エラーに関する有用な解決策が見つかりませんでした。型定義が深すぎることが原因かもしれません。 */}
             <Component ref={ref} {...newProps} />
           </SlotRecipeResultContext.Provider>
@@ -145,7 +145,7 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
     Component: C,
     slot: S,
   ) => {
-    const StyledComponent = forwardRef<ElementRef<C>, TNewProps>((props, ref) => {
+    const StyledComponent = forwardRef<ComponentRef<C>, TNewProps>((props, ref) => {
       const slotStyles = useContext(SlotRecipeResultContext);
       const styleClassName: string | undefined = useMemo(() => slotStyles?.[slot], [slotStyles]);
       const originalClassName: string | undefined = useMemo(
@@ -159,7 +159,7 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
       };
 
       return (
-        // Type '{ ref: ForwardedRef<ElementRef<C>>; } & TNewProps' is not assignable to type 'LibraryManagedAttributes<C, any>'.ts(2322)
+        // Type '{ ref: ForwardedRef<ComponentRef<C>>; } & TNewProps' is not assignable to type 'LibraryManagedAttributes<C, any>'.ts(2322)
         // @ts-expect-error: `LibraryManagedAttributes` の型エラーに関する有用な解決策が見つかりませんでした。型定義が深すぎることが原因かもしれません。
         <Component ref={ref} {...newProps} />
       );
