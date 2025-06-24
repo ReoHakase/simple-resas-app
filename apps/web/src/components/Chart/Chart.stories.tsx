@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Chart } from './Chart';
 import type { ChartProps } from './Chart';
 import { css } from 'styled-system/css';

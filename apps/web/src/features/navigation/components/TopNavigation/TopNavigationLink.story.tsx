@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Baby } from 'lucide-react';
+import { expect, within } from 'storybook/test';
 import { TopNavigationLink } from './TopNavigationLink';
 import { css } from 'styled-system/css';
 
