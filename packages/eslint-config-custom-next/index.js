@@ -17,7 +17,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@pandacss/recommended',
   ],
-  plugins: ['@typescript-eslint', 'react', 'jsx-a11y', 'import', '@pandacss'],
+  plugins: ['react', 'jsx-a11y', 'import', '@pandacss'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
