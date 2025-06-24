@@ -1,0 +1,82 @@
+name: CI (Turbo)
+
+on:
+  - pull_request
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+  RESAS_API_KEY: ${{ secrets.RESAS_API_KEY }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Build with Turborepo
+        run: pnpm turbo build
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Check format
+        run: pnpm format:check
+
+      - name: Lint with Turborepo
+        run: pnpm turbo lint -- --max-warnings=0
+
+  test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Test with Turborepo
+        run: pnpm turbo test
+
+  sb-test:
+    name: Storybook Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+        with:
+          install-playwright: 'true'
+
+      - name: Test Storybook with Turbo
+        run: pnpm turbo sb:test
+        env:
+          RESAS_API_KEY: ${{ secrets.RESAS_API_KEY }}
+
+  e2e-test:
+    name: E2E Test (Playwright)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+        with:
+          install-playwright: 'true'
+
+      - name: Run E2E tests with Turborepo
+        run: pnpm turbo playwright:test
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: apps/web/playwright-report/
+          retention-days: 30
