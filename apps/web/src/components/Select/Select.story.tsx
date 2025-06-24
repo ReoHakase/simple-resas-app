@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, userEvent, within } from '@storybook/test';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import {
   ChevronDown,
   Languages,
@@ -11,6 +10,7 @@ import {
   MonitorSmartphone,
   SwatchBook,
 } from 'lucide-react';
+import { expect, fn, userEvent, within } from 'storybook/test';
 import {
   Select,
   SelectGroup,
