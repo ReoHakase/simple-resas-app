@@ -58,7 +58,7 @@ runs:
       if: ${{ inputs.install-playwright == 'true' }}
       uses: actions/cache@v4
       with:
-        path: $HOME/.cache/ms-playwright
+        path: ~/.cache/ms-playwright
         key: ${{ runner.os }}-playwright-${{ steps.retrieve-playwright-version.outputs.playwright-version }}
         restore-keys: ${{ runner.os }}-playwright-
 
