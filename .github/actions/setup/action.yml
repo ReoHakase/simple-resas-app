@@ -1,0 +1,73 @@
+name: Setup project environment
+description: Checkout code, setup Node & pnpm with caching, install dependencies and Playwright (optionally) with caching.
+
+inputs:
+  install-playwright:
+    description: 'Install Playwright browsers & deps'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup node and pnpm via moonrepo/proto toolchain
+      uses: moonrepo/setup-toolchain@v0
+      with:
+        # A GitHub action that sets up an environment for proto and moon.
+        # - Installs proto globally so that installed tools can also be executed globally.
+        # - Caches the toolchain (~/.proto) so subsequent runs are faster.
+        # - Hashes .prototools and .moon/toolchain.yml files to generate a unique cache key.
+        # - Cleans the toolchain before caching to remove unused or stale tools.
+        # See: https://github.com/moonrepo/setup-toolchain
+        auto-install: true
+
+    - name: Retrieve pnpm store path
+      shell: bash
+      id: pnpm-cache
+      run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v4
+      name: Restore pnpm Cache
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: ${{ runner.os }}-pnpm-store-
+
+    - name: Restore Turborepo cache
+      uses: actions/cache@v4
+      with:
+        path: .turbo
+        key: ${{ runner.os }}-turbo-${{ github.sha }}
+        restore-keys: ${{ runner.os }}-turbo-
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
+
+    - name: Retrieve Playwright version
+      if: ${{ inputs.install-playwright == 'true' }}
+      # Using Playwright version as a cache key since browser versions correspond to it.
+      # https://playwright.dev/docs/release-notes
+      id: retrieve-playwright-version
+      shell: bash
+      run: |
+        echo "playwright-version=$(grep '"playwright"' package.json | sed -E 's/.*"playwright": *"([^"]+)".*/\1/')" >> $GITHUB_OUTPUT
+
+    - name: Cache Playwright binaries
+      id: cache-playwright-binaries
+      if: ${{ inputs.install-playwright == 'true' }}
+      uses: actions/cache@v4
+      with:
+        path: $HOME/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ steps.retrieve-playwright-version.outputs.playwright-version }}
+        restore-keys: ${{ runner.os }}-playwright-
+
+    - name: Install Playwright along with dependencies (Chromium only)
+      if: ${{ inputs.install-playwright == 'true' && steps.cache-playwright-binaries.outputs.cache-hit != 'true' }}
+      run: pnpm playwright install --with-deps chromium #  https://playwright.dev/docs/browsers#install-system-dependencies
+      shell: bash
+
+    - name: Install dependencies of Playwright (Chromium only)
+      if: ${{ inputs.install-playwright == 'true' && steps.cache-playwright-binaries.outputs.cache-hit == 'true' }}
+      run: pnpm playwright install-deps chromium # https://playwright.dev/docs/browsers#install-system-dependencies
+      shell: bash
