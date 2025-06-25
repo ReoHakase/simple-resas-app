@@ -2,6 +2,13 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "tsconfig/nextjs.json",
   "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "./",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@public/*": ["./public/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
+    },
     "declaration": false,
     "declarationMap": false,
     "plugins": [
@@ -9,14 +16,7 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./",
-    "ignoreDeprecations": "5.0",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@public/*": ["./public/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
-    },
-    "rootDir": "./"
+    "ignoreDeprecations": "5.0"
   },
   "mdx": {
     "plugins": ["remark-gfm", "remark-math"]
@@ -28,7 +28,8 @@
     "postcss.config.cjs",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".storybook/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
