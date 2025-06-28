@@ -1,16 +1,16 @@
-import NextLink from 'next/link';
 import type { LinkProps as NextLinkProps } from 'next/link';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import NextLink from 'next/link';
 
 // It is required to forward generics T to NextLinkProps in order to make DynamicRoute work.
 // e.g. `/tag/[tagId]`
 export type LinkProps<T> = (
   | (NextLinkProps<T> & {
-      external?: false;
-    })
+    external?: false;
+  })
   | (ComponentPropsWithoutRef<'a'> & {
-      external: true;
-    })
+    external: true;
+  })
 ) & {
   children: ReactNode;
   className?: string;
@@ -24,7 +24,7 @@ export type LinkProps<T> = (
  * @param {external} props.external - Whether the link is external.
  * @returns {ReactElement} - The rendered Link component.
  */
-export const Link = <T,>({ children, ...props }: LinkProps<T>): ReactNode => {
+export function Link<T>({ children, ...props }: LinkProps<T>): ReactNode {
   // Since experimental typedRoutes is enabled, NextLink only accepts
   // statically-typed routes and URL Objects, not strings.
   // Moreover, in React server components, it is unable to pass URL Objects via props. (SC to CC)
@@ -44,6 +44,6 @@ export const Link = <T,>({ children, ...props }: LinkProps<T>): ReactNode => {
   }
   // If not, use NextLink
   return <NextLink {...props}>{children}</NextLink>;
-};
+}
 
 Link.displayName = 'Link';

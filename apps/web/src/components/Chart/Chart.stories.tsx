@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { Chart } from './Chart';
 import type { ChartProps } from './Chart';
 import { css } from 'styled-system/css';
+import { Chart } from './Chart';
 
 const chartProps: ChartProps<'year', 'apple' | 'banana' | 'grape'> = {
   dataKey: 'year',
@@ -112,7 +112,7 @@ const meta: Meta<typeof Chart> = {
   component: Chart,
   tags: ['autodocs'],
   decorators: [
-    (Story) => (
+    Story => (
       <div className={css({ w: 'full', h: '500px' })}>
         <Story />
       </div>

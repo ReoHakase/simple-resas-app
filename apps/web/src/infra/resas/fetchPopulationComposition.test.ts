@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
-import { fetchPopulationComposition } from './fetchPopulationComposition';
 import type { PrefCode } from '@/models/prefCode';
+import { describe, expect, it } from 'vitest';
+import { fetchPopulationComposition } from './fetchPopulationComposition';
 
 describe('fetchPopulationComposition', () => {
   it('エラーがthrowされない (Zodスキーマ通りの返り値が得られる)', async () => {

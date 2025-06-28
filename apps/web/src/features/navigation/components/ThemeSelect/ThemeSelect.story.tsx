@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 import { useTheme } from 'next-themes';
 import { useEffect } from 'react';
 import { expect, fn, userEvent, within } from 'storybook/test';
-import { ThemeSelect } from './ThemeSelect';
 import { ThemeProvider } from '@/providers/ThemeProvider';
+import { ThemeSelect } from './ThemeSelect';
 
 type Story = StoryObj<typeof ThemeSelect>;
 
@@ -11,7 +11,7 @@ const meta: Meta<typeof ThemeSelect> = {
   component: ThemeSelect,
   tags: ['autodocs'],
   decorators: [
-    (Story) => (
+    Story => (
       <ThemeProvider>
         <Story />
       </ThemeProvider>
@@ -59,14 +59,14 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole('combobox');
     await userEvent.click(trigger);
-    expect(args.onOpenChange).toHaveBeenCalledWith(true);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await expect(args.onOpenChange).toHaveBeenCalledWith(true);
+    await new Promise(resolve => setTimeout(resolve, 500));
     await userEvent.keyboard('{ArrowUp}{ArrowUp}{ArrowUp}{ArrowDown}{ArrowDown}{ArrowUp}{ArrowDown}{Enter}', {
       delay: 300,
     });
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    expect(args.onOpenChange).toHaveBeenCalledWith(false);
-    expect(args.onValueChange).toHaveBeenCalled();
-    expect(args.onValueChange).toHaveBeenCalledWith('dark');
+    await new Promise(resolve => setTimeout(resolve, 100));
+    await expect(args.onOpenChange).toHaveBeenCalledWith(false);
+    await expect(args.onValueChange).toHaveBeenCalled();
+    await expect(args.onValueChange).toHaveBeenCalledWith('dark');
   },
 };

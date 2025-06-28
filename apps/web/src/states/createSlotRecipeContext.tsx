@@ -1,10 +1,10 @@
 'use client';
 
-import { createContext, forwardRef, useContext, useMemo } from 'react';
-import type { ComponentRef, ElementType, ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef, ComponentRef, ElementType } from 'react';
+import type { RecipeSelection, SlotRecipeRuntimeFn, SlotRecipeVariantRecord } from 'styled-system/types';
 
+import { createContext, use, useMemo } from 'react';
 import { cx } from 'styled-system/css';
-import type { SlotRecipeRuntimeFn, SlotRecipeVariantRecord, RecipeSelection } from 'styled-system/types';
 
 /**
  * Reactコンポーネントの表示名を取得します。
@@ -13,10 +13,11 @@ import type { SlotRecipeRuntimeFn, SlotRecipeVariantRecord, RecipeSelection } fr
  * @returns コンポーネントの表示名
  * @see https://github.com/chakra-ui/panda/blob/main/packages/studio/styled-system/jsx/factory-helper.mjs#L19
  */
-const getDisplayName = (Component: ElementType) => {
-  if (typeof Component === 'string') return Component;
+function getDisplayName(Component: ElementType) {
+  if (typeof Component === 'string')
+    return Component;
   return Component?.displayName || Component?.name || 'Component';
-};
+}
 
 // タイプジェネリックのS、Tはスロット名とバリアントレコードです。
 // 参照: styled-system/types/recipe.d.ts
@@ -44,12 +45,12 @@ const getDisplayName = (Component: ElementType) => {
  * @template T - スロットレシピのバリアントレコードの型。
  * @param {SlotRecipeRuntimeFn<S, T>} recipe - `sva()`で作成されたスロットレシピランタイム関数、または構成レシピです。
  * @param {string} [recipeDisplayName] - (オプション) デバッグ用のレシピの表示名。
- * @returns {Object} - `withVariantProvider()`はスロットバリアントプロップを受け取るラップされたコンポーネントを作成します。`withVariantConsumer`は`withVariantProvider()`で提供されるスロットスタイルを消費するコンポーネントを作成します。そして、`useVariantProps()`フックは必要に応じてバリアントプロップを取得できます。
+ * @returns {object} - `withVariantProvider()`はスロットバリアントプロップを受け取るラップされたコンポーネントを作成します。`withVariantConsumer`は`withVariantProvider()`で提供されるスロットスタイルを消費するコンポーネントを作成します。そして、`useVariantProps()`フックは必要に応じてバリアントプロップを取得できます。
  */
-export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVariantRecord<S>>(
+export function createSlotRecipeContext<S extends string, T extends SlotRecipeVariantRecord<S>>(
   recipe: SlotRecipeRuntimeFn<S, T>,
   recipeDisplayName?: string,
-) => {
+) {
   const SlotRecipeResultContext = createContext<ReturnType<typeof recipe> | null>(null);
   const VariantPropsContext = createContext<RecipeSelection<T> | null>(null);
 
@@ -61,14 +62,15 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
    * @throws {Error} バリアントプロップが見つからない場合。
    */
   const useVariantProps = (keys: Array<keyof RecipeSelection<T>> | null = null) => {
-    const variantProps = useContext(VariantPropsContext);
+    const variantProps = use(VariantPropsContext);
     if (!variantProps) {
       throw new Error(
         `useVariantProps: バリアントプロップが見つかりません。コンポーネントを対応する \`withVariantProvider()\` でラップすることを確認してください。`,
       );
     }
     const memoizedVariantProps = useMemo(() => {
-      if (keys === null) return variantProps;
+      if (keys === null)
+        return variantProps;
       return keys.reduce((acc, key) => ({ ...acc, [key]: variantProps[key] }), {} as RecipeSelection<T>);
     }, [variantProps, keys]);
     return memoizedVariantProps;
@@ -81,7 +83,7 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
    * @throws {Error} スロットスタイルが見つからない場合。対応する `withVariantProvider()` でコンポーネントをラップすることを確認してください。
    */
   const useSlotRecipeResult = (slot: S) => {
-    const slotStyles = useContext(SlotRecipeResultContext);
+    const slotStyles = use(SlotRecipeResultContext);
     if (!slotStyles) {
       throw new Error(
         `useSlotRecipeResult: スロットスタイルが見つかりません。対応する \`withVariantProvider()\` でコンポーネントをラップすることを確認してください。`,
@@ -104,30 +106,30 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
     Component: C,
     slot: S | null,
   ) => {
-    const StyledComponent = forwardRef<ComponentRef<C>, TNewProps>((props, ref) => {
-      const [variantProps] = recipe.splitVariantProps(props);
+    const StyledComponent = ({ ref, ...props }: TNewProps & { ref?: React.RefObject<ComponentRef<C> | null> }) => {
+      const [variantProps] = recipe.splitVariantProps(props as unknown as RecipeSelection<T>);
       const slotStyles = useMemo(() => recipe(variantProps), [variantProps]);
       const styleClassName = slot === null ? undefined : slotStyles[slot];
-      const originalClassName = useMemo(
-        () => (typeof props?.className === 'string' ? props?.className : undefined),
-        [props?.className],
-      );
+      const originalClassName = useMemo(() => {
+        const cn = props?.className as unknown;
+        return typeof cn === 'string' ? cn : undefined;
+      }, [props?.className]);
 
       const newProps: TNewProps = {
         ...props,
         className: cx(styleClassName, originalClassName),
-      };
+      } as unknown as TNewProps;
 
       return (
-        <VariantPropsContext.Provider value={variantProps}>
-          <SlotRecipeResultContext.Provider value={slotStyles}>
+        <VariantPropsContext value={variantProps}>
+          <SlotRecipeResultContext value={slotStyles}>
             {/* Type '{ ref: ForwardedRef<ComponentRef<C>>; } & TNewProps' is not assignable to type 'LibraryManagedAttributes<C, any>'.ts(2322) */}
             {/* @ts-expect-error: `LibraryManagedAttributes` の型エラーに関する有用な解決策が見つかりませんでした。型定義が深すぎることが原因かもしれません。 */}
             <Component ref={ref} {...newProps} />
-          </SlotRecipeResultContext.Provider>
-        </VariantPropsContext.Provider>
+          </SlotRecipeResultContext>
+        </VariantPropsContext>
       );
-    });
+    };
 
     // デバッグ時のDXを向上させるために表示名を設定します。
     // 表示名は次のようになります: `Dialog 🎨(container in dialogSlotRecipe)`.
@@ -145,25 +147,25 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
     Component: C,
     slot: S,
   ) => {
-    const StyledComponent = forwardRef<ComponentRef<C>, TNewProps>((props, ref) => {
-      const slotStyles = useContext(SlotRecipeResultContext);
+    const StyledComponent = ({ ref, ...props }: TNewProps & { ref?: React.RefObject<ComponentRef<C> | null> }) => {
+      const slotStyles = use(SlotRecipeResultContext);
       const styleClassName: string | undefined = useMemo(() => slotStyles?.[slot], [slotStyles]);
-      const originalClassName: string | undefined = useMemo(
-        () => (typeof props?.className === 'string' ? props?.className : undefined),
-        [props?.className],
-      );
+      const originalClassName: string | undefined = useMemo(() => {
+        const cn = props?.className as unknown;
+        return typeof cn === 'string' ? cn : undefined;
+      }, [props?.className]);
 
       const newProps: TNewProps = {
         ...props,
         className: cx(styleClassName, originalClassName),
-      };
+      } as unknown as TNewProps;
 
       return (
         // Type '{ ref: ForwardedRef<ComponentRef<C>>; } & TNewProps' is not assignable to type 'LibraryManagedAttributes<C, any>'.ts(2322)
         // @ts-expect-error: `LibraryManagedAttributes` の型エラーに関する有用な解決策が見つかりませんでした。型定義が深すぎることが原因かもしれません。
         <Component ref={ref} {...newProps} />
       );
-    });
+    };
 
     // デバッグ時のDXを向上させるために表示名を設定します。
     // 表示名は次のようになります: `DialogTrigger ↪️🎨(trigger in dialogSlotRecipe)`.
@@ -172,4 +174,4 @@ export const createSlotRecipeContext = <S extends string, T extends SlotRecipeVa
   };
 
   return { withVariantProvider, withVariantConsumer, useVariantProps, useSlotRecipeResult };
-};
+}

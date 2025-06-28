@@ -1,33 +1,33 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import {
-  ChevronDown,
-  Languages,
-  CircleDotDashed,
-  Sprout,
   Check,
-  Sun,
-  Moon,
+  ChevronDown,
+  CircleDotDashed,
+  Languages,
   MonitorSmartphone,
+  Moon,
+  Sprout,
+  Sun,
   SwatchBook,
 } from 'lucide-react';
 import { expect, fn, userEvent, within } from 'storybook/test';
+import { css } from 'styled-system/css';
 import {
   Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
-  SelectIcon,
-  SelectViewport,
-  SelectPortal,
   SelectContent,
+  SelectGroup,
+  SelectIcon,
+  SelectItem,
+  SelectItemDescription,
   SelectItemIndicator,
   SelectItemText,
-  SelectItemDescription,
-  SelectItem,
   SelectLabel,
+  SelectPortal,
   SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport,
 } from './Select';
-import { css } from 'styled-system/css';
 
 type Story = StoryObj<typeof Select>;
 
@@ -50,7 +50,9 @@ const meta: Meta<typeof Select> = {
             <SelectViewport>
               <SelectGroup>
                 <SelectLabel>
-                  <Languages className={css({ display: 'inline', w: '4', h: '4' })} /> Supported
+                  <Languages className={css({ display: 'inline', w: '4', h: '4' })} />
+                  {' '}
+                  Supported
                 </SelectLabel>
                 <SelectItem value="en">
                   <SelectItemText>🇺🇸 English</SelectItemText>
@@ -77,7 +79,9 @@ const meta: Meta<typeof Select> = {
               <SelectSeparator />
               <SelectGroup>
                 <SelectLabel>
-                  <CircleDotDashed className={css({ display: 'inline', w: '4', h: '4' })} /> Work in Progress
+                  <CircleDotDashed className={css({ display: 'inline', w: '4', h: '4' })} />
+                  {' '}
+                  Work in Progress
                 </SelectLabel>
                 <SelectItem value="zh">
                   <SelectItemText>🇨🇳 中文</SelectItemText>
@@ -104,7 +108,9 @@ const meta: Meta<typeof Select> = {
               <SelectSeparator />
               <SelectGroup>
                 <SelectLabel>
-                  <Sprout className={css({ display: 'inline', w: '4', h: '4' })} /> Planned
+                  <Sprout className={css({ display: 'inline', w: '4', h: '4' })} />
+                  {' '}
+                  Planned
                 </SelectLabel>
                 <SelectItem value="de" disabled>
                   <SelectItemText>🇩🇪 Deutsch</SelectItemText>
@@ -157,15 +163,15 @@ export const Default: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole('combobox');
     await userEvent.click(trigger);
-    expect(args.onOpenChange).toHaveBeenCalledWith(true);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await expect(args.onOpenChange).toHaveBeenCalledWith(true);
+    await new Promise(resolve => setTimeout(resolve, 500));
     await userEvent.keyboard('{ArrowDown}{ArrowDown}{ArrowDown}{ArrowUp}{ArrowDown}{ArrowDown}{ArrowUp}{Enter}', {
       delay: 300,
     });
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    expect(args.onOpenChange).toHaveBeenCalledWith(false);
-    expect(args.onValueChange).toHaveBeenCalled();
-    expect(args.onValueChange).toHaveBeenCalledWith('zh');
+    await new Promise(resolve => setTimeout(resolve, 100));
+    await expect(args.onOpenChange).toHaveBeenCalledWith(false);
+    await expect(args.onValueChange).toHaveBeenCalled();
+    await expect(args.onValueChange).toHaveBeenCalledWith('zh');
   },
 };
 
@@ -202,7 +208,9 @@ export const IconOnly: Story = {
             <SelectViewport aria-modal>
               <SelectGroup>
                 <SelectLabel>
-                  <SwatchBook className={css({ display: 'inline', w: '4', h: '4' })} /> Themes
+                  <SwatchBook className={css({ display: 'inline', w: '4', h: '4' })} />
+                  {' '}
+                  Themes
                 </SelectLabel>
                 <SelectItem value="system">
                   <SelectItemText>
@@ -242,14 +250,14 @@ export const IconOnly: Story = {
     const canvas = within(canvasElement);
     const trigger = canvas.getByRole('combobox');
     await userEvent.click(trigger);
-    expect(args.onOpenChange).toHaveBeenCalledWith(true);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await expect(args.onOpenChange).toHaveBeenCalledWith(true);
+    await new Promise(resolve => setTimeout(resolve, 500));
     await userEvent.keyboard('{ArrowDown}{ArrowDown}{ArrowUp}{ArrowDown}{ArrowUp}{Enter}', {
       delay: 300,
     });
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    expect(args.onOpenChange).toHaveBeenCalledWith(false);
-    expect(args.onValueChange).toHaveBeenCalled();
-    expect(args.onValueChange).toHaveBeenCalledWith('light');
+    await new Promise(resolve => setTimeout(resolve, 100));
+    await expect(args.onOpenChange).toHaveBeenCalledWith(false);
+    await expect(args.onValueChange).toHaveBeenCalled();
+    await expect(args.onValueChange).toHaveBeenCalledWith('light');
   },
 };

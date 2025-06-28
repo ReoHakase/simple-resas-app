@@ -1,13 +1,12 @@
-import { describe, it, expect, vi } from 'vitest';
-import { getPopulationCompositionAll } from './getPopulationCompositionAll';
 import type { PrefCode } from '@/models/prefCode';
+import { describe, expect, it, vi } from 'vitest';
+import { getPopulationCompositionAll } from './getPopulationCompositionAll';
 
 describe('getPopulationCompositionAll', () => {
   it('エラーがthrowされない (Zodスキーマ通りの返り値が得られる)', async () => {
     vi.mock('../infra/resas/fetchPopulationComposition', async (importOriginal) => {
-      const actual = await importOriginal();
+      const actual = await importOriginal<typeof import('../infra/resas/fetchPopulationComposition')>();
       return {
-        // @ts-expect-error ドキュメント通りの記述
         ...actual,
         fetchPopulationComposition: vi.fn().mockReturnValue({
           boundaryYear: 2020,
@@ -364,7 +363,7 @@ describe('getPopulationCompositionAll', () => {
             ],
           },
         }),
-      };
+      } satisfies typeof actual;
     });
     const prefCodes: PrefCode[] = ['1', '2', '3'];
     await expect(getPopulationCompositionAll(prefCodes)).resolves.not.toThrow();

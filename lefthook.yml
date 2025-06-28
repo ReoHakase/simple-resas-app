@@ -4,18 +4,8 @@
 pre-commit:
   parallel: true
   commands:
-    # フォーマット (Prettier)
-    # 全て共通の設定を使う
-    prettier:
-      glob: '*.{tsx,ts,mts,mcs,mjs,cjs,js,css,json,md,mdx,yml,yaml}'
-      run: |
-        pnpm prettier --write --ignore-unknown {staged_files}
-      stage_fixed: true # 書き込み修正を行なった差分をステージングする
-      skip: # すでに整形済みのファイルであるため、再度の整形を行わない
-        - merge
-        - rebase
 
-    # パッケージごとのリント (ESLint)
+    # パッケージごとのリントとフォーマット (ESLint + Prettier)
     # パッケージごとに異なる設定を使う
     eslint_web:
       root: 'apps/web/'

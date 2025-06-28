@@ -1,27 +1,26 @@
-import type { ReactElement } from 'react';
-import type { ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef, ReactElement } from 'react';
 import type { ChartProps } from '@/components/Chart';
+import type { PrefCode } from '@/models/prefCode';
+import type { StatLabel } from '@/models/statLabel';
+import { css, cx } from 'styled-system/css';
 import { Chart, getUniqueLineColor } from '@/components/Chart';
 import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
 import { extractDataPointsByStatLabel } from '@/libs/extractDataPointsByStatLabel';
 import { getPopulationCompositionAll } from '@/libs/getPopulationCompositionAll';
-import type { PrefCode } from '@/models/prefCode';
-import type { StatLabel } from '@/models/statLabel';
-import { css, cx } from 'styled-system/css';
 
 export type PopulationChartProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'> & {
   statLabel: StatLabel;
   prefCodes: PrefCode[];
 };
 
-export const PopulationChart = async ({
+export async function PopulationChart({
   statLabel,
   prefCodes,
   className,
   ...props
-}: PopulationChartProps): Promise<ReactElement> => {
+}: PopulationChartProps): Promise<ReactElement> {
   const [prefLocaleJa, record] = await Promise.all([
-    fetchPrefectures().then((data) => data.prefLocaleJa),
+    fetchPrefectures().then(data => data.prefLocaleJa),
     getPopulationCompositionAll(prefCodes),
   ]);
   const dataPoints = extractDataPointsByStatLabel(record, statLabel);
@@ -31,7 +30,7 @@ export const PopulationChart = async ({
     unitX: '年',
     unitY: '', // モバイル表示向けに非表示
     formatNumbers: true, // ~~万, ~~億 などにフォーマット
-    series: prefCodes.map((prefCode) => ({
+    series: prefCodes.map(prefCode => ({
       name: prefCode,
       label: prefLocaleJa[prefCode],
       color: getUniqueLineColor(prefCode),
@@ -51,7 +50,7 @@ export const PopulationChart = async ({
       <Chart {...chartProps} />
     </div>
   );
-};
+}
 
 // /**
 //  * ルートが再生成されるまでの時間を秒単位で指定します。

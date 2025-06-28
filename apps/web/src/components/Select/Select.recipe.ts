@@ -61,46 +61,46 @@ export const selectSlotRecipe = sva({
       p: '1',
     },
     content: {
-      pos: 'relative',
-      zIndex: '100',
-      minW: 'var(--radix-select-trigger-width)',
-      overflow: 'hidden',
-      rounded: 'md',
-      border: '1px solid',
-      borderColor: 'keyplate.6',
-      bg: 'keyplate.1',
-      color: 'keyplate.12',
-      shadow: 'floating',
-      animationDuration: '0.2s',
+      'pos': 'relative',
+      'zIndex': '100',
+      'minW': 'var(--radix-select-trigger-width)',
+      'overflow': 'hidden',
+      'rounded': 'md',
+      'border': '1px solid',
+      'borderColor': 'keyplate.6',
+      'bg': 'keyplate.1',
+      'color': 'keyplate.12',
+      'shadow': 'floating',
+      'animationDuration': '0.2s',
 
-      _radixSelectContentStateOpen: {
+      '_radixSelectContentStateOpen': {
         animationName: 'enter',
         animationTimingFunction: 'ease-out',
         keyframeEnterScale: '0.975',
       },
 
-      _radixSelectContentStateClosed: {
+      '_radixSelectContentStateClosed': {
         animationName: 'exit',
         animationTimingFunction: 'ease-in',
         keyframeExitScale: '0.975',
       },
 
-      _radixSelectContentSideTop: {
+      '_radixSelectContentSideTop': {
         keyframeEnterY: '2',
         keyframeExitY: '-2',
       },
 
-      _radixSelectContentSideBottom: {
+      '_radixSelectContentSideBottom': {
         keyframeEnterY: '-2',
         keyframeExitY: '2',
       },
 
-      _radixSelectContentSideLeft: {
+      '_radixSelectContentSideLeft': {
         keyframeEnterX: '2',
         keyframeExitX: '-2',
       },
 
-      _radixSelectContentSideRight: {
+      '_radixSelectContentSideRight': {
         keyframeEnterY: '-2',
         keyframeExitY: '2',
       },

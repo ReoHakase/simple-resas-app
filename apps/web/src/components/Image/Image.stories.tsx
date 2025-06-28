@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { Image } from './Image';
 import SampleImage from '@public/icon.webp';
+import { Image } from './Image';
 
 type Story = StoryObj<typeof Image>;
 

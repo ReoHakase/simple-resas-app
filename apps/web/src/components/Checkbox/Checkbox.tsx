@@ -1,14 +1,19 @@
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { Check } from 'lucide-react';
-import { ComponentPropsWithoutRef, forwardRef, ReactNode } from 'react';
 import { cx } from 'styled-system/css';
 import { checkbox } from 'styled-system/recipes';
 
 export type CheckboxProps = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
-  id: string; // <label>で擬似的なチェックボックスを作るために必要
+  'id': string; // <label>で擬似的なチェックボックスを作るために必要
   'aria-labelledby': string; // 実際にラベルテキストを含む<label>のidを必ず指定する
 };
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({ id, className, ...props }, ref): ReactNode => {
+export function Checkbox({
+  ref,
+  id,
+  className,
+  ...props
+}: CheckboxProps & { ref?: React.RefObject<HTMLInputElement | null> }): ReactNode {
   const { label, check, input } = checkbox();
   return (
     <>
@@ -24,5 +29,5 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({ id, class
       <input id={id} type="checkbox" ref={ref} className={input} {...props} />
     </>
   );
-});
+}
 Checkbox.displayName = 'Checkbox';

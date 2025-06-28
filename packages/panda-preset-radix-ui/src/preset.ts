@@ -1,8 +1,9 @@
+import type { Preset } from '@pandacss/dev';
+import type { PandaPresetRadixCssSelectorOptions } from './type';
 import { definePreset } from '@pandacss/dev';
 import { getCaseNames } from './case';
-import type { PandaPresetRadixCssSelectorOptions } from './type';
 
-export const radixUIPreset = async (options: PandaPresetRadixCssSelectorOptions) => {
+export async function radixUIPreset(options: PandaPresetRadixCssSelectorOptions): Promise<Preset> {
   const { prefix, selectorNameCase } = options;
   const getName = getCaseNames[selectorNameCase];
   return definePreset({
@@ -51,4 +52,4 @@ export const radixUIPreset = async (options: PandaPresetRadixCssSelectorOptions)
       },
     },
   });
-};
+}

@@ -1,10 +1,10 @@
+import type { ComponentPropsWithoutRef, ReactElement } from 'react';
 import { Loader } from 'lucide-react';
-import type { ReactElement, ComponentPropsWithoutRef } from 'react';
 import { css, cx } from 'styled-system/css';
 
 export type PopulationChartSkeletonProps = Omit<ComponentPropsWithoutRef<'div'>, 'children'>;
 
-export const PopulationChartSkeleton = ({ className, ...props }: PopulationChartSkeletonProps): ReactElement => {
+export function PopulationChartSkeleton({ className, ...props }: PopulationChartSkeletonProps): ReactElement {
   return (
     <div
       className={cx(
@@ -37,4 +37,4 @@ export const PopulationChartSkeleton = ({ className, ...props }: PopulationChart
       />
     </div>
   );
-};
+}

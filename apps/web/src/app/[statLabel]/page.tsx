@@ -1,28 +1,28 @@
 import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
+import type { PrefCode } from '@/models/prefCode';
 import { Suspense } from 'react';
-import { metadata as layoutMetadata, defaultTitle } from '../layout';
+import { css } from 'styled-system/css';
 import { PopulationChart, PopulationChartSkeleton } from '@/features/population/components/PopulationChart';
 import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
 import { getGraphPageTitleLocaleJa } from '@/libs/getGraphPageTitleLocale';
-import type { PrefCode } from '@/models/prefCode';
 import { prefCodesSchema } from '@/models/prefCode';
 import { statLabelSchema } from '@/models/statLabel';
-import { css } from 'styled-system/css';
+import { defaultTitle, metadata as layoutMetadata } from '../layout';
 
 type GraphPageProps = {
   params: Promise<{ statLabel: string }>;
   searchParams: Promise<{ prefCodes: string | string[] | undefined }>;
 };
 
-const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<ReactElement> => {
+async function GraphPage({ params, searchParams }: GraphPageProps): Promise<ReactElement> {
   const [{ statLabel: unsafeStatLabel }, { prefCodes: unsafePrefCodes }] = await Promise.all([params, searchParams]);
   const statLabel = statLabelSchema.parse(unsafeStatLabel);
   const prefCodes = prefCodesSchema.parse(
     unsafePrefCodes
       ? [unsafePrefCodes]
           .flat()
-          .map((str) => str.split(','))
+          .map(str => str.split(','))
           .flat()
       : [],
   ) as PrefCode[];
@@ -61,18 +61,18 @@ const GraphPage = async ({ params, searchParams }: GraphPageProps): Promise<Reac
       </Suspense>
     </main>
   );
-};
+}
 
 export default GraphPage;
 
-export const generateMetadata = async ({ params, searchParams }: GraphPageProps): Promise<Metadata> => {
+export async function generateMetadata({ params, searchParams }: GraphPageProps): Promise<Metadata> {
   const [{ statLabel: unsafeStatLabel }, { prefCodes: unsafePrefCodes }] = await Promise.all([params, searchParams]);
   const statLabel = statLabelSchema.parse(unsafeStatLabel);
   const prefCodes = prefCodesSchema.parse(
     unsafePrefCodes
       ? [unsafePrefCodes]
           .flat()
-          .map((str) => str.split(','))
+          .map(str => str.split(','))
           .flat()
       : [],
   ) as PrefCode[];
@@ -87,7 +87,7 @@ export const generateMetadata = async ({ params, searchParams }: GraphPageProps)
     },
     twitter: layoutMetadata.twitter,
   };
-};
+}
 
 /**
  * ルートが再生成されるまでの時間を秒単位で指定します。

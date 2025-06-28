@@ -2,38 +2,39 @@
   "name": "panda-preset-radix-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
   "exports": {
     ".": {
       "source": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
       "import": {
         "types": "./dist/index.d.mts",
         "default": "./dist/index.mjs"
-      }
+      },
+      "require": "./dist/index.js"
     },
     "./package.json": "./package.json"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup --dts",
     "build-fast": "tsup --no-dts",
     "dev": "pnpm build-fast --watch",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:inspect": "pnpm dlx @eslint/config-inspector"
   },
-  "files": [
-    "dist"
-  ],
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@pandacss/dev": "0.54.0"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*"
   }
 }
