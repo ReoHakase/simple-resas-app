@@ -1,7 +1,7 @@
-import type { ReactNode, ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { RecipeVariantProps } from 'styled-system/css';
 import { Fragment } from 'react';
 import { cva, cx } from 'styled-system/css';
-import type { RecipeVariantProps } from 'styled-system/css';
 
 const skeletonRecipe = cva({
   base: {
@@ -60,22 +60,25 @@ const skeletonRecipe = cva({
   },
 });
 
-export type SkeletonProps = ComponentPropsWithoutRef<'span'> &
-  RecipeVariantProps<typeof skeletonRecipe> & {
+export type SkeletonProps = ComponentPropsWithoutRef<'span'>
+  & RecipeVariantProps<typeof skeletonRecipe> & {
     lines?: number;
   };
 
-export const Skeleton = ({ className, inline, level, lines = 1, ...props }: SkeletonProps): ReactNode => {
-  return inline ? (
-    <>
-      {Array.from({ length: lines }).map((_, i) => (
-        <Fragment key={i}>
-          <span className={cx(skeletonRecipe({ inline, level }), className)} {...props} />
-          <br />
-        </Fragment>
-      ))}
-    </>
-  ) : (
-    <span key={0} className={cx(skeletonRecipe({ inline }), className)} {...props} />
-  );
-};
+export function Skeleton({ className, inline, level, lines = 1, ...props }: SkeletonProps): ReactNode {
+  return inline
+    ? (
+        <>
+          {Array.from({ length: lines }).map((_, i) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <Fragment key={i}>
+              <span className={cx(skeletonRecipe({ inline, level }), className)} {...props} />
+              <br />
+            </Fragment>
+          ))}
+        </>
+      )
+    : (
+        <span key={0} className={cx(skeletonRecipe({ inline }), className)} {...props} />
+      );
+}

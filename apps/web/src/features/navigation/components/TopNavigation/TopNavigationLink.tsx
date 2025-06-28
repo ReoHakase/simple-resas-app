@@ -1,13 +1,13 @@
 'use client';
 
-import Link from 'next/link';
 import type { LinkProps } from 'next/link';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
-import type { ReactNode, ComponentPropsWithoutRef } from 'react';
-import { cx, cva } from 'styled-system/css';
+import { cva, cx } from 'styled-system/css';
 
-export const topNavigationLinkRecipe = cva({
+const topNavigationLinkRecipe = cva({
   base: {
     display: 'flex',
     flexDir: 'row',
@@ -44,8 +44,8 @@ export const topNavigationLinkRecipe = cva({
   },
 });
 
-export type TopNavigationLinkProps = LinkProps &
-  Omit<ComponentPropsWithoutRef<'a'>, keyof LinkProps> & {
+export type TopNavigationLinkProps = LinkProps
+  & Omit<ComponentPropsWithoutRef<'a'>, keyof LinkProps> & {
     className?: string;
     selected?: boolean;
     children: ReactNode;
@@ -57,7 +57,7 @@ export type TopNavigationLinkProps = LinkProps &
  * @param href - リンク先のパス
  * @returns 現在のパスと href が一致している場合は true、そうでない場合は false
  */
-const useIsBeingOpened = (href: string): boolean => {
+function useIsBeingOpened(href: string): boolean {
   // 現在のパスを取得します。パスは「/」で始まります。クエリパラメータは無視されます。
   // @see https://nextjs.org/docs/app/api-reference/functions/use-pathname
   const currentPath = usePathname(); // 例: `/docs/works/shelfree`
@@ -66,14 +66,14 @@ const useIsBeingOpened = (href: string): boolean => {
   const isBeingOpened = useMemo(() => currentPath === href.toString(), [currentPath, href]);
 
   return isBeingOpened;
-};
+}
 
 /**
  * 指定された href に現在のクエリパラメータを保持したままの URL を生成します。
  * @param href 保持するクエリパラメータを含めたい href
  * @returns 現在のクエリパラメータを保持したままの URL
  */
-const useHrefWithPreservedSearchParams = (href: string): string => {
+function useHrefWithPreservedSearchParams(href: string): string {
   // 現在のクエリパラメータを取得します。
   // @see https://nextjs.org/docs/app/api-reference/functions/use-search-params
   const searchParams = useSearchParams();
@@ -85,25 +85,27 @@ const useHrefWithPreservedSearchParams = (href: string): string => {
   }, [href, searchParams]);
 
   return hrefWithPreservedSearchParams;
-};
+}
 
 /**
  * ナビゲーションバー内のリンクを表すコンポーネントです。
  * Suspenseのfallbackで使用するための、useSearchParamsを使わないバージョンです。
  * @see https://github.com/ReoHakase/simple-resas-app/pull/7#issuecomment-2127436035
  *
- * @param href - リンク先のURL
- * @param className - 追加のクラス名
- * @param selected - リンクが選択されているかどうか
+ * @param props - リンクのプロパティ
+ * @param props.href - リンク先のURL
+ * @param props.className - 追加のクラス名
+ * @param props.selected - リンクが選択されているかどうか
+ * @param props.children - リンクのテキスト
  * @returns The rendered link component.
  */
-export const TopNavigationLinkFallback = ({
+export function TopNavigationLinkFallback({
   href,
   className,
   selected,
   children,
   ...props
-}: TopNavigationLinkProps): ReactNode => {
+}: TopNavigationLinkProps): ReactNode {
   const isBeingOpened = useIsBeingOpened(href.toString());
 
   const link = topNavigationLinkRecipe({
@@ -121,23 +123,25 @@ export const TopNavigationLinkFallback = ({
       {children}
     </Link>
   );
-};
+}
 
 /**
  * ナビゲーションバー内のリンクを表すコンポーネントです。
  *
- * @param href - リンク先のURL
- * @param className - 追加のクラス名
- * @param selected - リンクが選択されているかどうか
+ * @param props - リンクのプロパティ
+ * @param props.href - リンク先のURL
+ * @param props.className - 追加のクラス名
+ * @param props.selected - リンクが選択されているかどうか
+ * @param props.children - リンクのテキスト
  * @returns The rendered link component.
  */
-export const TopNavigationLink = ({
+export function TopNavigationLink({
   href,
   className,
   selected,
   children,
   ...props
-}: TopNavigationLinkProps): ReactNode => {
+}: TopNavigationLinkProps): ReactNode {
   const isBeingOpened = useIsBeingOpened(href.toString());
   const hrefWithSearchParamsPreserved = useHrefWithPreservedSearchParams(href.toString());
 
@@ -156,4 +160,4 @@ export const TopNavigationLink = ({
       {children}
     </Link>
   );
-};
+}

@@ -1,11 +1,11 @@
-import { Preset } from '@pandacss/dev';
+import type { Preset } from '@pandacss/dev';
 import baseRadixColorsPreset from 'pandacss-preset-radix-colors';
 
 /**
  * Array of radix scale names.
  * @see https://www.radix-ui.com/colors/docs/palette-composition/composing-a-palette
  */
-declare const radixColorScales: readonly [
+declare const _radixColorScales: readonly [
   'amber',
   'black',
   'blue',
@@ -40,7 +40,7 @@ declare const radixColorScales: readonly [
   'white',
   'yellow',
 ];
-type RadixColorScale = (typeof radixColorScales)[number];
+type RadixColorScale = (typeof _radixColorScales)[number];
 type RadixColorScales = RadixColorScale[];
 
 type Recursive = {
@@ -55,8 +55,8 @@ type FilterColorOption = {
   colorScales: ColorScaleEntries;
 };
 
-const filterColor = ({ excludedShades, excludeAlpha, colorScales }: FilterColorOption) =>
-  Object.fromEntries(
+function filterColor({ excludedShades, excludeAlpha, colorScales }: FilterColorOption) {
+  return Object.fromEntries(
     colorScales.reduce<ColorScaleEntries>((acc, [key, value]) => {
       if (key === 'black' || key === 'white') {
         acc.push([key, value]);
@@ -82,6 +82,7 @@ const filterColor = ({ excludedShades, excludeAlpha, colorScales }: FilterColorO
       return acc;
     }, []),
   );
+}
 
 type ReplaceScaleNameOptions = {
   colorScales: ColorScaleEntries;
@@ -89,8 +90,8 @@ type ReplaceScaleNameOptions = {
   replaceName: string;
 };
 
-const replaceScaleName = ({ colorScales, targetScale, replaceName }: ReplaceScaleNameOptions) =>
-  Object.fromEntries(
+function replaceScaleName({ colorScales, targetScale, replaceName }: ReplaceScaleNameOptions) {
+  return Object.fromEntries(
     colorScales.reduce<ColorScaleEntries>((acc, [key, value]) => {
       if (key === 'value') {
         if (typeof value === 'string') {
@@ -119,14 +120,15 @@ const replaceScaleName = ({ colorScales, targetScale, replaceName }: ReplaceScal
       return acc;
     }, []),
   );
+}
 
 type RenameScaleOptions = {
   colorScales: ColorScaleEntries;
   renameScale: [RadixColorScale, string][];
 };
 
-const renameScaleColor = ({ colorScales, renameScale }: RenameScaleOptions) =>
-  Object.fromEntries(
+function renameScaleColor({ colorScales, renameScale }: RenameScaleOptions) {
+  return Object.fromEntries(
     colorScales.reduce<ColorScaleEntries>((acc, [key, value]) => {
       const renamedScale = renameScale.find(([scale]) => scale === key);
 
@@ -145,6 +147,7 @@ const renameScaleColor = ({ colorScales, renameScale }: RenameScaleOptions) =>
       return acc;
     }, []),
   );
+}
 
 type ReplaceAliasColorOptions = {
   colorScales: ColorScaleEntries;
@@ -155,15 +158,15 @@ type ReplaceAliasColorOptions = {
   tone?: `${number}`;
 };
 
-const replaceAliasColor = ({
+function replaceAliasColor({
   colorScales,
   referenceColorName,
   isAlpha = false,
   isP3 = false,
   isDark = false,
   tone = '0',
-}: ReplaceAliasColorOptions) =>
-  Object.fromEntries(
+}: ReplaceAliasColorOptions) {
+  return Object.fromEntries(
     colorScales.reduce<ColorScaleEntries>((acc, [key, value]) => {
       if (!Number.isNaN(Number(key))) {
         acc.push([
@@ -280,14 +283,15 @@ const replaceAliasColor = ({
       return acc;
     }, []),
   );
+}
 
 type CreateAliasColorOptions = {
   referenceColorScales: ColorScaleEntries;
   scaleAliases: [string, string][];
 };
 
-const createAliasColors = ({ referenceColorScales, scaleAliases }: CreateAliasColorOptions) =>
-  Object.fromEntries(
+function createAliasColors({ referenceColorScales, scaleAliases }: CreateAliasColorOptions) {
+  return Object.fromEntries(
     referenceColorScales.reduce<ColorScaleEntries>((acc, [key, value]) => {
       const alias = scaleAliases.find(([, alias_]) => alias_ === key);
 
@@ -302,6 +306,7 @@ const createAliasColors = ({ referenceColorScales, scaleAliases }: CreateAliasCo
       return acc;
     }, []),
   );
+}
 
 type CustomRadixColorsPresetOptions = {
   scaleAliases?: Record<string, RadixColorScale>;
@@ -313,10 +318,11 @@ type CustomRadixColorsPresetOptions = {
 /**
  * Generates a Custom Radix colors preset
  * @param options - The options for generating the preset.
- * @param options.scaleAliases - The scale alias map.
+ * @param options.colorScales - The included radix scales.
  * @param options.renameScale - The scale rename map. If the scale is renamed, the alias will be renamed as well.
- * @param options.withoutAlpha - Whether to remove the alpha channel from the color scales.
- * @param options.includedRadixScales - The included radix scales.
+ * @param options.excludeAlpha - Whether to remove the alpha channel from the color scales.
+ * @param options.excludedShades - The shades to exclude from the color scales.
+ * @param options.scaleAliases - The scale alias map.
  *  @example
  * ```ts
  * const preset = customRadixColorsPreset({
@@ -330,13 +336,13 @@ type CustomRadixColorsPresetOptions = {
  * ```
  * @returns The generated preset.
  */
-const radixColorsPreset = ({
+function radixColorsPreset({
   scaleAliases = {},
   renameScale = {},
   excludeAlpha = false,
   excludedShades = [],
   ...baseOptions
-}: CustomRadixColorsPresetOptions) => {
+}: CustomRadixColorsPresetOptions) {
   const explicitlyIncludedScales: RadixColorScale[] = baseOptions.colorScales || [];
 
   const referencedAliasScales: RadixColorScale[] = Object.values(scaleAliases);
@@ -365,8 +371,8 @@ const radixColorsPreset = ({
     colorScales: dependentScales,
   });
 
-  const baseColor =
-    excludeAlpha || excludedShades.length > 0
+  const baseColor
+    = excludeAlpha || excludedShades.length > 0
       ? filterColor({
           excludeAlpha,
           excludedShades,
@@ -394,9 +400,9 @@ const radixColorsPreset = ({
     } as typeof preset.theme.extend.semanticTokens.colors;
   }
   return preset;
-};
+}
 
-export type { Recursive, ColorScaleEntries, FilterColorOption as DeleteAlphaColorOption };
-export { filterColor, renameScaleColor, createAliasColors };
-export type { RadixColorScales, RadixColorScale };
+export type { ColorScaleEntries, FilterColorOption as DeleteAlphaColorOption, Recursive };
+export { createAliasColors, filterColor, renameScaleColor };
+export type { RadixColorScale, RadixColorScales };
 export { radixColorsPreset };

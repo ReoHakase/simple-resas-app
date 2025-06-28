@@ -1,21 +1,22 @@
 'use client';
 
+import type { ReactNode } from 'react';
+import type { LinkProps } from '@/components/Link';
 import { X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { ReactNode } from 'react';
-import { Link } from '@/components/Link';
-import type { LinkProps } from '@/components/Link';
 import { css, cx } from 'styled-system/css';
+import { Link } from '@/components/Link';
 
 export type PrefectureClearButtonProps<T> = Omit<LinkProps<T>, 'href' | 'children'>;
 
 /**
  * 都道府県選択をクリアするためのボタン。
  *
- * @param props 追加のプロパティ
+ * @param props - ボタンのプロパティ
+ * @param props.className - 追加のクラス名
  * @returns 都道府県選択をクリアするためのボタン
  */
-export const PrefectureClearButton = <T,>({ className, ...props }: PrefectureClearButtonProps<T>): ReactNode => {
+export function PrefectureClearButton<T>({ className, ...props }: PrefectureClearButtonProps<T>): ReactNode {
   // searchParamsは含まない
   const pathname = usePathname();
   return (
@@ -51,4 +52,4 @@ export const PrefectureClearButton = <T,>({ className, ...props }: PrefectureCle
       クリア
     </Link>
   );
-};
+}

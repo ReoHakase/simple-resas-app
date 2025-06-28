@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import { Skeleton } from './Skeleton';
 import { css } from 'styled-system/css';
+import { Skeleton } from './Skeleton';
 
 type Story = StoryObj<typeof Skeleton>;
 

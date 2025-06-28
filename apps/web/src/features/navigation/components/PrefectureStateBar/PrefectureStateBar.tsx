@@ -1,10 +1,10 @@
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { ArrowDown } from 'lucide-react';
-import { ReactNode, ComponentPropsWithoutRef } from 'react';
 import { Suspense } from 'react';
+import { css, cx } from 'styled-system/css';
+import { Skeleton } from '@/components/Skeleton';
 import { PrefectureClearButton } from './PrefectureClearButton';
 import { PrefectureCount } from './PrefectureCount';
-import { Skeleton } from '@/components/Skeleton';
-import { css, cx } from 'styled-system/css';
 
 export const SELECTION_STATE_LABEL_ID = 'selection-state-label' as const;
 
@@ -13,11 +13,11 @@ export type PrefectureStateBarProps = Omit<ComponentPropsWithoutRef<'div'>, 'chi
 /**
  * 選択中の都道府県の状態を表示するバー。
  *
- * @param children 子要素
- * @param props 追加のプロパティ
+ * @param props - バーのプロパティ
+ * @param props.className - 追加のクラス名
  * @returns 都道府県の状態を表示するバー
  */
-export const PrefectureStateBar = ({ className, ...props }: PrefectureStateBarProps): ReactNode => {
+export function PrefectureStateBar({ className, ...props }: PrefectureStateBarProps): ReactNode {
   return (
     <div
       id={SELECTION_STATE_LABEL_ID}
@@ -57,13 +57,13 @@ export const PrefectureStateBar = ({ className, ...props }: PrefectureStateBarPr
         <ArrowDown />
         <h2 id={SELECTION_STATE_LABEL_ID}>
           <Suspense
-            fallback={
+            fallback={(
               <Skeleton
                 className={css({
                   w: '3',
                 })}
               />
-            }
+            )}
           >
             <PrefectureCount />
           </Suspense>
@@ -107,4 +107,4 @@ export const PrefectureStateBar = ({ className, ...props }: PrefectureStateBarPr
       />
     </div>
   );
-};
+}

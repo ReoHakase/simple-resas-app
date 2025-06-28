@@ -1,8 +1,8 @@
 'use client';
 
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { createConfigSlotRecipeContext } from '@/states/createConfigSlotRecipeContext';
 import { select } from 'styled-system/recipes';
+import { createConfigSlotRecipeContext } from '@/states/createConfigSlotRecipeContext';
 
 const { withVariantProvider, withVariantConsumer } = createConfigSlotRecipeContext(select);
 
@@ -23,17 +23,17 @@ const SelectSeparator = withVariantConsumer(SelectPrimitive.Separator, 'separato
 
 export {
   Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
-  SelectIcon,
-  SelectViewport,
-  SelectPortal,
   SelectContent,
-  SelectItemIndicator,
+  SelectGroup,
+  SelectIcon,
   SelectItem,
-  SelectItemText,
   SelectItemDescription,
+  SelectItemIndicator,
+  SelectItemText,
   SelectLabel,
+  SelectPortal,
   SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+  SelectViewport,
 };

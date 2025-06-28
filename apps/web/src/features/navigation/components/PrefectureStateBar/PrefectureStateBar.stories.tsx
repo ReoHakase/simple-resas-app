@@ -29,7 +29,7 @@ export const Default: Story = {
     const clearButton = canvas.getByRole('link');
     const heading = canvas.getByRole('heading');
 
-    expect(heading).toHaveTextContent('4つの都道府県を選択中');
-    expect(clearButton.getAttribute('href')).toBe('/all');
+    await expect(heading).toHaveTextContent('4つの都道府県を選択中');
+    await expect(clearButton.getAttribute('href')).toBe('/all');
   },
 };

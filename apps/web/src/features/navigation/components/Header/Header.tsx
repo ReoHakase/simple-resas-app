@@ -1,36 +1,37 @@
-import { GithubIcon, Sigma, Baby, PersonStanding, Accessibility } from 'lucide-react';
-import type { ReactNode, ComponentPropsWithoutRef } from 'react';
-import { Suspense } from 'react';
-import { ThemeSelect } from '../ThemeSelect';
-import { TopNavigationLink, TopNavigationLinkFallback } from '../TopNavigation';
-import { Image } from '@/components/Image';
-import { Link } from '@/components/Link';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import HeaderIconImage from '@public/icon.webp';
+import { Accessibility, Baby, GithubIcon, PersonStanding, Sigma } from 'lucide-react';
+import { Suspense } from 'react';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
+import { Image } from '@/components/Image';
+import { Link } from '@/components/Link';
+import { ThemeSelect } from '../ThemeSelect';
+import { TopNavigationLink, TopNavigationLinkFallback } from '../TopNavigation';
 
 /**
  * リンクのテキストを表示するコンポーネントです。
  *
- * @param omittableSuffix - 省略可能な接尾辞の文字列
- * @param children - 必ず表示する文字列
+ * @param props - リンクテキストのプロパティ
+ * @param props.omittableSuffix - 省略可能な接尾辞の文字列
+ * @param props.children - 必ず表示する文字列
  * @returns span 要素
  */
-const LinkText = ({ omittableSuffix, children }: { omittableSuffix?: string; children: string }): ReactNode => {
+function LinkText({ omittableSuffix, children }: { omittableSuffix?: string; children: string }): ReactNode {
   return (
     <span>
       {children}
       {omittableSuffix ? <span className={css({ smDown: { srOnly: true } })}>{omittableSuffix}</span> : null}
     </span>
   );
-};
+}
 
 export type HeaderProps = ComponentPropsWithoutRef<'header'>;
 
 /**
  * ヘッダーを表すコンポーネントです。
  */
-export const Header = ({ ...props }: HeaderProps): ReactNode => {
+export function Header({ ...props }: HeaderProps): ReactNode {
   return (
     <header
       className={flex({
@@ -68,19 +69,17 @@ export const Header = ({ ...props }: HeaderProps): ReactNode => {
         >
           <Image
             src={HeaderIconImage}
-            css={[
-              {
-                rounded: 'full',
-                w: '12',
-                h: '12',
-                outlineColor: 'cyan.9',
-                outlineWidth: '2',
-                outlineStyle: 'solid',
-                outlineOffset: '2px',
+            className={css({
+              rounded: 'full',
+              w: '12',
+              h: '12',
+              outlineColor: 'cyan.9',
+              outlineWidth: '2',
+              outlineStyle: 'solid',
+              outlineOffset: '2px',
 
-                flexShrink: '0',
-              },
-            ]}
+              flexShrink: '0',
+            })}
             alt="An Icon of ReoHakase"
             sizes="48px"
             placeholder="blur"
@@ -120,34 +119,50 @@ export const Header = ({ ...props }: HeaderProps): ReactNode => {
         })}
       >
         <Suspense
-          fallback={
+          fallback={(
             <>
               <TopNavigationLinkFallback href="/all">
-                <Sigma /> <LinkText>総人口</LinkText>
+                <Sigma />
+                {' '}
+                <LinkText>総人口</LinkText>
               </TopNavigationLinkFallback>
               <TopNavigationLinkFallback href="/young">
-                <Baby /> <LinkText omittableSuffix="人口">年少</LinkText>
+                <Baby />
+                {' '}
+                <LinkText omittableSuffix="人口">年少</LinkText>
               </TopNavigationLinkFallback>
               <TopNavigationLinkFallback href="/productive">
-                <PersonStanding /> <LinkText omittableSuffix="人口">生産年齢</LinkText>
+                <PersonStanding />
+                {' '}
+                <LinkText omittableSuffix="人口">生産年齢</LinkText>
               </TopNavigationLinkFallback>
               <TopNavigationLinkFallback href="/elderly">
-                <Accessibility /> <LinkText omittableSuffix="人口">老年</LinkText>
+                <Accessibility />
+                {' '}
+                <LinkText omittableSuffix="人口">老年</LinkText>
               </TopNavigationLinkFallback>
             </>
-          }
+          )}
         >
           <TopNavigationLink href="/all">
-            <Sigma /> <LinkText>総人口</LinkText>
+            <Sigma />
+            {' '}
+            <LinkText>総人口</LinkText>
           </TopNavigationLink>
           <TopNavigationLink href="/young">
-            <Baby /> <LinkText omittableSuffix="人口">年少</LinkText>
+            <Baby />
+            {' '}
+            <LinkText omittableSuffix="人口">年少</LinkText>
           </TopNavigationLink>
           <TopNavigationLink href="/productive">
-            <PersonStanding /> <LinkText omittableSuffix="人口">生産年齢</LinkText>
+            <PersonStanding />
+            {' '}
+            <LinkText omittableSuffix="人口">生産年齢</LinkText>
           </TopNavigationLink>
           <TopNavigationLink href="/elderly">
-            <Accessibility /> <LinkText omittableSuffix="人口">老年</LinkText>
+            <Accessibility />
+            {' '}
+            <LinkText omittableSuffix="人口">老年</LinkText>
           </TopNavigationLink>
         </Suspense>
       </nav>
@@ -193,4 +208,4 @@ export const Header = ({ ...props }: HeaderProps): ReactNode => {
       </div>
     </header>
   );
-};
+}

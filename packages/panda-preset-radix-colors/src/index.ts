@@ -1,2 +1,2 @@
 export { radixColorsPreset } from './preset';
-export type { RadixColorScales, RadixColorScale } from './preset';
+export type { RadixColorScale, RadixColorScales } from './preset';

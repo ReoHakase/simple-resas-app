@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { getRouter } from '@storybook/nextjs/navigation.mock';
 import { expect, fn, userEvent, within } from 'storybook/test';
-import { PrefectureCheckbox } from './PrefectureCheckbox';
 import { css } from 'styled-system/css';
+import { PrefectureCheckbox } from './PrefectureCheckbox';
 
 type Story = StoryObj<typeof PrefectureCheckbox>;
 
@@ -16,7 +16,7 @@ const meta: Meta<typeof PrefectureCheckbox> = {
   },
   decorators: [
     // a11yテストでラベルが存在しないエラーを防ぐために見えない<label>を追加
-    (Story) => (
+    Story => (
       <>
         <Story />
         <label htmlFor="example" className={css({ srOnly: true })}>
@@ -82,19 +82,19 @@ export const Default: Story = {
     const label = canvas.getByText(args.prefLocale);
 
     // チェックボックスがチェックされていないことを確認
-    expect(checkbox).not.toBeChecked();
+    await expect(checkbox).not.toBeChecked();
 
     // ラベルが表示されていることを確認
-    expect(label).toBeVisible();
+    await expect(label).toBeVisible();
 
     checkbox.focus();
     await userEvent.keyboard('[Space]', { delay: 100 });
 
     // onChangeが1回呼び出されたことを確認
-    expect(args.onChange).toHaveBeenCalledTimes(1);
+    await expect(args.onChange).toHaveBeenCalledTimes(1);
     // searchParamsのprefCodesに与えた都道府県コードが追加されたことを確認
-    expect(getRouter().push).toHaveBeenCalledTimes(1);
-    expect(getRouter().push).toHaveBeenCalledWith('/all?prefCodes=1,8,12,13,14', {
+    await expect(getRouter().push).toHaveBeenCalledTimes(1);
+    await expect(getRouter().push).toHaveBeenCalledWith('/all?prefCodes=1,8,12,13,14', {
       scroll: false,
     });
   },
@@ -116,19 +116,19 @@ export const Checked: Story = {
     const label = canvas.getByText(args.prefLocale);
 
     // チェックボックスがチェックされていることを確認
-    expect(checkbox).toBeChecked();
+    await expect(checkbox).toBeChecked();
 
     // ラベルが表示されていることを確認
-    expect(label).toBeVisible();
+    await expect(label).toBeVisible();
 
     checkbox.focus();
     await userEvent.keyboard('[Space]', { delay: 100 });
 
     // onChangeが1回呼び出されたことを確認
-    expect(args.onChange).toHaveBeenCalledTimes(1);
+    await expect(args.onChange).toHaveBeenCalledTimes(1);
     // searchParamsのprefCodesに与えた都道府県コードが削除されたことを確認
-    expect(getRouter().push).toHaveBeenCalledTimes(1);
-    expect(getRouter().push).toHaveBeenCalledWith('/all?prefCodes=8,12,13,14', {
+    await expect(getRouter().push).toHaveBeenCalledTimes(1);
+    await expect(getRouter().push).toHaveBeenCalledWith('/all?prefCodes=8,12,13,14', {
       scroll: false,
     });
   },
@@ -147,8 +147,8 @@ export const Disabled: Story = {
     await userEvent.keyboard('[Space]', { delay: 100 });
 
     // onChangeが呼び出されなかったことを確認
-    expect(args.onChange).toHaveBeenCalledTimes(0);
-    expect(getRouter().push).toHaveBeenCalledTimes(0);
+    await expect(args.onChange).toHaveBeenCalledTimes(0);
+    await expect(getRouter().push).toHaveBeenCalledTimes(0);
   },
 };
 

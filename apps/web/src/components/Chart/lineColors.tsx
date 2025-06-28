@@ -36,7 +36,7 @@ export const lineColorsRecord = {
 
 export type LineColor = keyof typeof lineColorsRecord;
 
-export const getUniqueLineColor = (key: string): LineColor => {
+export function getUniqueLineColor(key: string): LineColor {
   // Create an array of the keys (colors) from lineColorsRecord
   const colorKeys: LineColor[] = Object.keys(lineColorsRecord) as LineColor[];
 
@@ -48,4 +48,4 @@ export const getUniqueLineColor = (key: string): LineColor => {
 
   // Return the color at the index determined by the hash
   return colorKeys[hash];
-};
+}

@@ -1,9 +1,9 @@
-import type { ReactElement, ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef, ReactElement } from 'react';
 import { Suspense } from 'react';
+import { css, cx } from 'styled-system/css';
+import { Skeleton } from '@/components/Skeleton';
 import { PrefectureCheckboxFieldset } from '../PrefectureCheckboxFieldset';
 import { PrefectureStateBar, SELECTION_STATE_LABEL_ID } from '../PrefectureStateBar';
-import { Skeleton } from '@/components/Skeleton';
-import { cx, css } from 'styled-system/css';
 
 export type PrefectureFormProps = ComponentPropsWithoutRef<'form'>;
 
@@ -11,10 +11,11 @@ export type PrefectureFormProps = ComponentPropsWithoutRef<'form'>;
  * 都道府県の選択フォーム。
  * ユーザーの操作に合わせて、`prefCodes`の検索パラメータを更新します。
  *
- * @param props 追加のプロパティ
+ * @param props - フォームのプロパティ
+ * @param props.className - 追加のクラス名
  * @returns 都道府県の選択フォーム
  */
-export const PrefectureForm = async ({ className, ...props }: PrefectureFormProps): Promise<ReactElement> => {
+export async function PrefectureForm({ className, ...props }: PrefectureFormProps): Promise<ReactElement> {
   return (
     <form
       aria-labelledby={SELECTION_STATE_LABEL_ID}
@@ -40,7 +41,7 @@ export const PrefectureForm = async ({ className, ...props }: PrefectureFormProp
         })}
       />
       <Suspense
-        fallback={
+        fallback={(
           <fieldset
             className={css({
               w: 'full',
@@ -58,10 +59,10 @@ export const PrefectureForm = async ({ className, ...props }: PrefectureFormProp
               <Skeleton key={i} inline={false} className={css({ w: 'auto', h: '8', m: '1' })} />
             ))}
           </fieldset>
-        }
+        )}
       >
         <PrefectureCheckboxFieldset />
       </Suspense>
     </form>
   );
-};
+}

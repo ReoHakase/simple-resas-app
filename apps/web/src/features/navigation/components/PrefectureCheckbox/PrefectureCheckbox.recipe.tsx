@@ -7,15 +7,15 @@ export const prefectureCheckboxSlotRecipe = sva({
   slots: ['label'],
   base: {
     label: {
-      pos: 'relative',
-      display: 'flex',
-      flexDir: 'row',
-      justifyContent: 'start',
-      alignItems: 'center',
-      p: '1',
-      gap: '2.5',
-      rounded: 'lg',
-      cursor: 'pointer',
+      'pos': 'relative',
+      'display': 'flex',
+      'flexDir': 'row',
+      'justifyContent': 'start',
+      'alignItems': 'center',
+      'p': '1',
+      'gap': '2.5',
+      'rounded': 'lg',
+      'cursor': 'pointer',
       '&:has(input:checked)': {
         bg: 'primary.2',
         color: 'primary.11',
@@ -28,8 +28,8 @@ export const prefectureCheckboxSlotRecipe = sva({
         bg: 'keyplate.2',
         color: 'keyplate.11',
       },
-      _hover: {
-        bg: 'keyplate.3',
+      '_hover': {
+        'bg': 'keyplate.3',
         '&:has(input:checked)': {
           bg: 'primary.3',
         },

@@ -1,9 +1,7 @@
-import NextImage from 'next/image';
 import type { ImageProps as NextImageProps } from 'next/image';
-import { forwardRef, ForwardRefExoticComponent } from 'react';
+import type { ReactNode, Ref } from 'react';
+import NextImage from 'next/image';
 import { breakpoints } from '@/styles/tokens/breakpoints';
-import { css } from 'styled-system/css';
-import type { SystemStyleObject } from 'styled-system/types';
 
 export type ImageSizeDimension = `${number}vw` | `${number}px`;
 
@@ -12,7 +10,7 @@ export type ImageProps = Omit<NextImageProps, 'sizes'> & {
     | (Partial<Record<keyof typeof breakpoints, ImageSizeDimension>> & { default: ImageSizeDimension })
     | ImageSizeDimension;
 } & {
-  css?: SystemStyleObject[];
+  ref?: Ref<HTMLImageElement | null>;
 };
 
 /**
@@ -26,7 +24,7 @@ export type ImageProps = Omit<NextImageProps, 'sizes'> & {
  * @param sizes - The sizes object for the image.
  * @returns The sizes string for the image.
  */
-const generateSizes = (sizes: ImageProps['sizes']): string => {
+function generateSizes(sizes: ImageProps['sizes']): string {
   if (!sizes) {
     return '100vw';
   }
@@ -37,7 +35,7 @@ const generateSizes = (sizes: ImageProps['sizes']): string => {
 
   return Object.entries(sizes)
     .map(([key, value]) => {
-      if (key == 'default') {
+      if (key === 'default') {
         return value;
       }
 
@@ -45,13 +43,10 @@ const generateSizes = (sizes: ImageProps['sizes']): string => {
       return `(min-width: ${breakpoints[breakpoint]}) ${value}`;
     })
     .join(', ');
-};
+}
 
-export const Image: ForwardRefExoticComponent<ImageProps> = forwardRef<
-  HTMLImageElement | null,
-  Omit<ImageProps, 'ref'>
->(({ css: cssProps = [{}], sizes, ...props }, ref) => (
-  <NextImage ref={ref} sizes={sizes && generateSizes(sizes)} className={css(...cssProps)} {...props} />
-));
+export function Image({ ref, sizes, ...props }: ImageProps): ReactNode {
+  return <NextImage ref={ref} sizes={sizes && generateSizes(sizes)} {...props} />;
+}
 
 Image.displayName = 'Image';

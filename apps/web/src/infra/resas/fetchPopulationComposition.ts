@@ -1,9 +1,9 @@
+import type { PrefCode } from '@/models/prefCode';
+import type { StatLabel } from '@/models/statLabel';
 import { z } from 'zod';
 import { env } from '@/env';
 import { prefCodeSchema } from '@/models/prefCode';
-import type { PrefCode } from '@/models/prefCode';
 import { statLabelSchema } from '@/models/statLabel';
-import { StatLabel } from '@/models/statLabel';
 import { yearSchema } from '@/models/year';
 
 const rawFetchResultSchema = z.object({
@@ -64,7 +64,7 @@ export type FetchPopulationComparisonResult = z.infer<typeof fetchPopulationComp
  * @returns 整形された人口構成データ
  * @throws HTTPエラーが発生した場合にエラーメッセージをthrowします
  */
-export const fetchPopulationComposition = async (prefCode: PrefCode) => {
+export async function fetchPopulationComposition(prefCode: PrefCode) {
   prefCodeSchema.parse(prefCode);
   const res = await fetch(
     `https://yumemi-frontend-engineer-codecheck-api.vercel.app/api/v1/population/composition/perYear?prefCode=${prefCode}`,
@@ -89,4 +89,4 @@ export const fetchPopulationComposition = async (prefCode: PrefCode) => {
     stats: Object.fromEntries(result.data.map(({ label, data }) => [label, data])),
   });
   return processedResult;
-};
+}

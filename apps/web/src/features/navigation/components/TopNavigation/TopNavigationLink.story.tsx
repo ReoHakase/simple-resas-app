@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Baby } from 'lucide-react';
 import { expect, within } from 'storybook/test';
-import { TopNavigationLink } from './TopNavigationLink';
 import { css } from 'styled-system/css';
+import { TopNavigationLink } from './TopNavigationLink';
 
 type Story = StoryObj<typeof TopNavigationLink>;
 
@@ -10,7 +10,7 @@ const meta: Meta<typeof TopNavigationLink> = {
   component: TopNavigationLink,
   tags: ['autodocs'],
   decorators: [
-    (Story) => (
+    Story => (
       <div className={css({ w: '72' })}>
         <Story />
       </div>
@@ -45,7 +45,7 @@ export const Default: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getByRole('link');
-    expect(link).toHaveAttribute('href', `${args.href.toString()}?prefCodes=11,24`);
+    await expect(link).toHaveAttribute('href', `${args.href.toString()}?prefCodes=11,24`);
   },
 };
 
@@ -57,7 +57,7 @@ export const Selected: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getByRole('link');
-    expect(link).toHaveAttribute('href', `${args.href.toString()}?prefCodes=11,24`);
-    expect(link).toHaveAttribute('aria-current', 'page');
+    await expect(link).toHaveAttribute('href', `${args.href.toString()}?prefCodes=11,24`);
+    await expect(link).toHaveAttribute('aria-current', 'page');
   },
 };

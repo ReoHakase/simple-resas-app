@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { css } from 'styled-system/css';
 
-const NotFoundPage = (): ReactNode => {
+function NotFoundPage(): ReactNode {
   return (
     <main
       className={css({
@@ -25,6 +25,6 @@ const NotFoundPage = (): ReactNode => {
       <p>お探しのページは見つかりませんでした。</p>
     </main>
   );
-};
+}
 
 export default NotFoundPage;

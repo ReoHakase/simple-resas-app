@@ -10,7 +10,7 @@ import { env } from '@/env';
  *
  * @returns {URL} The base URL.
  */
-const getBaseUrl = (): URL => {
+function getBaseUrl(): URL {
   if (env.NODE_ENV === 'production') {
     return new URL(`https://${env.BASE_URL}`);
   }
@@ -18,7 +18,7 @@ const getBaseUrl = (): URL => {
     return new URL(`https://${env.VERCEL_URL}`);
   }
   return new URL(`http://localhost:${env.PORT}`);
-};
+}
 
 /**
  * The base URL based on the current environment.

@@ -7,16 +7,16 @@ export const checkboxSlotRecipe = sva({
   slots: ['label', 'check', 'input'],
   base: {
     label: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      w: '8',
-      h: '8',
-      rounded: 'sm',
-      border: '1px solid',
-      borderColor: 'keyplate.6',
-      bg: 'keyplate.2',
-      cursor: 'pointer',
+      'display': 'flex',
+      'justifyContent': 'center',
+      'alignItems': 'center',
+      'w': '8',
+      'h': '8',
+      'rounded': 'sm',
+      'border': '1px solid',
+      'borderColor': 'keyplate.6',
+      'bg': 'keyplate.2',
+      'cursor': 'pointer',
       '&:has(+ input:focus-visible)': {
         ringColor: 'cyan.9',
         ringWidth: '2',
@@ -38,7 +38,7 @@ export const checkboxSlotRecipe = sva({
         color: 'keyplate.11',
         borderColor: 'keyplate.9',
       },
-      _hover: {
+      '_hover': {
         bg: 'keyplate.3',
       },
     },

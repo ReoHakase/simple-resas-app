@@ -1,9 +1,9 @@
-import { Building2, ArrowRight, HomeIcon, MapPin } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { Link } from '@/components/Link';
+import { ArrowRight, Building2, HomeIcon, MapPin } from 'lucide-react';
 import { css } from 'styled-system/css';
+import { Link } from '@/components/Link';
 
-const Home = (): ReactNode => {
+function Home(): ReactNode {
   return (
     <main
       className={css({
@@ -204,6 +204,6 @@ const Home = (): ReactNode => {
       </small>
     </main>
   );
-};
+}
 
 export default Home;

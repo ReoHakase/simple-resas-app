@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { expect, fn, userEvent, within } from 'storybook/test';
-import { Checkbox } from './Checkbox';
 import { css } from 'styled-system/css';
+import { Checkbox } from './Checkbox';
 
 type Story = StoryObj<typeof Checkbox>;
 
@@ -9,14 +9,14 @@ const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
   tags: ['autodocs'],
   args: {
-    id: 'example',
+    'id': 'example',
     'aria-labelledby': 'example-label',
-    onChange: fn(),
-    checked: undefined,
+    'onChange': fn(),
+    'checked': undefined,
   },
   decorators: [
     // a11yテストでラベルが存在しないエラーを防ぐために<label>を追加する。ストーリー内では見えない方が都合がいいので、スクリーンリーダーにしか見えないようにする。
-    (Story) => (
+    Story => (
       <>
         <Story />
         <label id="example-label" htmlFor="example" className={css({ srOnly: true })}>
@@ -26,7 +26,7 @@ const meta: Meta<typeof Checkbox> = {
     ),
   ],
   argTypes: {
-    id: {
+    'id': {
       description: 'チェックボックスのID',
       control: {
         type: 'text',
@@ -39,19 +39,19 @@ const meta: Meta<typeof Checkbox> = {
         type: 'text',
       },
     },
-    checked: {
+    'checked': {
       description: 'チェックボックスの値',
       control: {
         type: 'boolean',
       },
     },
-    disabled: {
+    'disabled': {
       description: 'チェックボックスを無効にする',
       control: {
         type: 'boolean',
       },
     },
-    defaultChecked: {
+    'defaultChecked': {
       description: 'チェックボックスの初期値',
       control: {
         type: 'boolean',
@@ -76,7 +76,7 @@ export const Default: Story = {
     await userEvent.keyboard('[Space][Space][Space]', { delay: 100 });
 
     // onChangeが1回呼び出されたことを確認
-    expect(args.onChange).toHaveBeenCalledTimes(4);
+    await expect(args.onChange).toHaveBeenCalledTimes(4);
   },
 };
 
@@ -101,7 +101,7 @@ export const Disabled: Story = {
     await userEvent.keyboard('[Space][Space][Space]', { delay: 100 });
 
     // onChangeが1回呼び出されたことを確認
-    expect(args.onChange).toHaveBeenCalledTimes(0);
+    await expect(args.onChange).toHaveBeenCalledTimes(0);
   },
 };
 

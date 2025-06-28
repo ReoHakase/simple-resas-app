@@ -1,7 +1,7 @@
+import type { PrefCode, PrefLocale } from '@/models/prefCode';
 import { z } from 'zod';
 import { env } from '@/env';
 import { prefCodeSchema, prefCodesSchema } from '@/models/prefCode';
-import type { PrefCode, PrefLocale } from '@/models/prefCode';
 
 const rawFetchResultSchema = z.object({
   statusCode: z.string().length(3).optional(),
@@ -32,7 +32,7 @@ export type FetchPrefecturesResult = {
  * @returns 整形された都道府県コードと名称
  * @throws HTTPエラーが発生した場合にエラーメッセージをthrowします
  */
-export const fetchPrefectures = async (): Promise<FetchPrefecturesResult> => {
+export async function fetchPrefectures(): Promise<FetchPrefecturesResult> {
   const res = await fetch(`https://yumemi-frontend-engineer-codecheck-api.vercel.app/api/v1/prefectures`, {
     headers: {
       'X-API-KEY': env.RESAS_API_KEY,
@@ -53,4 +53,4 @@ export const fetchPrefectures = async (): Promise<FetchPrefecturesResult> => {
     prefLocaleJa: Object.fromEntries(result.map(({ prefCode, prefName }) => [String(prefCode), prefName])),
   });
   return processedResult as FetchPrefecturesResult;
-};
+}

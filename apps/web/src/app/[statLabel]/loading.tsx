@@ -1,9 +1,9 @@
 import type { ReactElement } from 'react';
+import { css } from 'styled-system/css';
 import { Skeleton } from '@/components/Skeleton';
 import { PopulationChartSkeleton } from '@/features/population/components/PopulationChart/PopulationChart.skeleton';
-import { css } from 'styled-system/css';
 
-const GraphPageSkeleton = (): ReactElement => {
+function GraphPageSkeleton(): ReactElement {
   return (
     <main
       className={css({
@@ -34,7 +34,7 @@ const GraphPageSkeleton = (): ReactElement => {
       <PopulationChartSkeleton />
     </main>
   );
-};
+}
 
 export default GraphPageSkeleton;
 

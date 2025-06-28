@@ -1,7 +1,7 @@
-import type { ReactElement, ComponentPropsWithoutRef } from 'react';
-import { PrefectureCheckbox } from '../PrefectureCheckbox';
+import type { ComponentPropsWithoutRef, ReactElement } from 'react';
+import { css, cx } from 'styled-system/css';
 import { fetchPrefectures } from '@/infra/resas/fetchPrefectures';
-import { cx, css } from 'styled-system/css';
+import { PrefectureCheckbox } from '../PrefectureCheckbox';
 
 export type PrefectureCheckboxFieldsetProps = ComponentPropsWithoutRef<'fieldset'>;
 
@@ -9,13 +9,14 @@ export type PrefectureCheckboxFieldsetProps = ComponentPropsWithoutRef<'fieldset
  * 都道府県のチェックボックスを含むフィールドセットです。
  * RESAS APIから都道府県のデータを取得してチェックボックスを生成します。
  *
- * @param className クラス名
+ * @param props - フィールドセットのプロパティ
+ * @param props.className - クラス名
  * @returns フィールドセットコンポーネントのReact要素
  */
-export const PrefectureCheckboxFieldset = async ({
+export async function PrefectureCheckboxFieldset({
   className,
   ...props
-}: PrefectureCheckboxFieldsetProps): Promise<ReactElement> => {
+}: PrefectureCheckboxFieldsetProps): Promise<ReactElement> {
   const { allPrefCodes, prefLocaleJa } = await fetchPrefectures();
   return (
     <fieldset
@@ -36,9 +37,9 @@ export const PrefectureCheckboxFieldset = async ({
       {...props}
     >
       <legend className={css({ srOnly: true })}>都道府県を選択してください(複数可)</legend>
-      {allPrefCodes.map((prefCode) => (
+      {allPrefCodes.map(prefCode => (
         <PrefectureCheckbox key={prefCode} prefCode={prefCode} prefLocale={prefLocaleJa[prefCode]} />
       ))}
     </fieldset>
   );
-};
+}

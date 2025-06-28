@@ -1,13 +1,14 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import type { LineColor } from './lineColors';
-import { lineColorsRecord } from './lineColors';
+import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { css } from 'styled-system/css';
 import { token } from 'styled-system/tokens';
+import { lineColorsRecord } from './lineColors';
 
-const formatNumber = new Intl.NumberFormat('ja-JP', { notation: 'compact' }).format;
+const formatter = new Intl.NumberFormat('ja-JP', { notation: 'compact' });
+const formatNumber = (value: number) => formatter.format(value);
 
 export type ChartProps<X extends string, Y extends string> = {
   data: Array<Record<X, string | number> & Record<Y, number | null>>;
@@ -25,16 +26,22 @@ export type ChartProps<X extends string, Y extends string> = {
 };
 
 /**
- * チャートコンポーネントです。
+ * データを折れ線グラフで表示するチャートコンポーネントです。
  *
- * @template X - X軸のデータのキー
- * @template Y - Y軸のデータのキーの配列
- * @param data - チャートに表示するデータ
- * @param dataKey - X軸のデータキー
- * @param series - Y軸のデータの色とラベルの設定
- * @returns チャートコンポーネントのReact要素
+ * @template X - X軸のデータのキーの型（文字列）
+ * @template Y - Y軸のデータのキーの型（文字列）
+ * @param props - チャートコンポーネントのプロパティ
+ * @param props.data - チャートに表示するデータの配列。各要素はX軸のデータとY軸のデータを含むオブジェクト
+ * @param props.dataKey - X軸のデータとして使用するオブジェクトのキー
+ * @param props.unitX - X軸の単位（オプション）
+ * @param props.unitY - Y軸の単位（オプション）
+ * @param props.labelX - X軸のラベル（オプション）
+ * @param props.labelY - Y軸のラベル（オプション）
+ * @param props.formatNumbers - 数値をコンパクト表記（例：1000 → 1K）にするかどうか（オプション）
+ * @param props.series - Y軸のデータ系列の設定配列。各要素は{name: データのキー, label: 凡例のラベル, color: 線の色}を含むオブジェクト
+ * @returns {ReactNode} レスポンシブな折れ線グラフのコンポーネント
  */
-export const Chart = <X extends string, Y extends string>({
+export function Chart<X extends string, Y extends string>({
   unitX,
   unitY,
   labelX,
@@ -43,7 +50,7 @@ export const Chart = <X extends string, Y extends string>({
   data,
   dataKey,
   series,
-}: ChartProps<X, Y>): ReactNode => {
+}: ChartProps<X, Y>): ReactNode {
   return (
     <ResponsiveContainer
       width="100%"
@@ -59,7 +66,7 @@ export const Chart = <X extends string, Y extends string>({
           tick={{ fill: token('colors.keyplate.11') }}
           unit={unitX}
           label={labelX}
-          tickFormatter={formatNumbers ? formatNumber : undefined}
+          tickFormatter={formatNumbers ? formatter.format : undefined}
         />
         <YAxis
           tick={{ fill: token('colors.keyplate.11') }}
@@ -97,4 +104,4 @@ export const Chart = <X extends string, Y extends string>({
       </LineChart>
     </ResponsiveContainer>
   );
-};
+}

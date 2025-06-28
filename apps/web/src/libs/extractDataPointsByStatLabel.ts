@@ -1,8 +1,8 @@
 import type { GetPopulationCompositionAllResult } from './getPopulationCompositionAll';
-import type { DataPointValueRecord, DataPoint } from '@/models/dataPoint';
+import type { DataPoint, DataPointValueRecord } from '@/models/dataPoint';
 import type { StatLabel } from '@/models/statLabel';
+import type { Year } from '@/models/year';
 import { statLabels } from '@/models/statLabel';
-import { Year } from '@/models/year';
 
 /**
  * 指定された統計ラベルに基づいて、与えられたデータから、プロットに最適なデータ点の配列を抽出します。
@@ -10,14 +10,14 @@ import { Year } from '@/models/year';
  * @param statLabel - 抽出する統計ラベル
  * @returns 抽出されたデータポイントの配列
  */
-export const extractDataPointsByStatLabel = (
+export function extractDataPointsByStatLabel(
   record: GetPopulationCompositionAllResult,
   statLabel: StatLabel,
-): DataPoint[] => {
+): DataPoint[] {
   const yearMap = new Map<Year, DataPointValueRecord>();
   const containedPrefCodes = record.map(({ prefCode }) => prefCode);
   const initialDataPointValueRecord = Object.fromEntries(
-    containedPrefCodes.map((prefCode) => [prefCode, null]),
+    containedPrefCodes.map(prefCode => [prefCode, null]),
   ) as DataPointValueRecord;
   record.forEach(({ prefCode, stats }) => {
     statLabels.forEach((label) => {
@@ -36,4 +36,4 @@ export const extractDataPointsByStatLabel = (
     .map(([year, dataPointValueRecord]): DataPoint => ({ year, ...dataPointValueRecord }))
     .sort((a, b) => a.year - b.year);
   return dataPoints;
-};
+}

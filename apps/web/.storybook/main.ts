@@ -1,12 +1,12 @@
-import { createRequire } from 'node:module';
 import type { StorybookConfig } from '@storybook/nextjs';
-import path, { dirname, join } from 'path';
 import type { Configuration } from 'webpack';
+import { createRequire } from 'node:module';
+import path, { dirname, join } from 'node:path';
 
 const require = createRequire(import.meta.url);
 
 const config: StorybookConfig = {
-  env: (config) => ({ ...config, IS_STORYBOOK: 'true' }),
+  env: config => ({ ...config, IS_STORYBOOK: 'true' }),
   addons: [getAbsolutePath('@storybook/addon-a11y'), getAbsolutePath('@storybook/addon-docs')],
   framework: {
     name: getAbsolutePath('@storybook/nextjs'),
@@ -38,6 +38,6 @@ const config: StorybookConfig = {
 
 export default config;
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string) {
   return dirname(require.resolve(join(value, 'package.json')));
 }
