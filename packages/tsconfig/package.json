@@ -8,6 +8,6 @@
     "bun.json"
   ],
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "catalog:"
   }
 }
