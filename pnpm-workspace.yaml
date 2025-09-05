@@ -13,7 +13,7 @@ catalog:
   '@pandacss/preset-panda': 0.54.0
   '@playwright/test': 1.53.1
   '@radix-ui/colors': 3.0.0
-  '@radix-ui/react-select': 2.2.5
+  '@radix-ui/react-select': 2.2.6
   '@storybook/addon-a11y': 9.0.14
   '@storybook/addon-docs': 9.0.14
   '@storybook/addon-links': 9.0.14
