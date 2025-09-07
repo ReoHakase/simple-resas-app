@@ -23,8 +23,8 @@ catalog:
   '@t3-oss/env-nextjs': 0.13.8
   '@testing-library/react': 16.3.0
   '@types/node': 22.15.34
-  '@types/react': 19.1.8
-  '@types/react-dom': 19.1.6
+  '@types/react': 19.1.12
+  '@types/react-dom': 19.1.9
   '@vercel/analytics': 1.5.0
   '@vitejs/plugin-react': 4.6.0
   autoprefixer: 10.4.21
@@ -49,8 +49,8 @@ catalog:
   pnpm: 10.15.1
   postcss: 8.5.6
   prettier: 3.6.2
-  react: 19.1.0
-  react-dom: 19.1.0
+  react: 19.1.1
+  react-dom: 19.1.1
   recharts: 3.1.2
   storybook: 9.0.14
   tsup: 8.5.0
