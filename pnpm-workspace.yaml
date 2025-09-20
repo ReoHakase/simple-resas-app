@@ -33,7 +33,7 @@ catalog:
   concurrently: 9.2.1
   critters: 0.0.25
   eslint: 9.30.0
-  eslint-plugin-format: 1.0.1
+  eslint-plugin-format: 1.0.2
   eslint-plugin-react-refresh: 0.4.20
   eslint-plugin-storybook: 9.0.14
   jsdom: 26.1.0
