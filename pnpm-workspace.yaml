@@ -9,7 +9,7 @@ catalog:
   '@next/env': 15.3.4
   '@next/eslint-plugin-next': 15.3.4
   '@pandacss/dev': 1.4.1
-  '@pandacss/eslint-plugin': 0.2.12
+  '@pandacss/eslint-plugin': 0.2.14
   '@pandacss/preset-panda': 0.54.0
   '@playwright/test': 1.53.1
   '@radix-ui/colors': 3.0.0
