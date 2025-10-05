@@ -85,8 +85,8 @@ catalogs:
       specifier: 10.4.21
       version: 10.4.21
     axe-playwright:
-      specifier: 2.1.0
-      version: 2.1.0
+      specifier: 2.2.2
+      version: 2.2.2
     bun-types:
       specifier: latest
       version: 1.2.23
@@ -331,7 +331,7 @@ importers:
         version: 10.4.21(postcss@8.5.6)
       axe-playwright:
         specifier: 'catalog:'
-        version: 2.1.0(playwright@1.53.1)
+        version: 2.2.2(playwright@1.53.1)
       critters:
         specifier: 'catalog:'
         version: 0.0.25
@@ -3223,8 +3223,8 @@ packages:
     peerDependencies:
       axe-core: '>=3'
 
-  axe-playwright@2.1.0:
-    resolution: {integrity: sha512-tY48SX56XaAp16oHPyD4DXpybz8Jxdz9P7exTjF/4AV70EGUavk+1fUPWirM0OYBR+YyDx6hUeDvuHVA6fB9YA==}
+  axe-playwright@2.2.2:
+    resolution: {integrity: sha512-h350/grzDCPgpuWV7eEOqr/f61Xn07Gi9f9B3Ew4rW6/nFtpdEJYW6jgRATorgAGXjEAYFTnaY3sEys39wDw4A==}
     peerDependencies:
       playwright: '>1.0.0'
 
@@ -11782,7 +11782,7 @@ snapshots:
       axe-core: 4.10.3
       mustache: 4.2.0
 
-  axe-playwright@2.1.0(playwright@1.53.1):
+  axe-playwright@2.2.2(playwright@1.53.1):
     dependencies:
       '@types/junit-report-builder': 3.0.2
       axe-core: 4.10.3
