@@ -28,7 +28,7 @@ catalog:
   '@vercel/analytics': 1.5.0
   '@vitejs/plugin-react': 4.7.0
   autoprefixer: 10.4.21
-  axe-playwright: 2.1.0
+  axe-playwright: 2.2.2
   bun-types: latest
   concurrently: 9.2.1
   critters: 0.0.25
