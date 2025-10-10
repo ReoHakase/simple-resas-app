@@ -89,7 +89,7 @@ catalogs:
       version: 2.2.2
     bun-types:
       specifier: latest
-      version: 1.2.23
+      version: 1.3.0
     concurrently:
       specifier: 9.2.1
       version: 9.2.1
@@ -112,8 +112,8 @@ catalogs:
       specifier: 1.13.6
       version: 1.13.6
     lucide-react:
-      specifier: 0.525.0
-      version: 0.525.0
+      specifier: 0.545.0
+      version: 0.545.0
     mdx:
       specifier: 0.3.1
       version: 0.3.1
@@ -240,7 +240,7 @@ importers:
         version: 1.5.0(next@15.4.4(@babel/core@7.28.4)(@playwright/test@1.53.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)
       lucide-react:
         specifier: 'catalog:'
-        version: 0.525.0(react@19.1.1)
+        version: 0.545.0(react@19.1.1)
       next:
         specifier: 'catalog:'
         version: 15.4.4(@babel/core@7.28.4)(@playwright/test@1.53.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -399,7 +399,7 @@ importers:
     devDependencies:
       bun-types:
         specifier: 'catalog:'
-        version: 1.2.23(@types/react@19.1.15)
+        version: 1.3.0(@types/react@19.1.15)
 
 packages:
 
@@ -3418,8 +3418,8 @@ packages:
   builtin-status-codes@3.0.0:
     resolution: {integrity: sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==}
 
-  bun-types@1.2.23:
-    resolution: {integrity: sha512-R9f0hKAZXgFU3mlrA0YpE/fiDvwV0FT9rORApt2aQVWSuJDzZOyB5QLc0N/4HF57CS8IXJ6+L5E4W1bW6NS2Aw==}
+  bun-types@1.3.0:
+    resolution: {integrity: sha512-u8X0thhx+yJ0KmkxuEo9HAtdfgCBaM/aI9K90VQcQioAmkVp3SG3FkwWGibUFz3WdXAdcsqOcbU40lK7tbHdkQ==}
     peerDependencies:
       '@types/react': ^19
 
@@ -5947,8 +5947,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.525.0:
-    resolution: {integrity: sha512-Tm1txJ2OkymCGkvwoHt33Y2JpN5xucVq1slHcgE6Lk0WjDfjgKWor5CdVER8U6DvcfMwh4M8XxmpTiyzfmfDYQ==}
+  lucide-react@0.545.0:
+    resolution: {integrity: sha512-7r1/yUuflQDSt4f1bpn5ZAocyIxcTyVyBBChSVtBKn5M+392cPmI5YJMWOJKk/HUWGm5wg83chlAZtCcGbEZtw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -12075,7 +12075,7 @@ snapshots:
 
   builtin-status-codes@3.0.0: {}
 
-  bun-types@1.2.23(@types/react@19.1.15):
+  bun-types@1.3.0(@types/react@19.1.15):
     dependencies:
       '@types/node': 22.15.34
       '@types/react': 19.1.15
@@ -15070,7 +15070,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.525.0(react@19.1.1):
+  lucide-react@0.545.0(react@19.1.1):
     dependencies:
       react: 19.1.1
 
