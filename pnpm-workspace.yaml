@@ -55,7 +55,7 @@ catalog:
   storybook: 9.0.14
   tsup: 8.5.0
   turbo: 2.5.8
-  typescript: 5.8.3
+  typescript: 5.9.3
   vite: 7.0.6
   vite-tsconfig-paths: 5.1.4
   vitest: 3.2.4
