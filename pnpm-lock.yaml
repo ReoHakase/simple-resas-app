@@ -136,8 +136,8 @@ catalogs:
       specifier: 0.6.1
       version: 0.6.1
     pnpm:
-      specifier: 10.15.1
-      version: 10.15.1
+      specifier: 10.18.2
+      version: 10.18.2
     postcss:
       specifier: 8.5.6
       version: 8.5.6
@@ -249,7 +249,7 @@ importers:
         version: 0.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       pnpm:
         specifier: 'catalog:'
-        version: 10.15.1
+        version: 10.18.2
       react:
         specifier: 'catalog:'
         version: 19.1.1
@@ -6734,8 +6734,8 @@ packages:
   pnpm-workspace-yaml@1.2.0:
     resolution: {integrity: sha512-4CnZHmLSaprRnIm2iQ27Zl1cWPRHdX7Ehw7ckRwujoPKCk2QAz4agsA2MbTodg4sgbqYfJ68ULT+Q5A8dU+Mow==}
 
-  pnpm@10.15.1:
-    resolution: {integrity: sha512-NOU4wym1VTAUyo6PRTWZf5YYCh0PYUM5NXRJk1NQ2STiL4YUaCGRJk7DPRRirCFWGv+X9rsYBlNRwWLH6PbeZw==}
+  pnpm@10.18.2:
+    resolution: {integrity: sha512-n7lp+nSbOt5gNeDxCfC4pgtdCKGof99y4zfakNzJMzbiKAyk5E8jWKZJuDwXlZ6Zk+d3wggIefOAHm8NmZrT3Q==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -16090,7 +16090,7 @@ snapshots:
     dependencies:
       yaml: 2.8.1
 
-  pnpm@10.15.1: {}
+  pnpm@10.18.2: {}
 
   possible-typed-array-names@1.1.0: {}
 
