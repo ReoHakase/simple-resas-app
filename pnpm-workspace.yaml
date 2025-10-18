@@ -32,7 +32,7 @@ catalog:
   bun-types: latest
   concurrently: 9.2.1
   critters: 0.0.25
-  eslint: 9.37.0
+  eslint: 9.38.0
   eslint-plugin-format: 1.0.2
   eslint-plugin-react-refresh: 0.4.24
   eslint-plugin-storybook: 9.0.14
