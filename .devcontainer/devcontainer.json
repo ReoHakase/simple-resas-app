@@ -49,7 +49,7 @@
     "ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
     "ghcr.io/devcontainers/features/node:1.6.3": {
       "nodeGypDependencies": true,
-      "version": "22.20.0",
+      "version": "22.21.1",
       "nvmVersion": "latest"
     },
     "ghcr.io/devcontainers-contrib/features/act:1": {
